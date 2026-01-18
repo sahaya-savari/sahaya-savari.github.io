@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Understanding Machine Learning</title>
-  <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Machine Learning (Beginner)</title>
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
 
 <div class="layout">
 
+  <!-- ===== Sidebar ===== -->
   <aside class="sidebar">
     <h1>Santhosh</h1>
     <p>Learning AI & Python</p>
+
     <a href="../index.html">← Back to Blog</a>
+
+    <button id="themeToggle">Toggle Theme</button>
   </aside>
 
+  <!-- ===== Post Content ===== -->
   <main class="main post">
 
     <h1 class="post-title">
@@ -31,14 +37,15 @@
       </p>
 
       <p>
-        In simple terms, we show examples to the computer, and it finds
-        patterns on its own. These patterns help it make predictions or
-        decisions later.
+        In simple terms, we give examples to a computer, and it tries to
+        identify patterns on its own. Over time, these patterns help the
+        system make predictions or decisions.
       </p>
 
       <p>
-        You don’t need heavy math to get started. What matters first is
-        understanding the idea:
+        When I first started learning machine learning, I thought it was
+        all about complex mathematics. But what actually matters first is
+        understanding the idea behind it.
       </p>
 
       <blockquote>
@@ -46,7 +53,14 @@
       </blockquote>
 
       <p>
-        This post is part of my personal learning journey in AI and Python.
+        Once this flow is clear, the technical details become much easier
+        to understand. This post reflects my current understanding as a
+        learner, not as an expert.
+      </p>
+
+      <p>
+        I am documenting my learning journey so that I can revise concepts
+        later and also help beginners who are starting from scratch.
       </p>
 
     </article>
@@ -55,7 +69,15 @@
 
 </div>
 
+<!-- ===== Theme Toggle Script ===== -->
+<script>
+  const toggle = document.getElementById("themeToggle");
+  if (toggle) {
+    toggle.onclick = () => {
+      document.body.classList.toggle("light");
+    };
+  }
+</script>
+
 </body>
 </html>
-
-
