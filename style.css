@@ -1,3 +1,15 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
 :root {
   --bg: radial-gradient(circle at top, #0f172a, #020617);
   --glass: rgba(255, 255, 255, 0.06);
@@ -7,26 +19,33 @@
   --accent: #38bdf8;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* =========================
+   BODY
+========================= */
 body {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  line-height: 1.7;
+
+  /* Premium text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Layout */
+/* =========================
+   LAYOUT
+========================= */
 .layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
+/* =========================
+   SIDEBAR (GLASS)
+========================= */
 .sidebar {
   width: 260px;
   padding: 32px 24px;
@@ -37,7 +56,7 @@ body {
 
 .sidebar h1 {
   font-size: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .sidebar p {
@@ -53,13 +72,27 @@ body {
   padding: 10px 12px;
   border-radius: 8px;
   margin-bottom: 6px;
+  transition: background 0.2s ease;
 }
 
 .sidebar a:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* Main content */
+/* Theme toggle button */
+.sidebar button {
+  margin-top: 24px;
+  padding: 10px 14px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
 .main {
   flex: 1;
   padding: 64px;
@@ -70,12 +103,14 @@ body {
   margin-bottom: 8px;
 }
 
-.main .subtitle {
+.subtitle {
   color: var(--muted);
   margin-bottom: 40px;
 }
 
-/* Post card */
+/* =========================
+   POST CARD (HOME)
+========================= */
 .post-card {
   background: var(--glass);
   backdrop-filter: blur(12px);
@@ -88,13 +123,17 @@ body {
 
 .post-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .post-card h3 a {
   text-decoration: none;
   color: var(--accent);
   font-size: 22px;
+}
+
+.post-card h3 a:hover {
+  text-decoration: underline;
 }
 
 .post-card .meta {
@@ -104,11 +143,90 @@ body {
 }
 
 .post-card p {
-  line-height: 1.7;
   color: var(--text);
 }
 
-/* Responsive */
+/* =========================
+   POST PAGE TYPOGRAPHY
+========================= */
+.post {
+  max-width: 780px;
+}
+
+.post-title {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.post-title span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.post-meta {
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.post-content p {
+  font-size: 18px;
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
+
+.post-content blockquote {
+  margin: 32px 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent);
+  color: var(--accent);
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* =========================
+   SUBTLE ANIMATIONS
+========================= */
+.post-card,
+.post-title,
+.post-content p {
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   LIGHT MODE
+========================= */
+body.light {
+  --bg: linear-gradient(#f8fafc, #e5e7eb);
+  --glass: rgba(255, 255, 255, 0.7);
+  --border: rgba(0, 0, 0, 0.08);
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #0284c7;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
   .layout {
     flex-direction: column;
@@ -122,5 +240,9 @@ body {
 
   .main {
     padding: 32px 20px;
+  }
+
+  .post-title {
+    font-size: 32px;
   }
 }
