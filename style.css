@@ -1,41 +1,99 @@
+/* ---------- Base Reset ---------- */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* ---------- Theme ---------- */
+:root {
+  --bg: #0f172a;          /* dark navy */
+  --card: #111827;        /* dark card */
+  --text: #e5e7eb;        /* light text */
+  --muted: #9ca3af;       /* muted text */
+  --accent: #38bdf8;      /* blue accent */
+  --border: #1f2933;
+}
+
+/* ---------- Body ---------- */
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #0b1220;
-  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue",
+               Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.7;
 }
 
+/* ---------- Layout ---------- */
 .container {
-  max-width: 760px;
-  margin: auto;
-  padding: 48px 20px;
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
-h1, h2 {
-  color: #f8fafc;
+/* ---------- Headings ---------- */
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
 }
 
-a {
-  color: #60a5fa;
-  text-decoration: none;
+h2 {
+  margin-bottom: 16px;
+  font-size: 1.4rem;
 }
 
-.post-card {
-  padding: 24px 0;
-  border-bottom: 1px solid #1e293b;
+/* ---------- Text ---------- */
+p {
+  margin-bottom: 16px;
+  color: var(--text);
 }
 
 .meta {
-  color: #94a3b8;
-  font-size: 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
 }
 
+/* ---------- Links ---------- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Article List ---------- */
+ul {
+  list-style: none;
+  margin-top: 20px;
+}
+
+li {
+  margin-bottom: 12px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* ---------- Back Link ---------- */
 .back {
   display: inline-block;
   margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 }
