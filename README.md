@@ -1,41 +1,35 @@
-# Personal Blog – Learning Notes 📘
+# 📘 Personal Learning Blog
 
-A clean, modern, and minimal personal blog built using plain HTML and CSS.
+A clean, minimal blog built to document my learning journey in **AI, Python, and Computer Science**.
 
-This blog documents my learning journey in:
-- Artificial Intelligence
-- Machine Learning
-- Python
-- Web fundamentals
+Live site:  
+👉 https://sahayasavari.github.io
 
-The focus is on clarity, consistency, and long-term learning — not showcasing or overengineering.
+---
+
+## 🎯 Purpose
+
+This repository is intentionally kept simple.
+
+The goals are:
+- to learn concepts deeply  
+- to write explanations in my own words  
+- to maintain a clean, professional portfolio  
+- to grow the blog gradually over time  
 
 ---
 
 ## 🛠 Tech Stack
 
-- HTML — structure
-- CSS — modern UI (glassmorphism, sidebar layout, responsive design)
-- GitHub Pages — static hosting
+- **HTML** — semantic structure  
+- **CSS** — modern UI (glassmorphism, sidebar layout, responsive design)  
+- **GitHub Pages** — free hosting  
 
-No frameworks  
-No libraries  
-No build tools  
-
----
-
-## ✨ Features
-
-- Modern glassmorphic design
-- Sidebar-based layout
-- Premium typography
-- Dark / Light mode toggle
-- Subtle, clean animations
-- Mobile-responsive layout
-- Simple file-based blog system
+No frameworks.  
+No libraries.  
+No complex setup.
 
 ---
-
 index.html # Blog homepage
 style.css # Global styles
 posts/ # Blog posts
@@ -45,45 +39,18 @@ README.md
 
 ---
 
-## How Blog Posts Work
+## 📄 License & Usage
 
-- Each blog post is a simple HTML file inside the `posts/` folder
-- The homepage (`index.html`) links to each post
-- No database, no CMS — fully static and transparent
+This project is for **personal learning and documentation**.
 
-To add a new post:
-1. Copy an existing post file
-2. Rename it (example: `second-post.html`)
-3. Update title, date, and content
-4. Add a new post card entry in `index.html`
+All content is written in my own words and reflects my understanding at the time of writing.
 
 ---
 
-## Hosting
+## 🚀 Status
 
-This blog is hosted using **GitHub Pages**.
+This blog is actively maintained and will be updated as I continue learning.
 
-Live URL format:
-https://<username>.github.io/
-
----
-
-## Purpose
-
-This repository is intentionally kept simple.
-
-The goal is:
-- to learn deeply
-- to write in my own words
-- to maintain a clean, professional portfolio
-- to grow the blog gradually over time
-
----
-
-## License
-
-This project is for personal learning and documentation purposes.
-Content is written in my own words and reflects my understanding.
 
 ## 📂 Project Structure
 
