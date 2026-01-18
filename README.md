@@ -30,6 +30,9 @@ No libraries.
 No complex setup.
 
 ---
+
+## 📂 Project Structure
+
 index.html # Blog homepage
 style.css # Global styles
 posts/ # Blog posts
@@ -51,6 +54,4 @@ All content is written in my own words and reflects my understanding at the time
 
 This blog is actively maintained and will be updated as I continue learning.
 
-
-## 📂 Project Structure
 
