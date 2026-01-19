@@ -3,7 +3,7 @@
 A clean, minimal blog built to document my learning journey in AI, Python, and Computer Science.
 
 Live site:
-https://sahayasavari.github.io
+https://sahaya-savari.github.io
 
 ---
 
