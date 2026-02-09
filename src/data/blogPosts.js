@@ -3,105 +3,100 @@ export const blogPosts = [
   {
     slug: 'python-foundations-part-1',
     category: 'python',
-    title: 'Python Programming — Part 1: Foundations for Absolute Beginners',
+    title: '🐍 Python Programming — Complete Practical Guide',
     date: 'February 10, 2026',
-    excerpt: 'A complete practical guide to the basics of Python, from installation to conditional statements, designed for absolute beginners.',
+    excerpt: 'The ultimate professional roadmap for Python. From installation and variables to complex logic, loops, and functions.',
     content: `
       <h2>🚀 Introduction / Context</h2>
-      <p>Python is the world's most popular language because it feels like English. 🟢 It is clean, logical, and removes the "computer science" wall that scares many away.</p>
-      <p>This guide takes you from zero to writing your first logical programs.</p>
+      <p>Python is the world's most popular language because it feels like English. 🟢 It is clean, logical, and designed to let you focus on solving problems rather than fighting with complex syntax.</p>
 
-      <h2>❗ Problem or Motivation</h2>
-      <p>Beginners often face "Syntax Anxiety"—worrying that one wrong space will break everything. 🟢 We also struggle with abstract concepts like "variables" vs "strings".</p>
-      <p>Python is the solution because it handles the messy computer parts, letting you focus on solving problems.</p>
-
-      <h2>🧠 Core Concept / Idea</h2>
-      <p>Programming is just giving a very fast, very literal instruction manual to a computer. 🟢</p>
-      <p>Python is an <strong>interpreted language</strong>. This means a program called an interpreter reads your code line-by-line and does what you say instantly.</p>
-
-      <h2>🔑 Key Points or Observations</h2>
-      
-      <h3>1. Setting Up (Windows) 🟢</h3>
+      <h2>📚 Table of Contents</h2>
       <ul>
-        <li>Download from <strong>python.org</strong>.</li>
-        <li><strong>CRITICAL:</strong> Check "Add Python to PATH" during setup.</li>
-        <li>Disable path length limits if prompted.</li>
+        <li><a href="#setup">Installing Python</a></li>
+        <li><a href="#variables">Variables & Data Types</a></li>
+        <li><a href="#logic">Logic & Decisions (If/Else)</a></li>
+        <li><a href="#loops">Loops & Automation</a></li>
+        <li><a href="#functions">Functions & Reusability</a></li>
+        <li><a href="#errors">Handling Errors</a></li>
       </ul>
 
-      <h3>2. Variables & Storage 🟢</h3>
-      <p>Variables are just labeled boxes. <code>name = "Alice"</code> puts the text "Alice" into a box labeled <code>name</code>.</p>
-      
-      <h3>3. Decisions (If/Else) 🟢</h3>
-      <p>Python uses indentation (spaces) to group logic. It's the only language that cares about how your code looks!</p>
+      <h2 id="setup">💻 Installing Python (Windows)</h2>
+      <p>1. Download the latest version from <strong>python.org</strong>. 🟢<br>
+      2. <strong>IMPORTANT:</strong> Check the box "Add Python to PATH" during installation.<br>
+      3. Open your terminal and type <code>python --version</code> to confirm.</p>
+
+      <h2 id="variables">📦 Variables & Data Types</h2>
+      <p>Think of variables as labeled boxes that store different types of information. 🟢</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>String</td>
+            <td>Text data</td>
+            <td><code>"Hello"</code></td>
+          </tr>
+          <tr>
+            <td>Int</td>
+            <td>Whole numbers</td>
+            <td><code>42</code></td>
+          </tr>
+          <tr>
+            <td>Float</td>
+            <td>Decimal numbers</td>
+            <td><code>3.14</code></td>
+          </tr>
+          <tr>
+            <td>List</td>
+            <td>Ordered collection</td>
+            <td><code>[1, 2, 3]</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="logic">🧠 Logic & Decisions</h2>
+      <p>Python uses <strong>Indentation</strong> (4 spaces) to define blocks of code. 🟢 It cares about how your code looks!</p>
       <pre><code>if score >= 90:
     print("Grade: A")
+elif score >= 80:
+    print("Grade: B")
 else:
     print("Keep working!")</code></pre>
 
-      <h2>🛠 Practical Understanding / Intuition</h2>
-      <p>Think of Python as a <strong>Personal Assistant</strong>. 🟢</p>
-      <p>Variables are memories you've asked the assistant to hold. <strong>If/Else</strong> statements are the decision protocols you've given them: "If the mail arrives, bring it in. Else, stay at the desk."</p>
+      <h2 id="loops">🔄 Loops & Automation</h2>
+      <p>Loops allow you to repeat a task thousands of times without rewriting code. 🟢</p>
+      <pre><code># Looping through a list
+books = ["Python", "Git", "React"]
+for book in books:
+    print(f"Reading: {book}")</code></pre>
 
-      <h2>⚠️ Limitations or Challenges</h2>
-      <p>Python is slower than languages like C++, but for 99% of tasks, it is perfect. 🟢 The real challenge is visualizing logic—learning to "see" the flow of data.</p>
+      <h2 id="functions">🛠 Functions & Reusability</h2>
+      <p>Functions are packaged "recipes" of logic that you can name and call whenever you need them. 🟢</p>
+      <pre><code>def greet(name):
+    return f"Hello, {name}!"
 
-      <h2>✍️ Personal Learning / Reflection</h2>
-      <p>I used to think errors were signs of failure. 🟢 They aren't. Even pros see red text every day. Coding is the skill of <strong>fixing</strong> those errors, not avoiding them.</p>
+print(greet("Savari"))</code></pre>
 
-      <h2>🎯 Conclusion / Takeaway</h2>
-      <p>You've built the foundation! 🟢 You understand setup, storage, and decisions. Practice writing one small "if" statement today to seal the knowledge.</p>
-    `
-  },
-  {
-    slug: 'python-core-concepts-part-2',
-    category: 'python',
-    title: 'Python Programming — Part 2: Core Programming Concepts',
-    date: 'February 10, 2026',
-    excerpt: 'Take your Python skills further by learning about loops, lists, functions, and error handling.',
-    content: `
-      <h2>🚀 Introduction / Context</h2>
-      <p>Once you know the basics, the next level is <strong>efficiency</strong>. 🟢 Real programming is about making the computer do the boring, repetitive work for you.</p>
-
-      <h2>❗ Problem or Motivation</h2>
-      <p>Copy-pasting the same code 10 times is a nightmare. 🟢 Managing 50 separate names in 50 variables is impossible. We need systems that scale.</p>
-
-      <h2>🧠 Core Concept / Idea</h2>
-      <p>Scalable code relies on three pillars: 🟢
-        <ul>
-          <li><strong>Loops:</strong> Automating repetition.</li>
-          <li><strong>Collections:</strong> Organizing large amounts of data.</li>
-          <li><strong>Functions:</strong> Packaging logic to reuse it later.</li>
-        </ul>
-      </p>
-
-      <h2>🔑 Key Points or Observations</h2>
-
-      <h3>1. Loops (The Chopping Machine) 🟢</h3>
-      <p>A <code>for</code> loop runs code multiple times automatically. No more typing the same thing twice!</p>
-      <pre><code>for item in ["apple", "banana"]:
-    print(item)</code></pre>
-
-      <h3>2. Lists & Dicts (The Pantry) 🟢</h3>
-      <ul>
-        <li><strong>Lists:</strong> Ordered rows of items.</li>
-        <li><strong>Dictionaries:</strong> Key-value pairs (like a real dictionary).</li>
-      </ul>
-
-      <h3>3. Functions (The Recipe) 🟢</h3>
-      <p>Functions let you name a block of logic so you can call it anytime. <code>def make_tea():</code></p>
+      <h2 id="errors">⚠️ Handling Errors</h2>
+      <p>Even professional code crashes. Use <code>try/except</code> to handle errors gracefully. 🟢</p>
+      <pre><code>try:
+    number = int(input("Enter a number: "))
+except ValueError:
+    print("That's not a valid number!")</code></pre>
 
       <h2>🛠 Practical Understanding / Intuition</h2>
-      <p>Imagine you are a <strong>Chef</strong>. 🟢</p>
-      <p><strong>Loops</strong> are the machines that chop 100 carrots. <strong>Data Structures</strong> are your organized spice rack. <strong>Functions</strong> are your recipes—you don't explain how to bake a cake every morning; you just hand over the recipe.</p>
-
-      <h2>⚠️ Limitations or Challenges</h2>
-      <p>The biggest hurdle is <strong>Logical Errors</strong>. 🟢 Your code might run without crashing, but it might give the wrong result. Learning to debug is vital.</p>
+      <p>Logic is the core skill. 🟢 Languages are just tools. Once you understand <em>how</em> to solve a problem with Python's logic, you can learn any other language much faster.</p>
 
       <h2>✍️ Personal Learning / Reflection</h2>
-      <p>I was terrified of "returning" values from functions. 🟢 Once I realized it's just the "answer" to a question, everything clicked. Don't overthink it!</p>
+      <p>I used to overcomplicate my code. 🟢 I've learned that "Simple is better than complex." If you can explain your code to a friend, it's good code.</p>
 
       <h2>🎯 Conclusion / Takeaway</h2>
-      <p>You now have the tools to build real apps. 🟢 Start a small project—like a list of your favorite books—to practice these core concepts.</p>
+      <p>You now have the full foundation of Python. 🟢 Start by building a small project—like a personal calculator or a to-do list—to seal this knowledge into memory.</p>
     `
   },
   {
