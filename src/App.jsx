@@ -15,8 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<BlogList />} />
-            <Route path="/blog/react" element={<ReactBlog />} />
             <Route path="/blog/python" element={<PythonBlog />} />
+            <Route path="/blog/react" element={<ReactBlog />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </Layout>
