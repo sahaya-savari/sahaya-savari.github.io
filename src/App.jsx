@@ -3,7 +3,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import BlogList from './pages/Blog/BlogList';
-import BlogPost from './pages/Blog/BlogPost';
+import ReactBlog from './pages/Blog/ReactBlog';
+import PythonBlog from './pages/Blog/PythonBlog';
 import About from './pages/About/About';
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<BlogList />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/blog/react" element={<ReactBlog />} />
+            <Route path="/blog/python" element={<PythonBlog />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </Layout>

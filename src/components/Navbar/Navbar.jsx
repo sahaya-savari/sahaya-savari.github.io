@@ -37,8 +37,25 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
+            end
           >
             Blog
+          </NavLink>
+          <NavLink
+            to="/blog/react"
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+          >
+            React
+          </NavLink>
+          <NavLink
+            to="/blog/python"
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+          >
+            Python
           </NavLink>
           <NavLink
             to="/about"
@@ -61,7 +78,7 @@ const Navbar = () => {
         {/* Theme Toggle & Hamburger */}
         <div className={styles.navActions}>
           <ThemeToggle />
-          
+
           {/* Hamburger Menu Button */}
           <button
             className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`}
@@ -93,8 +110,27 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? `${styles.mobileLink} ${styles.active}` : styles.mobileLink
           }
+          end
         >
           Blog
+        </NavLink>
+        <NavLink
+          to="/blog/react"
+          onClick={closeMenu}
+          className={({ isActive }) =>
+            isActive ? `${styles.mobileLink} ${styles.active}` : styles.mobileLink
+          }
+        >
+          React
+        </NavLink>
+        <NavLink
+          to="/blog/python"
+          onClick={closeMenu}
+          className={({ isActive }) =>
+            isActive ? `${styles.mobileLink} ${styles.active}` : styles.mobileLink
+          }
+        >
+          Python
         </NavLink>
         <NavLink
           to="/about"

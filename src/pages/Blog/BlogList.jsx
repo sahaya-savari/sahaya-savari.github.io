@@ -16,24 +16,22 @@ const BlogList = () => {
           </p>
         </div>
 
-        {/* Blog Posts Grid */}
+        {/* Blog Topics Grid */}
+        {/* Choose a Topic */}
         <div className={styles.postsContainer}>
-          {blogPosts.map((post) => (
-            <Link
-              key={post.slug}
-              to={`/blog/${post.slug}`}
-              className={`glass-card ${styles.postCard}`}
-            >
-              <div className={styles.postMeta}>
-                <span className={styles.postDate}>{post.date}</span>
-              </div>
-              <h2 className={styles.postTitle}>{post.title}</h2>
-              <p className={styles.postExcerpt}>{post.excerpt}</p>
-              <span className={styles.readMore}>
-                Read More →
-              </span>
-            </Link>
-          ))}
+          <Link to="/blog/react" className="glass-card" style={{ padding: '2.5rem', textAlign: 'center', flex: 1 }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚛️</div>
+            <h2>React & Web Dev</h2>
+            <p style={{ margin: '1rem 0' }}>Modern UI, Hooks, and Frontend Performance</p>
+            <span className="btn">View React Posts</span>
+          </Link>
+
+          <Link to="/blog/python" className="glass-card" style={{ padding: '2.5rem', textAlign: 'center', flex: 1 }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🐍</div>
+            <h2>Python & AI</h2>
+            <p style={{ margin: '1rem 0' }}>Machine Learning, Data, and Core Concepts</p>
+            <span className="btn">View Python Posts</span>
+          </Link>
         </div>
       </div>
     </div>

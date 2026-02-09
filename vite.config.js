@@ -8,7 +8,7 @@ export default defineConfig({
   // Base URL for GitHub Pages deployment
   // Repo: https://sahaya-savari.github.io/
   // Required so assets load correctly after refresh
-  base: '/sahaya-savari.github.io/',
+  base: '/',
 
   build: {
     outDir: 'dist',
