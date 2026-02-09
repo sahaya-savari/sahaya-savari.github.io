@@ -107,46 +107,116 @@ else:
   {
     slug: 'github-guide-for-beginners',
     category: 'github',
-    title: 'GitHub Guide for Beginners',
-    date: 'February 9, 2026',
-    excerpt: 'GitHub is one of the most important tools for developers today. Learn how to store code, track changes, and collaborate.',
+    title: '🧰 Git & GitHub — Complete Practical Guide',
+    date: 'February 10, 2026',
+    excerpt: 'A strict, professional, beginner-friendly guide to Git and GitHub, covering every command from zero to hero.',
     content: `
       <h2>🚀 Introduction / Context</h2>
-      <p>In modern coding, Git and GitHub are essential. 🔵 Think of them as the professional "save system" for your career.</p>
+      <p>Git and GitHub help you <strong>track changes</strong>, <strong>avoid losing work</strong>, and <strong>collaborate safely</strong>. 🔵 This guide teaches Git from the ground up, starting with <em>what problem it solves</em> before showing <em>how to use it</em>.</p>
 
-      <h2>❗ Problem or Motivation</h2>
-      <p>Without Git, a single deleted file can mean weeks of lost work. 🔵 We've all seen folders named "final_version_3_REALLY_FINAL.zip"—Git stops that mess.</p>
-
-      <h2>🧠 Core Concept / Idea</h2>
-      <p><strong>Git</strong> is the software on your PC that tracks changes. 🔵 <strong>GitHub</strong> is the website where you share those changes with the world.</p>
-
-      <h2>🔑 Key Points or Observations</h2>
-
-      <h3>1. The Commit (Snapshot) 🔵</h3>
-      <p>A "commit" is a permanent save point. You can always go back to it if you break something.</p>
-
-      <h3>2. The Remote (Safe Cloud) 🔵</h3>
-      <p>By pushing your code to GitHub, you ensure it is safe even if your laptop falls in a lake.</p>
-
-      <h3>3. Basic Commands 🔵</h3>
+      <h2>🧠 What is Git</h2>
+      <p>Git is a <strong>version control system</strong>. 🔵</p>
       <ul>
-        <li><code>git add .</code> - Pick your changes.</li>
-        <li><code>git commit -m "Fix"</code> - Save with a note.</li>
-        <li><code>git push</code> - Upload to the cloud.</li>
+        <li>It keeps a <strong>history of your files</strong>.</li>
+        <li>It lets you <strong>go back in time</strong> to any local version.</li>
+        <li>It works <strong>locally on your computer</strong> (doesn't require internet).</li>
       </ul>
 
-      <h2>🛠 Practical Understanding / Intuition</h2>
-      <p>Think of Git as a <strong>Time Machine</strong> for your files. 🔵</p>
-      <p>If you make a mistake today, you can literally "undo" time and go back to when the code was working perfectly. It gives you the freedom to experiment without fear.</p>
+      <h2>🌍 What is GitHub</h2>
+      <p>GitHub is a <strong>website</strong> that stores Git repositories online. 🔵 Think of it as the "Cloud" for your code. It helps with backups, sharing, and collaboration on larger projects.</p>
 
-      <h2>⚠️ Limitations or Challenges</h2>
-      <p>Terminal commands feel "old" and scary at first. 🔵 Also, "Merge Conflicts" (when two people edit the same line) can be confusing, but they are solvable.</p>
+      <h2>📘 Core Terminology</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Plain English Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Repository (Repo)</td>
+            <td>Your project folder + full history</td>
+          </tr>
+          <tr>
+            <td>Commit</td>
+            <td>A permanent save point</td>
+          </tr>
+          <tr>
+            <td>Stage</td>
+            <td>Waiting area before saving</td>
+          </tr>
+          <tr>
+            <td>Branch</td>
+            <td>A parallel version of the project</td>
+          </tr>
+          <tr>
+            <td>Remote</td>
+            <td>Online copy (GitHub)</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <h2>✍️ Personal Learning / Reflection</h2>
-      <p>I used to memorize commands I didn't understand. 🔵 Once I realized Git is just managing "save points," the commands started to make sense. Focus on the <strong>flow</strong>, not the letters.</p>
+      <h2>💻 Installing Git (Windows)</h2>
+      <p>1. Go to <strong>git-scm.com</strong> and download the installer. 🔵<br>
+      2. Run the setup and keep the default settings.<br>
+      3. Verify by typing <code>git --version</code> in your terminal.</p>
+
+      <h2>⚙️ Initial Git Configuration</h2>
+      <p>Git needs to know who you are to record who made which changes. 🔵</p>
+      <pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+
+      <h2>📁 Creating a Repository</h2>
+      <p>To start tracking a folder, navigate to it in your terminal and type: 🔵</p>
+      <pre><code>git init</code></pre>
+      <p>This creates a hidden <code>.git</code> folder that stores all your project's history.</p>
+
+      <h2>🔄 Git File Lifecycle</h2>
+      <p>Files move through three main stages: 🔵<br>
+      <strong>Untracked</strong> (Git ignores them) → <strong>Staged</strong> (Ready to save) → <strong>Committed</strong> (Permanently saved).</p>
+
+      <h2>📥 Staging Files</h2>
+      <p>The "Staging Area" is like a shopping cart where you put items before checking out. 🔵</p>
+      <pre><code>git add index.html  # Adds one file
+git add .           # Adds ALL changed files</code></pre>
+
+      <h2>💾 Committing Changes</h2>
+      <p>A commit is a snapshot of your project at a specific moment. 🔵</p>
+      <pre><code>git commit -m "Add login feature"</code></pre>
+      <p>Always write clear, descriptive messages so you know *why* you made a change.</p>
+
+      <h2>🔗 Connecting to GitHub</h2>
+      <p>Link your local folder to a repository you created on GitHub: 🔵</p>
+      <pre><code>git remote add origin https://github.com/username/repo.git</code></pre>
+
+      <h2>🚀 Pushing Code</h2>
+      <p>Upload your local commits to the cloud: 🔵</p>
+      <pre><code>git push origin main</code></pre>
+
+      <h2>📥 Cloning Repositories</h2>
+      <p>Download an existing project and its entire history: 🔵</p>
+      <pre><code>git clone https://github.com/username/repo.git</code></pre>
+
+      <h2>🌱 Branching & Merging</h2>
+      <p><strong>Branches</strong> allow you to work on new features without breaking the main code. 🔵 Once finished, you <strong>Merge</strong> them back into the main branch.</p>
+      <pre><code>git checkout -b new-feature  # Create and switch
+git merge new-feature        # Combine changes</code></pre>
+
+      <h2>⏪ Undoing Mistakes</h2>
+      <p>Made a mistake? You can restore a file to its last healthy state: 🔵</p>
+      <pre><code>git restore file.txt</code></pre>
+      <p>Or undo a commit while keeping your work: <code>git reset --soft HEAD~1</code></p>
+
+      <h2>🚫 .gitignore</h2>
+      <p>Use a <code>.gitignore</code> file to tell Git to ignore files you don't want to upload, like passwords (<code>.env</code>) or large folders (<code>node_modules/</code>). 🔵</p>
+
+      <h2>🗓️ Daily Git Workflow</h2>
+      <p>A typical professional day looks like this: 🔵</p>
+      <p><code>Edit Code</code> → <code>git add .</code> → <code>git commit -m "..."</code> → <code>git pull</code> → <code>git push</code></p>
 
       <h2>🎯 Conclusion / Takeaway</h2>
-      <p>Start small. 🔵 <code>Add -> Commit -> Push</code>. Do this every day for a week, and you'll never worry about losing code again.</p>
+      <p>Mastering Git means less fear and better collaboration. 🔵 Practice these commands daily until they become muscle memory. Start by pushing one small project today!</p>
     `
   },
   {
