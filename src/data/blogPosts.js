@@ -320,8 +320,70 @@ You have just completed the ultimate foundation for Python programming. Practice
     date: 'February 10, 2026',
     excerpt: 'The ultimate long-form guide to version control for absolute beginners. Master Git and GitHub through 26 detailed sections with real-world logic.',
     content: `
+
 # Git & GitHub — Complete Beginner to Practical Guide 🔧🐙
 
+| # | Emoji | Chapter | Link |
+| --- | --- | --- | --- |
+| 1 | 👋 | Introduction | [Go](#introduction) |
+| 1.1 | 🚀 | Quick Start (5 Steps) | [Go](#quick-start-5-steps) |
+| 2 | 🧠 | What is Git | [Go](#what-is-git) |
+| 3 | 🌐 | What is GitHub | [Go](#what-is-github) |
+| 4 | 🧩 | Core Terminology | [Go](#core-terminology) |
+| 4.1 | 😀 | Emoji Quick Table | [Go](#emoji-quick-table) |
+| 5 | 🧰 | Installing Git (Windows) | [Go](#installing-git-windows) |
+| 6 | ⚙️ | Initial Git Configuration | [Go](#initial-git-configuration) |
+| 7 | 📁 | Creating a Repository | [Go](#creating-a-repository) |
+| 8 | ♻️ | Git File Lifecycle | [Go](#git-file-lifecycle) |
+| 9 | ✅ | Staging Files | [Go](#staging-files) |
+| 10 | 📝 | Committing Changes | [Go](#committing-changes) |
+| 11 | 🔗 | Connecting to GitHub | [Go](#connecting-to-github) |
+| 12 | ⬆️ | Pushing Code | [Go](#pushing-code) |
+| 13 | 📥 | Cloning Repositories | [Go](#cloning-repositories) |
+| 14 | ⬇️ | Pulling Updates | [Go](#pulling-updates) |
+| 15 | 🌿 | Branching | [Go](#branching) |
+| 16 | 🤝 | Merging | [Go](#merging) |
+| 17 | 🍴 | Forking & Open-Source Workflow | [Go](#forking--open-source-workflow) |
+| 18 | 📬 | Pull Requests | [Go](#pull-requests) |
+| 19 | 🧹 | Undoing Mistakes | [Go](#undoing-mistakes) |
+| 20 | 🧭 | Viewing History | [Go](#viewing-history) |
+| 21 | 🚫 | .gitignore | [Go](#gitignore) |
+| 22 | 🔐 | Authentication (HTTPS vs SSH) | [Go](#authentication-https-vs-ssh) |
+| 23 | 🧯 | Common Errors & Fixes | [Go](#common-errors--fixes) |
+| 24 | ⭐ | Best Practices | [Go](#best-practices) |
+| 25 | 🗓️ | Daily Git Workflow | [Go](#daily-git-workflow) |
+| 26 | ✅ | Conclusion | [Go](#conclusion) |
+
+---
+
+This guide teaches Git and GitHub from zero. It explains concepts first, then shows commands with simple, direct explanations. You do not need prior knowledge of version control, command-line tools, or GitHub.
+
+## Quick Start (5 Steps)
+| Step | Emoji | Command | Why |
+| --- | --- | --- | --- |
+| 1 | 📁 | \`git init\` | Start tracking a folder. |
+| 2 | 🧪 | \`git status\` | Check what changed. |
+| 3 | ✅ | \`git add .\` | Stage all changes. |
+| 4 | 📝 | \`git commit -m \"Message\"\` | Save a snapshot. |
+| 5 | ⬆️ | \`git push origin main\` | Back up to GitHub. |
+
+## What is Git
+Git is a tool that tracks changes to files over time. It lets you:
+- Save snapshots of your work (called commits).
+- See what changed and when.
+- Go back to earlier versions if something breaks.
+- Work with others without overwriting each other’s files.
+
+Git works locally on your computer. You can use it without the internet.
+
+## What is GitHub
+GitHub is a website that stores Git repositories online. It lets you:
+- Back up your code to the cloud.
+- Share code with others.
+- Collaborate by reviewing and merging changes.
+
+GitHub is optional but very common for teamwork and open-source projects.
+---
 ## Table of Contents
 1. [1. Introduction to Version Control](#1-introduction-to-version-control)
 2. [2. What is Git](#2-what-is-git)

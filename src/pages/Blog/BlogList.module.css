@@ -25,9 +25,11 @@
 
 /* Topic Grid */
 .postsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .topicCard {
@@ -35,7 +37,7 @@
   background: var(--bg-secondary);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 2.5rem 1.5rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,6 +45,10 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  max-width: 400px;
+  min-width: 280px;
+  width: 100%;
+  margin: 0;
 }
 
 .topicCard[data-category="python"] {

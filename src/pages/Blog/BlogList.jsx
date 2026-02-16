@@ -34,47 +34,12 @@ const BlogList = () => {
               </span>
             </Link>
           </ScrollReveal>
-
           <ScrollReveal delay={200}>
-            <Link to="/blog/github" className={styles.topicCard} data-category="github">
-              <div className={styles.topicIcon}>🛠️</div>
-              <h2 className={styles.topicTitle}>GitHub Guide</h2>
+            <Link to="/blog/git-github" className={styles.topicCard} data-category="git-github">
+              <div className={styles.topicIcon}>🔧</div>
+              <h2 className={styles.topicTitle}>Git & GitHub</h2>
               <p className={styles.topicDescription}>
-                Essential dev skills: Repository management, version control, and collaboration workflows.
-              </p>
-              <span className={styles.viewBtn}>
-                Read Guide
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </span>
-            </Link>
-          </ScrollReveal>
-
-          <ScrollReveal delay={300}>
-            <Link to="/blog/programming" className={styles.topicCard} data-category="programming">
-              <div className={styles.topicIcon}>🗺️</div>
-              <h2 className={styles.topicTitle}>Learning Path</h2>
-              <p className={styles.topicDescription}>
-                Universal roadmap: How to learn programming effectively and stay consistent.
-              </p>
-              <span className={styles.viewBtn}>
-                Explore Roadmap
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </span>
-            </Link>
-          </ScrollReveal>
-
-          <ScrollReveal delay={400}>
-            <Link to="/blog/react" className={styles.topicCard} data-category="react">
-              <div className={styles.topicIcon}>⚛️</div>
-              <h2 className={styles.topicTitle}>React & Web</h2>
-              <p className={styles.topicDescription}>
-                Modern UI development, React Hooks, and frontend best practices.
+                Complete practical guide: staging, committing, pushing, and collaborating with Git & GitHub.
               </p>
               <span className={styles.viewBtn}>
                 View Collection
