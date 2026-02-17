@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sahaya-savari.github.io/sitemap.xml

@@ -5,6 +5,7 @@ export const blogPosts = [
     category: 'python',
     title: '🐍 Python Programming — Complete Beginner to Practical Guide',
     date: 'February 10, 2026',
+    tags: ['Python', 'Beginner', 'Programming'],
     excerpt: 'The definitive article-style guide for absolute beginners. Explore the why, what, and how of Python through a comprehensive 26-section journey.',
     content: `
 # Python Programming — Complete Beginner to Practical Guide 🐍
@@ -318,6 +319,7 @@ You have just completed the ultimate foundation for Python programming. Practice
     category: 'github',
     title: '🧰 Git & GitHub — Complete Practical Guide',
     date: 'February 10, 2026',
+    tags: ['Git', 'GitHub', 'Version Control', 'Beginner'],
     excerpt: 'The ultimate long-form guide to version control for absolute beginners. Master Git and GitHub through 26 detailed sections with real-world logic.',
     content: `
 
@@ -1355,6 +1357,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'programming',
     title: 'How to Learn Programming as a Beginner',
     date: 'February 9, 2026',
+    tags: ['Programming', 'Beginner', 'Learning'],
     excerpt: 'A universal roadmap for beginners to stay focused, consistent, and avoid burnout while learning to code.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1396,6 +1399,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'react',
     title: 'Getting Started with React',
     date: 'January 15, 2026',
+    tags: ['React', 'JavaScript', 'Web Dev'],
     excerpt: 'A comprehensive guide to building modern web applications with React, covering components, hooks, and best practices.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1437,6 +1441,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'python',
     title: 'Machine Learning Basics',
     date: 'January 10, 2026',
+    tags: ['Machine Learning', 'AI', 'Python'],
     excerpt: 'Understanding the fundamentals of machine learning, from supervised learning to neural networks.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1478,6 +1483,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'python',
     title: 'Data Visualization Tips',
     date: 'January 5, 2026',
+    tags: ['Data Science', 'Python', 'Visualization'],
     excerpt: 'Best practices for creating effective and beautiful data visualizations that tell compelling stories.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1523,6 +1529,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'python',
     title: 'Python for Data Science',
     date: 'December 28, 2025',
+    tags: ['Data Science', 'Python', 'Libraries'],
     excerpt: 'Exploring Python libraries and tools essential for data science and analysis.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1564,6 +1571,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'python',
     title: 'Understanding Neural Networks',
     date: 'December 20, 2025',
+    tags: ['AI', 'Deep Learning', 'Python'],
     excerpt: 'A beginner-friendly introduction to neural networks and deep learning concepts.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1605,6 +1613,7 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
     category: 'react',
     title: 'Web Performance Optimization',
     date: 'December 15, 2025',
+    tags: ['React', 'Performance', 'Web Dev'],
     excerpt: 'Techniques and strategies to make your web applications faster and more efficient.',
     content: `
       <h2>🚀 Introduction / Context</h2>
@@ -1646,4 +1655,36 @@ Stay consistent, keep pushing to GitHub, and never fear a mistake again!
 // Helper function to get a single post by slug
 export const getPostBySlug = (slug) => {
   return blogPosts.find(post => post.slug === slug);
+};
+
+// Get all unique tags from all posts
+export const getAllTags = () => {
+  const tags = new Set();
+  blogPosts.forEach(post => (post.tags || []).forEach(tag => tags.add(tag)));
+  return [...tags].sort();
+};
+
+// Calculate reading time from content (avg 200 words/min)
+export const getReadingTime = (content) => {
+  if (!content) return 1;
+  const words = content.replace(/<[^>]*>/g, '').replace(/[#*`_~\[\]()]/g, '').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+};
+
+// Get simulated view count based on post age
+export const getViewCount = (dateStr) => {
+  const postDate = new Date(dateStr);
+  const now = new Date();
+  const daysSince = Math.floor((now - postDate) / (1000 * 60 * 60 * 24));
+  // Deterministic pseudo-random based on date string hash
+  let hash = 0;
+  for (let i = 0; i < dateStr.length; i++) hash = ((hash << 5) - hash) + dateStr.charCodeAt(i);
+  const base = Math.abs(hash % 500) + 200;
+  return base + daysSince * 12;
+};
+
+// Format view count (e.g. 1200 -> "1.2k")
+export const formatViews = (count) => {
+  if (count >= 1000) return (count / 1000).toFixed(1) + 'k';
+  return count.toString();
 };

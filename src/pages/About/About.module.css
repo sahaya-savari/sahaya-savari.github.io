@@ -12,6 +12,53 @@
   gap: 2rem;
 }
 
+/* Achievements / Stats Section */
+.achievementsSection {
+  padding: 2.5rem !important;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, var(--accent-primary), #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Profile Section */
 .profileSection {
   padding: 3rem 2.5rem !important;

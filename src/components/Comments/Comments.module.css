@@ -1,0 +1,16 @@
+.comments {
+    margin-top: 3rem;
+}
+
+.heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem;
+}
+
+.hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0 0 1.5rem;
+}

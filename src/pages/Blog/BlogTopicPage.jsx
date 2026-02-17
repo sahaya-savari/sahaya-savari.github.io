@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../../data/blogPosts';
+import { blogPosts, getReadingTime, getViewCount, formatViews } from '../../data/blogPosts';
 import styles from './BlogTopicPage.module.css';
 
 const BlogTopicPage = ({ title, topicKey, description }) => {
-    // Filter posts based on the topicKey
-    const posts = blogPosts.filter(post =>
-        post.title.toLowerCase().includes(topicKey.toLowerCase()) ||
-        post.slug.toLowerCase().includes(topicKey.toLowerCase()) ||
-        post.content.toLowerCase().includes(topicKey.toLowerCase())
-    );
+    // Filter posts using category field (reliable match)
+    const posts = blogPosts.filter(post => post.category === topicKey);
 
     return (
         <div className={styles.blogTopicPage}>
@@ -29,11 +25,25 @@ const BlogTopicPage = ({ title, topicKey, description }) => {
                                 data-category={post.category}
                             >
                                 <header className={styles.postHeader}>
-                                    <time className={styles.date}>{post.date}</time>
+                                    <div className={styles.postMeta}>
+                                        <time className={styles.date}>{post.date}</time>
+                                        <span className={styles.dot}>·</span>
+                                        <span className={styles.readTime}>⏱ {getReadingTime(post.content)} min</span>
+                                        <span className={styles.dot}>·</span>
+                                        <span className={styles.views}>👁 {formatViews(getViewCount(post.date))}</span>
+                                    </div>
                                     <h2 className={styles.postTitle}>{post.title}</h2>
                                 </header>
 
                                 <p className={styles.excerpt}>{post.excerpt}</p>
+
+                                {post.tags && (
+                                    <div className={styles.tags}>
+                                        {post.tags.map(tag => (
+                                            <span key={tag} className={styles.tag}>{tag}</span>
+                                        ))}
+                                    </div>
+                                )}
 
                                 <Link
                                     to={`/blog/${post.slug}`}

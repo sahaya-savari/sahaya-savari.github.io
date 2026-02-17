@@ -1,0 +1,41 @@
+.newsletter {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(6, 182, 212, 0.05));
+    text-align: center;
+}
+
+.heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.25rem;
+}
+
+.subscribeBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    background: var(--accent-primary);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 44px;
+}
+
+.subscribeBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3);
+}

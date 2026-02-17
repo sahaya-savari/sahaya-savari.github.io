@@ -144,3 +144,39 @@
         font-size: 1rem;
     }
 }
+
+/* Post meta row */
+.postMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.dot {
+    opacity: 0.5;
+}
+
+.readTime,
+.views {
+    font-size: 0.8rem;
+}
+
+/* Tag badges */
+.tags {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    background: rgba(20, 184, 166, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+}

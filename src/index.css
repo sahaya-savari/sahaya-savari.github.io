@@ -176,6 +176,10 @@ a:not(.btn):not([class*="Link"]):hover::after {
   --cat-github: hsl(217, 91%, 60%);
   --cat-react: hsl(193, 95%, 45%);
   --cat-prog: hsl(271, 81%, 65%);
+
+  /* Card backgrounds */
+  --card-bg: var(--bg-secondary);
+  --card-border: var(--glass-border);
 }
 
 :root[data-theme="light"] {
@@ -207,6 +211,10 @@ a:not(.btn):not([class*="Link"]):hover::after {
   --cat-github: hsl(217, 91%, 50%);
   --cat-react: hsl(193, 95%, 40%);
   --cat-prog: hsl(271, 81%, 55%);
+
+  /* Card backgrounds for light mode */
+  --card-bg: var(--bg-secondary);
+  --card-border: var(--glass-border);
 }
 
 body {
@@ -215,7 +223,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 

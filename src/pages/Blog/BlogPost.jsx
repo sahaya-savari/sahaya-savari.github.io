@@ -2,7 +2,14 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
-import { getPostBySlug } from '../../data/blogPosts';
+import { getPostBySlug, getReadingTime, getViewCount, formatViews } from '../../data/blogPosts';
+import ReadingProgress from '../../components/ReadingProgress/ReadingProgress';
+import AuthorCard from '../../components/AuthorCard/AuthorCard';
+import ShareButton from '../../components/ShareButton/ShareButton';
+import RelatedPosts from '../../components/RelatedPosts/RelatedPosts';
+import Newsletter from '../../components/Newsletter/Newsletter';
+import Comments from '../../components/Comments/Comments';
+import TableOfContents from '../../components/TableOfContents/TableOfContents';
 import styles from './BlogPost.module.css';
 
 // Configure marked for GitHub-style anchors and GFM
@@ -20,11 +27,6 @@ marked.use({
       const level = item.depth;
       const raw = item.raw;
 
-      // GitHub-compatible ID generation:
-      // 1. Lowercase
-      // 2. Remove non-alphanumeric/spaces/hyphens
-      // 3. Trim
-      // 4. Replace spaces with hyphens
       const id = raw
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
@@ -36,11 +38,9 @@ marked.use({
     link({ href, title, tokens }) {
       const text = this.parser.parseInline(tokens);
       const titleAttr = title ? ` title="${title}"` : '';
-      // External links get target="_blank" and security attributes
       if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
         return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
-      // Internal/anchor links stay as-is
       return `<a href="${href}"${titleAttr}>${text}</a>`;
     }
   }
@@ -49,7 +49,6 @@ marked.use({
 const BlogPost = () => {
   const { slug } = useParams();
 
-  // Validate slug parameter (alphanumeric and hyphens only)
   const isValidSlug = useMemo(() => {
     return slug && /^[a-z0-9-]+$/i.test(slug);
   }, [slug]);
@@ -58,7 +57,6 @@ const BlogPost = () => {
     return isValidSlug ? getPostBySlug(slug) : null;
   }, [slug, isValidSlug]);
 
-  // Transform Markdown to HTML and Sanitize
   const sanitizedContent = useMemo(() => {
     if (!post) return '';
     const htmlContent = marked.parse(post.content);
@@ -67,43 +65,71 @@ const BlogPost = () => {
     });
   }, [post]);
 
-  // If post not found or invalid slug, redirect to blog list
+  const readingTime = useMemo(() => post ? getReadingTime(post.content) : 0, [post]);
+  const viewCount = useMemo(() => post ? formatViews(getViewCount(post.date)) : '0', [post]);
+
   if (!isValidSlug || !post) {
     return <Navigate to="/blog" replace />;
   }
 
   return (
-    <div className={styles.blogPost} data-category={post.category}>
-      <div className="container-narrow">
-        {/* Back Link */}
-        <Link to="/blog" className={styles.backLink}>
-          ← Back to Blog
-        </Link>
+    <>
+      <ReadingProgress />
+      <div className={styles.blogPost} data-category={post.category}>
+        <div className={styles.postLayout}>
+          {/* Main content */}
+          <div className={styles.postMain}>
+            <div className="container-narrow">
+              <Link to="/blog" className={styles.backLink}>
+                ← Back to Blog
+              </Link>
 
-        {/* Article Header */}
-        <article className={styles.article}>
-          <header className={styles.header}>
-            <h1 className={styles.title}>{post.title}</h1>
-            <div className={styles.meta}>
-              <time className={styles.date}>{post.date}</time>
+              <article className={styles.article}>
+                <header className={styles.header}>
+                  <h1 className={styles.title}>{post.title}</h1>
+                  <div className={styles.meta}>
+                    <time className={styles.date}>{post.date}</time>
+                    <span className={styles.metaDot}>·</span>
+                    <span className={styles.readTime}>⏱ {readingTime} min read</span>
+                    <span className={styles.metaDot}>·</span>
+                    <span className={styles.views}>👁 {viewCount} views</span>
+                  </div>
+                  {post.tags && (
+                    <div className={styles.tags}>
+                      {post.tags.map(tag => (
+                        <span key={tag} className={styles.tag}>{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </header>
+
+                <div
+                  className={`glass-card ${styles.content}`}
+                  dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+                />
+              </article>
+
+              <AuthorCard />
+              <ShareButton title={post.title} />
+              <Newsletter />
+              <RelatedPosts currentSlug={post.slug} tags={post.tags || []} category={post.category} />
+              <Comments />
+
+              <div className={styles.postNavigation}>
+                <Link to="/blog" className="btn">
+                  View All Posts
+                </Link>
+              </div>
             </div>
-          </header>
+          </div>
 
-          {/* Article Content - Sanitized to prevent XSS */}
-          <div
-            className={`glass-card ${styles.content}`}
-            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-          />
-        </article>
-
-        {/* Navigation to other posts */}
-        <div className={styles.postNavigation}>
-          <Link to="/blog" className="btn">
-            View All Posts
-          </Link>
+          {/* Table of Contents sidebar */}
+          <aside className={styles.tocSidebar}>
+            <TableOfContents contentHtml={sanitizedContent} />
+          </aside>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

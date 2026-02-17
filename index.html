@@ -41,14 +41,15 @@
   <!-- Theme Color for mobile browsers -->
   <meta name="theme-color" content="#0a0a0f" />
 
-  <!-- Favicon -->
+  <!-- Favicon & PWA -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="manifest" href="/manifest.json" />
 
   <!-- Fonts with display=swap for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@600;700;800&display=swap"
     rel="stylesheet" />
 
   <!-- GitHub Pages SPA redirect handler -->
@@ -69,6 +70,13 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => { });
+      });
+    }
+  </script>
 </body>
 
 </html>

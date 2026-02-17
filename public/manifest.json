@@ -1,0 +1,18 @@
+{
+    "name": "Sahaya Savari | Learning Blog",
+    "short_name": "SS Blog",
+    "description": "A personal learning journal exploring Web Development, AI, Machine Learning, Data Science, and Problem Solving.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0f",
+    "theme_color": "#14b8a6",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

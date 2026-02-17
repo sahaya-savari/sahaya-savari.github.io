@@ -1,0 +1,41 @@
+.backToTop {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.backToTop.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.backToTop:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(20, 184, 166, 0.25);
+}
+
+@media (max-width: 768px) {
+    .backToTop {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 44px;
+        height: 44px;
+    }
+}

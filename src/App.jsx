@@ -9,6 +9,7 @@ const BlogList = lazy(() => import('./pages/Blog/BlogList'));
 const BlogTopicPage = lazy(() => import('./pages/Blog/BlogTopicPage'));
 const BlogPost = lazy(() => import('./pages/Blog/BlogPost'));
 const About = lazy(() => import('./pages/About/About'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 // Minimal loading fallback
 const PageLoader = () => (
@@ -39,6 +40,7 @@ function App() {
               <Route path="/blog/programming" element={<BlogTopicPage title="Learning Roadmap" topicKey="programming" description="Strategies and roadmaps for effectively learning to code as a beginner." />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </Layout>

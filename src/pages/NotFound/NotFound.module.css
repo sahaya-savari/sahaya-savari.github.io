@@ -1,0 +1,73 @@
+.notFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 2rem;
+}
+
+.content {
+    text-align: center;
+    max-width: 480px;
+}
+
+.icon {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.errorCode {
+    font-size: 6rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, var(--accent-primary), #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin: 0;
+}
+
+.message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1rem 0 0.75rem;
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 2rem;
+}
+
+.homeBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    background: var(--accent-primary);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 44px;
+}
+
+.homeBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
+}
+
+@media (max-width: 480px) {
+    .errorCode {
+        font-size: 4rem;
+    }
+
+    .message {
+        font-size: 1.25rem;
+    }
+}

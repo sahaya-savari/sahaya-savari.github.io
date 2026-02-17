@@ -1,0 +1,30 @@
+.filterWrapper {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.tag {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.825rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    white-space: nowrap;
+    min-height: 36px;
+}
+
+.tag:hover {
+    transform: translateY(-1px);
+}
+
+.tag.active {
+    background: var(--accent-primary);
+    color: #fff;
+    border-color: var(--accent-primary);
+}
