@@ -8,6 +8,10 @@ const About = () => {
   const allTags = new Set();
   blogPosts.forEach(p => (p.tags || []).forEach(t => allTags.add(t)));
 
+  // Dynamic learning days (from Jan 1, 2026)
+  const startDate = new Date('2026-01-01');
+  const daysLearning = Math.floor((new Date() - startDate) / (1000 * 60 * 60 * 24));
+
   return (
     <div className={styles.about}>
       <div className={styles.container}>
@@ -73,7 +77,7 @@ const About = () => {
               <span className={styles.statLabel}>Tags Used</span>
             </div>
             <div className={styles.statCard}>
-              <span className={styles.statNumber}>30+</span>
+              <span className={styles.statNumber}>{daysLearning}+</span>
               <span className={styles.statLabel}>Days Learning</span>
             </div>
           </div>

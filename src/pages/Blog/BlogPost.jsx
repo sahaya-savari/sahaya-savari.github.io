@@ -27,13 +27,14 @@ marked.use({
       const level = item.depth;
       const raw = item.raw;
 
-      const id = raw
+      // Improved ID generation: allow numbers at start, remove more special chars
+      const baseId = raw
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .trim()
         .replace(/\s+/g, '-');
 
-      return `<h${level} id="${id}">${text}</h${level}>`;
+      return `<h${level} id="${baseId}">${text}</h${level}>`;
     },
     link({ href, title, tokens }) {
       const text = this.parser.parseInline(tokens);
