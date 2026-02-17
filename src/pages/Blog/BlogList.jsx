@@ -35,7 +35,7 @@ const BlogList = () => {
             </Link>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <Link to="/blog/git-github" className={styles.topicCard} data-category="git-github">
+            <Link to="/blog/github" className={styles.topicCard} data-category="github">
               <div className={styles.topicIcon}>🔧</div>
               <h2 className={styles.topicTitle}>Git & GitHub</h2>
               <p className={styles.topicDescription}>

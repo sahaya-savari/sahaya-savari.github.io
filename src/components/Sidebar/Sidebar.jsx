@@ -28,8 +28,16 @@ const Sidebar = () => {
         <span className={`${styles.bar} ${isOpen ? styles.open : ''}`}></span>
       </button>
 
-      {/* Overlay for mobile */}
-      {isOpen && <div className={styles.overlay} onClick={closeSidebar}></div>}
+      {isOpen && (
+        <div
+          className={styles.overlay}
+          onClick={closeSidebar}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === 'Escape') closeSidebar(); }}
+          role="button"
+          aria-label="Close navigation menu"
+          tabIndex={0}
+        />
+      )}
 
       {/* Sidebar */}
       <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>

@@ -12,6 +12,7 @@ marked.setOptions({
 });
 
 // Use a custom extension to generate GitHub-compatible heading IDs
+// and secure external links with rel="noopener noreferrer"
 marked.use({
   renderer: {
     heading(item) {
@@ -31,6 +32,16 @@ marked.use({
         .replace(/\s+/g, '-');
 
       return `<h${level} id="${id}">${text}</h${level}>`;
+    },
+    link({ href, title, tokens }) {
+      const text = this.parser.parseInline(tokens);
+      const titleAttr = title ? ` title="${title}"` : '';
+      // External links get target="_blank" and security attributes
+      if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+        return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
+      }
+      // Internal/anchor links stay as-is
+      return `<a href="${href}"${titleAttr}>${text}</a>`;
     }
   }
 });
@@ -51,7 +62,9 @@ const BlogPost = () => {
   const sanitizedContent = useMemo(() => {
     if (!post) return '';
     const htmlContent = marked.parse(post.content);
-    return DOMPurify.sanitize(htmlContent);
+    return DOMPurify.sanitize(htmlContent, {
+      ADD_ATTR: ['target', 'rel'],
+    });
   }, [post]);
 
   // If post not found or invalid slug, redirect to blog list
