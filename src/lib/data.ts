@@ -1,666 +1,332 @@
 import type { BlogPost, Category, Comment, Testimonial, TimelineEvent, Skill, Achievement } from '../types';
 
 export const categories: Category[] = [
-  { id: '1', name: 'Travel', slug: 'travel', description: 'Wander through pages that map the world — from cobblestone alleys to mountain passes.', color: '#E9DA79', icon: 'Compass', postCount: 8 },
-  { id: '2', name: 'Fantasy', slug: 'fantasy', description: 'Dragons, magic systems, and worlds built from pure imagination await your discovery.', color: '#6B2B2B', icon: 'Sparkles', postCount: 12 },
-  { id: '3', name: 'Mystery', slug: 'mystery', description: 'Follow the clues, unravel the secrets, and solve the case before the final page.', color: '#5A2020', icon: 'Search', postCount: 7 },
-  { id: '4', name: 'Science Fiction', slug: 'science-fiction', description: 'Boldly go to futures, alternate realities, and the edges of what is possible.', color: '#3B82F6', icon: 'Rocket', postCount: 10 },
-  { id: '5', name: 'History', slug: 'history', description: 'Step back in time and witness the events that shaped our world.', color: '#D4C24E', icon: 'Scroll', postCount: 6 },
-  { id: '6', name: 'Biography', slug: 'biography', description: 'Real lives, extraordinary journeys, and the stories behind the names.', color: '#8B3B3B', icon: 'User', postCount: 5 },
-  { id: '7', name: 'Poetry', slug: 'poetry', description: 'Verses that sing, words that dance, and lines that linger long after reading.', color: '#E9DA79', icon: 'Feather', postCount: 9 },
-  { id: '8', name: 'Romance', slug: 'romance', description: 'Love stories that make your heart race and your soul sigh.', color: '#F472B6', icon: 'Heart', postCount: 8 },
-  { id: '9', name: 'Classic Literature', slug: 'classic-literature', description: 'Timeless masterpieces that have shaped the literary landscape for generations.', color: '#6B2B2B', icon: 'BookOpen', postCount: 11 },
+  {
+    "id": "1",
+    "name": "Python",
+    "slug": "python",
+    "description": "Master Python from scratch to data analytics and AI.",
+    "color": "#3776AB",
+    "icon": "Code",
+    "postCount": 4
+  },
+  {
+    "id": "2",
+    "name": "Git & GitHub",
+    "slug": "github",
+    "description": "Version control tutorials, workflow guides, and open source collaboration.",
+    "color": "#181717",
+    "icon": "GitBranch",
+    "postCount": 1
+  },
+  {
+    "id": "3",
+    "name": "Programming",
+    "slug": "programming",
+    "description": "Core programming concepts, logic building, and learning strategies.",
+    "color": "#E9DA79",
+    "icon": "BookOpen",
+    "postCount": 1
+  },
+  {
+    "id": "4",
+    "name": "React",
+    "slug": "react",
+    "description": "Modern web development tutorials using React and Vite.",
+    "color": "#61DAFB",
+    "icon": "Layers",
+    "postCount": 2
+  }
 ];
 
 export const blogPosts: BlogPost[] = [
   {
-    id: '1',
-    slug: 'cartographer-of-imagined-realms',
-    title: 'The Cartographer of Imagined Realms',
-    excerpt: 'How fantasy mapmakers build worlds that feel more real than our own, and why we cannot stop exploring them.',
-    content: `
-## Why Maps Matter in Fantasy
-
-There is something primal about unfolding a map at the front of a book. Before a single word of the story is spoken, the map whispers: *here be dragons*. It promises adventure. It promises the unknown.
-
-Fantasy cartography is not merely decorative — it is foundational. When J.R.R. Tolkien drew the maps of Middle-earth, he was not illustrating a story. He was building the scaffolding upon which an entire mythology would hang.
-
-### The Architecture of Belief
-
-A well-drawn map does something remarkable: it lends credibility to the impossible. The moment you see coastlines, mountain ranges, and river systems that follow the logic of real geography, your brain accepts the world as *plausible*.
-
-> A map is the silent argument that says: this place exists, and it has rules.
-
-Consider the work of Robert Jordan, Brandon Sanderson, and Ursula K. Le Guin. Each understood that the map is a contract with the reader — a promise that the world has depth beyond the page.
-
-### When Maps Tell Stories
-
-The best fantasy maps do not just show where things are. They show where things *were*. A ruined city on a map hints at a fallen empire. A trade route suggests commerce and conflict. A blank space dares you to imagine what lies beyond.
-
-\`\`\`javascript
-// The anatomy of a fantasy world map
-const worldMap = {
-  geography: ['mountains', 'rivers', 'coastlines', 'forests'],
-  settlements: ['capital', 'villages', 'ruins', 'strongholds'],
-  dangers: ['dragon territories', 'cursed lands', 'unexplored regions'],
-  stories: ['every marker hides a tale']
-};
-\`\`\`
-
-The next time you open a fantasy novel, linger on the map. Trace the routes. Read the names. The journey begins before chapter one.
-
-### Maps as Emotional Landmarks
-
-Beyond geography, maps serve as emotional anchors throughout a story. When a character travels from the Shire to Mordor, the reader tracks that journey on the map. Each inch crossed represents growth, loss, and transformation. The map becomes a visual record of the character's arc.
-
-![A beautifully illustrated fantasy map](https://images.unsplash.com/photo-1589834390005-5c39e6c1d9b4?w=800)
-
-The cartographer of imagined realms does not merely draw land and water. They draw possibility.
-`,
-    category: 'Fantasy',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-06-28',
-    readingTime: 7,
-    image: 'https://images.unsplash.com/photo-1532012197267-da84d127e7a5?w=800&h=600&fit=crop',
-    featured: true,
-    tags: ['fantasy', 'worldbuilding', 'maps', 'tolkien'],
+    "id": "1",
+    "slug": "python-foundations-part-1",
+    "title": "\ud83d\udc0d Python Programming \u2014 Complete Beginner to Practical Guide",
+    "excerpt": "The definitive article-style guide for absolute beginners. Explore the why, what, and how of Python through a comprehensive 26-section journey.",
+    "content": "# Python Programming \u2014 Complete Beginner to Practical Guide \ud83d\udc0d\n\n## Table of Contents\n1. [1. Introduction to Programming](#1-introduction-to-programming)\n2. [2. What is Python](#2-what-is-python)\n3. [3. Why Learn Python (Use Cases Table)](#3-why-learn-python-use-cases-table)\n4. [4. Installing Python (Windows)](#4-installing-python-windows)\n5. [5. Running Your First Python Program](#5-running-your-first-python-program)\n6. [6. Python Syntax Basics](#6-python-syntax-basics)\n7. [7. Variables and Data Types (Table)](#7-variables-and-data-types-table)\n8. [8. Input and Output](#8-input-and-output)\n9. [9. Operators (Arithmetic, Comparison, Logical)](#9-operators-arithmetic-comparison-logical)\n10. [10. Conditional Statements (if / elif / else)](#10-conditional-statements-if-elif-else)\n11. [11. Loops (for / while)](#11-loops-for-while)\n12. [12. Functions (Why they exist + how to use)](#12-functions-why-they-exist-how-to-use)\n13. [13. Lists, Tuples, Sets, Dictionaries (Comparison Table)](#13-lists-tuples-sets-dictionaries-comparison-table)\n14. [14. Strings (Common Operations)](#14-strings-common-operations)\n15. [15. File Handling (Read / Write)](#15-file-handling-read-write)\n16. [16. Error Handling (try / except)](#16-error-handling-try-except)\n17. [17. Modules and Packages](#17-modules-and-packages)\n18. [18. Virtual Environments (Beginner Explanation)](#18-virtual-environments-beginner-explanation)\n19. [19. Writing Clean Python Code (Best Practices)](#19-writing-clean-python-code-best-practices)\n20. [20. Common Beginner Mistakes \u26a0\ufe0f (With Fixes)](#20-common-beginner-mistakes-with-fixes)\n21. [21. Small Practice Examples](#21-small-practice-examples)\n22. [22. How to Practice Python Effectively](#22-how-to-practice-python-effectively)\n23. [23. Python Learning Roadmap \ud83d\udccc (Beginner \u2192 Intermediate \u2192 Advanced Table)](#23-python-learning-roadmap-beginner-intermediate-advanced-table)\n24. [24. Tools for Python Developers](#24-tools-for-python-developers)\n25. [25. Daily Python Practice Workflow](#25-daily-python-practice-workflow)\n26. [26. Conclusion \ud83c\udfaf](#26-conclusion)\n\n## 1. Introduction to Programming \ud83e\udde0\nAt its heart, **Programming** is nothing more than communication. Humans use languages like English or Spanish to share ideas; we use programming languages to give specific, logical instructions to a computer.\n\n### Why do we need it?\nComputers are incredibly fast but they are not \"smart\" in the human sense. They cannot guess what you want. If you want a computer to calculate your taxes or generate a 3D world, you must provide a precise list of steps.\n\n**The Analogy:** Imagine teaching a robot to make a peanut butter sandwich. You cannot just say \"make it.\" You must say:\n1. \"Pick up the bread.\"\n2. \"Open the jar.\"\n3. \"Spread the peanut butter.\"\n\nProgramming is the act of writing that \"recipe\" for a machine.\n\n## 2. What is Python \ud83d\udc0d\n**Python** is a high-level, interpreted programming language created by Guido van Rossum in 1991.\n\n* **High-Level:** This means the language is far away from computer \"machine code\" (0s and 1s) and very close to human English.\n* **Interpreted:** This means the code is executed line-by-line, which makes it easier to test and find [errors](#16-error-handling-try-except).\n\nPython's philosophy focuses on **readability**. It uses simple keywords and clear structures so that even someone who doesn't code can often understand what a Python script is trying to do.\n\n## 3. Why Learn Python (Use Cases Table)\nPython is currently the most popular programming language in the world because it is a \"Swiss Army Knife.\" It is used by NASA, Google, Netflix, and millions of small businesses.\n\n| Case | How Python is Used | Notable Tools |\n| :--- | :--- | :--- |\n| **Data Science** | Cleaning and analyzing massive amounts of data. | Pandas, NumPy |\n| **Artificial Intelligence** | Building \"brains\" like ChatGPT. | TensorFlow, PyTorch |\n| **Web Development** | Creating the backend (server) of professional websites. | Django, Flask |\n| **Automation** | Writing scripts to handle repetitive office tasks. | Selenium, Openpyxl |\n\n## 4. Installing Python (Windows)\nTo start writing code, your computer needs the \"Python Interpreter\"\u2014the software that reads your text files and performs the actions.\n\n1. Visit the official **python.org** website.\n2. Download the latest stable version (e.g., Python 3.12+).\n3. **\u26a0\ufe0f CRITICAL STEP:** Run the installer. On the first screen, you **must** check the box that says **\"Add Python to PATH\"**. If you skip this, your computer's terminal won't be able to run Python commands.\n4. Click \"Install Now.\"\n\nOnce finished, restart your computer to ensure all settings take effect.\n\n## 5. Running Your First Python Program\nIn programming, the tradition is to start with a \"Hello World\" program. This simply proves that your setup is working.\n\n### Using the Terminal\nOpen **PowerShell** or **Command Prompt** on your Windows machine and type:\n\n\\`\\`\\`python\nprint(\"Hello, World!\")\n\\`\\`\\`\n\n**Why it works:**\n* \\`print()\\`: This is a built-in [Function](#12-functions-why-they-exist-how-to-use) that tells the computer to display something on the screen.\n* \\`\"Hello, World!\"\\`: This is a [String](#14-strings-common-operations) (text). We use quotes to tell Python \"this is literally what I want you to read.\"\n\n## 6. Python Syntax Basics\n**Syntax** refers to the rules of a language. If you break the syntax, the computer won't understand you, resulting in a \"Syntax Error.\"\n\n### 1. Indentation (The \"Holy Grail\" of Python)\nUnlike other languages, Python uses spaces (4 spaces or 1 Tab) to group code blocks.\n\n\\`\\`\\`python\nif True:\n    print(\"This is correct.\")\nprint(\"This is also correct but outside the block.\")\n\\`\\`\\`\n\n### 2. Comments\nSometimes you want to leave notes for yourself or other humans. Python ignores anything after a \\`#\\` symbol.\n\n\\`\\`\\`python\n# This is a comment. Python won't run this.\nprint(\"Hello\") # This prints Hello\n\\`\\`\\`\n\n## 7. Variables and Data Types (Table)\nIn programming, you often need to remember information. We use **Variables**\u2014think of them as labeled boxes where you store items.\n\n| Data Type | Description | Example |\n| :--- | :--- | :--- |\n| **Integer (int)** | Whole numbers (no decimals). | \\`age = 25\\` |\n| **Float (float)** | Numbers with decimals. | \\`price = 19.99\\` |\n| **String (str)** | Text data wrapped in quotes. | \\`name = \"Savari\"\\` |\n| **Boolean (bool)** | Logical True or False. | \\`is_logged_in = True\\` |\n\n## 8. Input and Output\nPrograms are only useful if they can interact with users.\n\n### Output (print)\nWe've already seen \\`print\\`. A professional way to include [Variables](#7-variables-and-data-types-table) in text is using **f-strings**:\n\n\\`\\`\\`python\nname = \"Savari\"\nprint(f\"Welcome to the blog, {name}!\")\n\\`\\`\\`\n\n### Input (input)\nThis command pauses the program and waits for the user to type something.\n\n\\`\\`\\`python\nuser_input = input(\"What is your favorite color? \")\nprint(f\"Oh, I like {user_input} too!\")\n\\`\\`\\`\n\n**Why it exists:** It transforms a static script into an interactive experience.\n\n## 9. Operators (Arithmetic, Comparison, Logical)\nOperators are symbols used to perform math or logic.\n\n### 1. Arithmetic Operators (Math)\n| Operator | Name | Example | Result |\n| :---: | :--- | :--- | :--- |\n| \\`+\\` | Addition | \\`10 + 5\\` | \\`15\\` |\n| \\`-\\` | Subtraction | \\`20 - 10\\` | \\`10\\` |\n| \\`*\\` | Multiplication | \\`4 * 3\\` | \\`12\\` |\n| \\`/\\` | Division | \\`10 / 2\\` | \\`5.0\\` |\n\n## 10. Conditional Statements (if / elif / else)\nThis is how we give a program \"intelligence.\" We use \\`if\\`, \\`elif\\` (else if), and \\`else\\`.\n\n\\`\\`\\`python\nscore = 85\nif score >= 90:\n    print(\"Excellent! Grade: A\")\nelif score >= 80:\n    print(\"Good job! Grade: B\")\nelse:\n    print(\"Keep studying!\")\n\\`\\`\\`\n\n**Why it exists:** Without [Conditions](#10-conditional-statements-if-elif-else), every program would run the exact same way every time. Conditions allow for branching logic.\n\n## 11. Loops (for / while)\n**Loops** allow you to repeat a block of code multiple times without writing it over and over.\n\n### The for loop\nUsed when you know how many times to repeat.\n\\`\\`\\`python\nfor i in range(5):\n    print(f\"This is iteration number {i}\")\n\\`\\`\\`\n\n### The while loop\nUsed when you want to repeat until a certain condition becomes false.\n\\`\\`\\`python\ncount = 3\nwhile count > 0:\n    print(count)\n    count = count - 1\nprint(\"Blast off!\")\n\\`\\`\\`\n\n## 12. Functions (Why they exist + how to use)\nA **Function** is a reusable packet of code. Instead of writing 20 lines of logic repeatedly, you wrap it in a function and \"call\" its name.\n\n\\`\\`\\`python\ndef make_coffee(flavor):\n    print(f\"Heating water...\")\n    print(f\"Adding {flavor} beans...\")\n    return f\"One {flavor} coffee is ready! \u2615\"\n\n# Now we just call it\nresult = make_coffee(\"Vanilla\")\nprint(result)\n\\`\\`\\`\n\n**Why it exists:** It makes code clean, reduces [errors](#16-error-handling-try-except), and saves time.\n\n## 13. Lists, Tuples, Sets, Dictionaries (Comparison Table)\nData structures are special variables that can hold many items at once.\n\n| Structure | Syntax | Key Unique Feature |\n| :--- | :---: | :--- |\n| **List** | \\`[1, 2, 3]\\` | Ordered and changeable. |\n| **Tuple** | \\`(1, 2, 3)\\` | Ordered but **cannot** be changed. |\n| **Set** | \\`{1, 2, 3}\\` | Unordered and only unique items. |\n| **Dictionary** | \\`{\"key\": \"value\"}\\` | Stores data in pairs. |\n\n## 14. Strings (Common Operations)\nSince text is everywhere, Python has powerful tools just for [Strings](#14-strings-common-operations).\n\n\\`\\`\\`python\ntext = \"python programming\"\nprint(text.upper())      # PYTHON PROGRAMMING\nprint(text.capitalize()) # Python programming\nprint(len(text))         # 18\n\\`\\`\\`\n\n## 15. File Handling (Read / Write)\nPython can talk to your hard drive to read or write files.\n\n\\`\\`\\`python\n# Writing to a file\nwith open(\"note.txt\", \"w\") as file:\n    file.write(\"I am a Python developer now!\")\n\n# Reading from a file\nwith open(\"note.txt\", \"r\") as file:\n    content = file.read()\n    print(content)\n\\`\\`\\`\n\n## 16. Error Handling (try / except)\nEven the best programmers make mistakes. **Error Handling** prevents your entire app from crashing when a problem occurs.\n\n\\`\\`\\`python\ntry:\n    number = int(input(\"Enter a number: \"))\n    result = 10 / number\n    print(result)\nexcept ZeroDivisionError:\n    print(\"Error: You cannot divide by zero!\")\nexcept ValueError:\n    print(\"Error: That wasn't a valid number!\")\n\\`\\`\\`\n\n## 17. Modules and Packages\nYou don't have to build everything from scratch. Python comes with \"Modules\"\u2014pre-written code scripts.\n\n\\`\\`\\`python\nimport math\nimport random\nprint(math.sqrt(16))      # 4.0\nprint(random.randint(1, 10))\n\\`\\`\\`\n\n## 18. Virtual Environments (Beginner Explanation)\nA **Virtual Environment** is a \"bubble\" or a private folder where you store only the tools needed for one specific project. This keeps your main computer system clean.\n\n\\`\\`\\`bash\npython -m venv my_project_env\n\\`\\`\\`\n\n## 19. Writing Clean Python Code (Best Practices)\n* **Use Meaningful Names:** \\`user_age\\` is better than \\`a\\`.\n* **Space Things Out:** Put spaces around [Operators](#9-operators-arithmetic-comparison-logical) (\\`x = 5\\`).\n* **Snake Case:** Use underscores for variable names.\n\n## 20. Common Beginner Mistakes \u26a0\ufe0f (With Fixes)\n| Mistake | Why it happens | The Fix |\n| :--- | :--- | :--- |\n| **IndentationError** | Mixing tabs and spaces. | Stick to 4 spaces per indent. |\n| **SyntaxError** | Forgetting a colon or bracket. | Double check line endings. |\n\n## 21. Small Practice Examples\n\\`\\`\\`python\n# Simple Bill Calculator\ntotal = float(input(\"Bill: \"))\npax = int(input(\"People: \"))\nprint(f\"Each pays: {total / pax}\")\n\\`\\`\\`\n\n## 22. How to Practice Python Effectively\n* **The 20-Minute Rule:** Daily practice is 100x better than weekly marathons.\n* **Build Projects:** Don't just watch; try to build a small to-do list.\n* **Explain it:** Teach someone else what you just learned.\n\n## 23. Python Learning Roadmap \ud83d\udccc (Beginner \u2192 Intermediate \u2192 Advanced Table)\n| Stage | Focus Areas | Estimated Time |\n| :--- | :--- | :--- |\n| **Beginner** | [Syntax](#6-python-syntax-basics), [Variables](#7-variables-and-data-types-table), [Loops](#11-loops-for-while), [Functions](#12-functions-why-they-exist-how-to-use). | 4-8 weeks |\n| **Intermediate** | APIs, OOP, Data Cleaning. | 3-6 months |\n| **Advanced** | Machine Learning, Architectures. | 1+ years |\n\n## 24. Tools for Python Developers\n* **VS Code:** The most popular text editor for beginners.\n* **Git:** A tool to save [versions](#1-introduction-to-programming) and collaborate.\n* **Pip:** To install new Python libraries.\n\n## 25. Daily Python Practice Workflow\n\\`Identify\\` \u2192 \\`Logic\\` \u2192 \\`Write\\` \u2192 \\`Debug\\` \u2192 \\`Refactor\\` \n\n## 26. Conclusion \ud83c\udfaf\nYou have just completed the ultimate foundation for Python programming. Practice these 26 sections, stay curious, and go build something!",
+    "category": "Python",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "February 10, 2026",
+    "readingTime": 9,
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
+    "featured": true,
+    "tags": [
+      "python",
+      "beginner",
+      "programming"
+    ]
   },
   {
-    id: '2',
-    slug: 'midnight-trains-and-typewriters',
-    title: 'Midnight Trains and Typewriters',
-    excerpt: 'A travelogue through Eastern Europe by rail, where every station holds a story and every delay is a gift.',
-    content: `
-## The 23:47 to Bucharest
-
-The platform was empty except for a man selling roasted chestnuts and a cat that looked like it owned the place. The train was twenty minutes late, which in Eastern European rail terms means it is practically on time.
-
-I had been traveling for three weeks — Budapest to Belgrade, Belgrade to Sofia, and now Sofia to Bucharest. Each city had given me something I did not expect: a conversation with a stranger, a meal I cannot describe, a view that rearranged something inside me.
-
-### The Gift of Delay
-
-Travel writers love to complain about delays. I have learned to love them. It was during a four-hour delay in Niš that I met an old poet who told me about his life under the old regime. He wrote his poems on a typewriter he had owned for fifty years.
-
-> "The typewriter does not lie," he said. "It puts down exactly what you give it. No autocorrect. No second chances."
-
-### Stations as Stories
-
-Every station on this route told a story. The grand architecture of Keleti in Budapest. The bullet scars still visible in Belgrade's station walls. The quiet efficiency of Sofia's recently renovated platform.
-
-\`\`\`python
-# My rail route through Eastern Europe
-route = [
-    {"city": "Budapest", "station": "Keleti", "impression": "grandeur"},
-    {"city": "Belgrade", "station": "Glavni", "impression": "resilience"},
-    {"city": "Sofia",    "station": "Central", "impression": "renewal"},
-    {"city": "Bucharest","station": "Gara de Nord", "impression": "mystery"},
-]
-\`\`\`
-
-![Train station at night](https://images.unsplash.com/photo-1474487525473-c65f0a87b3e7?w=800)
-
-The train pulled into Bucharest at dawn. The poet was gone, the chestnut man was gone, but the stories stayed. They always do.
-`,
-    category: 'Travel',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-06-22',
-    readingTime: 6,
-    image: 'https://images.unsplash.com/photo-1474487525473-c65f0a87b3e7?w=800&h=600&fit=crop',
-    featured: true,
-    tags: ['travel', 'eastern europe', 'trains', 'typewriters'],
+    "id": "2",
+    "slug": "github-guide-for-beginners",
+    "title": "\ud83e\uddf0 Git & GitHub \u2014 Complete Practical Guide",
+    "excerpt": "The ultimate long-form guide to version control for absolute beginners. Master Git and GitHub through 26 detailed sections with real-world logic.",
+    "content": "# Git & GitHub \u2014 Complete Practical Guide\n\n| # | Emoji | Chapter | Link |\n| :---: | :---: | :--- | :---: |\n| 1 | \ud83e\udde0 | Introduction to Version Control | [Go](#1-introduction-to-version-control) |\n| 2 | \ud83d\udd27 | What is Git | [Go](#2-what-is-git) |\n| 3 | \ud83d\udc19 | What is GitHub | [Go](#3-what-is-github) |\n| 4 | \ud83d\udcd6 | Core Terminology (Table) | [Go](#4-core-git--github-terminology-table) |\n| 5 | \ud83e\uddf0 | Installing Git (Windows) | [Go](#5-installing-git-windows) |\n| 6 | \u2699\ufe0f | Initial Git Configuration | [Go](#6-initial-git-configuration) |\n| 7 | \ud83d\udcc1 | Creating Your First Repository | [Go](#7-creating-your-first-git-repository) |\n| 8 | \u267b\ufe0f | Git File Lifecycle | [Go](#8-git-file-lifecycle) |\n| 9 | \ud83d\udccc | Staging Files | [Go](#9-staging-files) |\n| 10 | \ud83d\udcdd | Committing Changes | [Go](#10-committing-changes) |\n| 11 | \ud83d\udd17 | Connecting to GitHub (Remote) | [Go](#11-connecting-to-github-remote) |\n| 12 | \u2b06\ufe0f | Pushing Code to GitHub | [Go](#12-pushing-code-to-github) |\n| 13 | \ud83d\udce5 | Cloning Repositories | [Go](#13-cloning-repositories) |\n| 14 | \u2b07\ufe0f | Pulling Updates | [Go](#14-pulling-updates) |\n| 15 | \ud83c\udf3f | Branching | [Go](#15-branching) |\n| 16 | \ud83e\udd1d | Merging Branches | [Go](#16-merging-branches) |\n| 17 | \ud83c\udf74 | Forking & Open-Source Workflow | [Go](#17-forking--open-source-workflow) |\n| 18 | \ud83d\udcec | Pull Requests (PRs) | [Go](#18-pull-requests-prs) |\n| 19 | \u26a0\ufe0f | Undoing Mistakes | [Go](#19-undoing-mistakes) |\n| 20 | \ud83e\udded | Viewing History (git log) | [Go](#20-viewing-history-git-log) |\n| 21 | \ud83d\udeab | .gitignore | [Go](#21-gitignore) |\n| 22 | \ud83d\udd10 | Authentication: HTTPS vs SSH | [Go](#22-authentication-https-vs-ssh) |\n| 23 | \ud83e\uddef | Common Errors & Fixes (Table) | [Go](#23-common-git-errors--fixes-table) |\n| 24 | \u2b50 | Best Practices | [Go](#24-git--github-best-practices) |\n| 25 | \ud83d\uddd3\ufe0f | Daily Git Workflow | [Go](#25-daily-git-workflow) |\n| 26 | \ud83c\udfaf | Conclusion | [Go](#26-conclusion-) |\n\n---\n\n## 1. Introduction to Version Control \ud83e\udde0\n\nImagine you are writing a complex research paper. You save it as \\`paper_v1.docx\\`, then \\`paper_final.docx\\`, and finally \\`paper_real_final_V2.docx\\`. This is a mess.\n\n**Version Control** is a system that manages this chaos automatically. It records every tiny change you make to a file so that you can go back to any previous version at any time. It solves the critical problem of \"accidentally deleting work\" or \"breaking something that used to work.\"\n\n### Why do we need it?\n\nWithout version control:\n- You lose track of which file is the \"real\" latest version.\n- If you break something, you have no easy way to undo it.\n- If two people edit the same file, one person's work gets overwritten.\n\n**The Analogy:** Think of version control like a time machine for your project folders. At any moment, you can travel back to any point in history and see exactly what your project looked like.\n\n### Quick Start (5 Steps)\n| Step | Emoji | Command | Why |\n| :---: | :---: | :--- | :--- |\n| 1 | \ud83d\udcc1 | \\`git init\\` | Start tracking a folder. |\n| 2 | \ud83e\uddea | \\`git status\\` | Check what changed. |\n| 3 | \u2705 | \\`git add .\\` | Stage all changes. |\n| 4 | \ud83d\udcdd | \\`git commit -m \"Message\"\\` | Save a snapshot. |\n| 5 | \u2b06\ufe0f | \\`git push origin main\\` | Back up to GitHub. |\n\n---\n\n## 2. What is Git \ud83d\udd27\n\n**Git** is the most widely used version control software in the world. Created by **Linus Torvalds** (the same person who created Linux) in 2005, it was designed to be fast, secure, and distributed.\n\n### Key Properties of Git\n\n* **Local:** Git runs directly on your computer. You do **not** need the internet to save snapshots of your work. The entire history is stored in a hidden \\`.git\\` folder inside your project.\n* **Distributed:** Every developer has a full copy of the project history, not just a central server. If the server goes down, any developer's copy can be used to restore everything.\n* **Fast:** Git can handle massive projects (like the Linux kernel with millions of lines of code) without slowing down.\n\n**The Analogy:** Think of Git like your \"save game\" system in a video game. It lets you create checkpoints. You can always reload a previous checkpoint if something goes wrong.\n\n### Why Git Exists\n\nEarly version control tools (like SVN) were slow and required a constant internet connection to a central server. Git was built to solve this. It works offline and is incredibly powerful.\n\n---\n\n## 3. What is GitHub \ud83d\udc19\n\nA common mistake is thinking Git and GitHub are the same. They are not.\n\n| Feature | Git | GitHub |\n| :--- | :--- | :--- |\n| **What is it?** | A tool (software) | A website (platform) |\n| **Where?** | Runs on your computer | Lives on the internet |\n| **Purpose** | Tracks changes locally | Stores and shares your code online |\n| **Requires internet?** | No | Yes |\n\n* **Git:** The engine you install on your computer to track changes.\n* **GitHub:** The cloud garage that stores your Git projects online so you can share them with the world.\n\n**The Analogy:** Think of [Git](#2-what-is-git) like your \"saved games\" on a console, and [GitHub](#3-what-is-github) like the cloud service that lets you access those saves from any console in the world.\n\n### What Can You Do on GitHub?\n\n1. **Backup your code** safely to the cloud.\n2. **Share projects** publicly or privately.\n3. **Collaborate** with other developers using [Pull Requests](#18-pull-requests-prs).\n4. **Host websites** for free using GitHub Pages.\n5. **Track issues and bugs** with the built-in issue tracker.\n\n---\n\n## 4. Core Git & GitHub Terminology (Table)\n\nBefore we touch the command line, let's define the \"language\" of version control. Learning these terms first will make every future section much easier to understand.\n\n| Term | Plain English Meaning | Analogy |\n| :--- | :--- | :--- |\n| **Repository (Repo)** | Your project folder containing its full history. | A complete photo album. |\n| **Commit** | A permanent snapshot or \"save point\" of your files. | A single photo in the album. |\n| **Branch** | A parallel timeline of your project (ideal for testing). | A parallel universe. |\n| **Remote** | A version of your project stored on a server ([GitHub](#3-what-is-github)). | Cloud backup. |\n| **Clone** | Downloading a full copy of a remote repository. | Copying a friend's album. |\n| **Push** | Uploading your local saves to the remote server. | Uploading photos to the cloud. |\n| **Pull** | Downloading updates from the remote server. | Syncing your cloud photos. |\n| **Staging Area** | A \"waiting room\" where files wait before being committed. | A photo review table. |\n| **HEAD** | A pointer to your current position in the history. | A \"You Are Here\" marker. |\n| **Merge** | Combining changes from one [Branch](#15-branching) into another. | Merging two album versions. |\n\n---\n\n## 5. Installing Git (Windows)\n\nTo use Git, you must first install the engine on your computer.\n\n### Step-by-Step Installation\n\n1. Go to the official website: **[git-scm.com](https://git-scm.com/)** and download the Windows installer.\n2. Run the \\`.exe\\` installer file.\n3. **Important settings during installation:**\n   - **Default Editor:** Choose **VS Code** if you have it installed. Otherwise, keep the default (Vim).\n   - **PATH Environment:** Select \"Git from the command line and also from 3rd-party software.\" This allows Git to work in PowerShell.\n   - All other settings: Keep the defaults. They work for 99% of users.\n4. Once installed, open **PowerShell** or **Command Prompt** and verify:\n\n\\`\\`\\`bash\ngit --version\n\\`\\`\\`\n\nIf you see output like \\`git version 2.43.0\\`, Git is ready!\n\n**Why this matters:** Without Git installed, none of the commands in this guide will work. This is the foundation.\n\n---\n\n## 6. Initial Git Configuration\n\nGit needs to know who you are so it can label your saves ([commits](#10-committing-changes)). This is **mandatory**. Without it, Git will refuse to save your work.\n\n### Setting Your Identity\n\n\\`\\`\\`bash\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\n\\`\\`\\`\n\n### Breaking Down the Command\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`git config\\` | Tells Git we want to change a setting. |\n| \\`--global\\` | Applies this setting to **every** project on your machine. |\n| \\`user.name\\` | Your public identity. This name will appear on all your commits. |\n| \\`user.email\\` | Your email. Should match your GitHub account email. |\n\n### Useful Extra Configuration\n\n\\`\\`\\`bash\n# Set VS Code as your default editor\ngit config --global core.editor \"code --wait\"\n\n# Check all your current settings\ngit config --list\n\n# Set the default branch name to 'main'\ngit config --global init.defaultBranch main\n\\`\\`\\`\n\n**Why this matters:** Every [commit](#10-committing-changes) records your name and email as the author. If you skip this step, Git will complain and refuse to commit.\n\n---\n\n## 7. Creating Your First Git Repository\n\nTo start tracking a project, you must turn a folder into a [Repository](#4-core-git--github-terminology-table).\n\n### How to Initialize\n\nNavigate to your project folder in the terminal and run:\n\n\\`\\`\\`bash\n# Navigate to your project folder first\ncd C:\\\\Users\\\\YourName\\\\my-project\n\n# Initialize Git tracking\ngit init\n\\`\\`\\`\n\nYou should see: \\`Initialized empty Git repository in .../my-project/.git/\\`\n\n### What Just Happened?\n\nThis command creates a hidden folder named \\`.git\\` inside your project. This folder is the \"brain\" of your entire version history. It contains:\n\n| Contents | Purpose |\n| :--- | :--- |\n| \\`objects/\\` | Stores all your file snapshots and commits. |\n| \\`refs/\\` | Stores pointers to branches and tags. |\n| \\`HEAD\\` | Tells Git which [Branch](#15-branching) you are currently on. |\n| \\`config\\` | Project-specific settings. |\n\n**\u26a0\ufe0f Warning:** Never manually edit or delete the \\`.git\\` folder. If you delete it, your entire project history is gone forever.\n\n### Checking the Status\n\nAfter initializing, you can always check the status of your project:\n\n\\`\\`\\`bash\ngit status\n\\`\\`\\`\n\nThis will show you which files are untracked, modified, or staged. Think of it as asking Git: \"What has changed since my last save?\"\n\n---\n\n## 8. Git File Lifecycle\n\nGit doesn't just watch everything; you have to tell it what to track. Understanding the **lifecycle of a file** is essential. Files move through four stages:\n\n### The Four Stages\n\n| Stage | Meaning | Color in \\`git status\\` |\n| :--- | :--- | :--- |\n| **1. Untracked** | Git has never seen this file before. It is brand new. | Red (new file) |\n| **2. Modified** | You changed a file that Git already knows about, but haven't told Git to prepare it for saving. | Red (modified) |\n| **3. Staged** | You've marked the file as \"ready to be saved\" using \\`git add\\`. | Green |\n| **4. Committed** | The file (and its changes) are permanently saved in the project history. | Not shown (clean) |\n\n### The Flow Diagram\n\n\\`\\`\\`\n[Untracked] --git add--> [Staged] --git commit--> [Committed]\n                              \u2191                        |\n[Modified]  --git add--> [Staged]                  (edit file)\n                                                       \u2193\n                                                   [Modified]\n\\`\\`\\`\n\n**The Analogy:** Think of it like sending a package:\n1. **Untracked** = A new item sitting on your desk.\n2. **Modified** = An item you've updated but haven't packed yet.\n3. **Staged** = You've placed the item in the shipping box (but haven't sent it).\n4. **Committed** = You've sealed the box and submitted it to the post office. It's now in the records permanently.\n\n**Why this matters:** Understanding this lifecycle is the key to understanding every Git command. If you know which stage your file is in, you'll always know which command to use next.\n\n\n## 9. Staging Files \ud83d\udccc\n\nBefore you [commit](#10-committing-changes), you must \"Stage\" your files using \\`git add\\`. Staging is the \"preparation step\" before saving.\n\n### The Commands\n\n\\`\\`\\`bash\n# Stage a single specific file\ngit add index.html\n\n# Stage multiple specific files\ngit add index.html styles.css app.js\n\n# Stage ALL changed files in the project (most common)\ngit add .\n\\`\\`\\`\n\n### Breaking Down the Command\n\n| Command | What it Does |\n| :--- | :--- |\n| \\`git add <filename>\\` | Stages one specific file. |\n| \\`git add .\\` | Stages **everything** that has changed (new, modified, deleted files). |\n| \\`git add *.css\\` | Stages all CSS files. |\n| \\`git add -p\\` | Interactive mode: lets you stage parts of a file (advanced). |\n\n### Checking What's Staged\n\n\\`\\`\\`bash\n# See which files are staged (green) vs. unstaged (red)\ngit status\n\n# See the exact line-by-line changes that are staged\ngit diff --staged\n\\`\\`\\`\n\n**Why Staging Exists:** Imagine you are building a puzzle. Staging is like putting the correct pieces on the board before you glue them down forever (the [commit](#10-committing-changes)). It allows you to choose **exactly** which changes go into a save point.\n\n**Example Scenario:** You fixed a login bug AND changed the homepage color. You can stage and commit them separately with clear messages:\n\\`\\`\\`bash\ngit add login.js\ngit commit -m \"Fix login redirect bug\"\n\ngit add homepage.css\ngit commit -m \"Change homepage background to dark blue\"\n\\`\\`\\`\n\n---\n\n## 10. Committing Changes\n\nA **Commit** is a permanent snapshot. Once committed, you can always return to this exact moment in time. Commits are the building blocks of your entire project history.\n\n### The Command\n\n\\`\\`\\`bash\ngit commit -m \"Fix login button alignment\"\n\\`\\`\\`\n\n### Breaking Down the Command\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`git commit\\` | Creates a new save point from the [staged](#9-staging-files) files. |\n| \\`-m\\` | Stands for \"message.\" Lets you write the message inline. |\n| \\`\"Fix login button alignment\"\\` | Your description of **what** this commit does and **why**. |\n\n### What Happens Inside\n\nWhen you commit, Git:\n1. Takes a snapshot of all [staged](#9-staging-files) files.\n2. Stores the snapshot permanently in the \\`.git/objects/\\` folder.\n3. Creates a unique ID (a hash like \\`a1b2c3d\\`) for this commit.\n4. Records your name, email, date, and your message.\n\n### Writing Good Commit Messages\n\n| \u2705 Good Message | \u274c Bad Message |\n| :--- | :--- |\n| \"Add login form validation\" | \"update\" |\n| \"Fix navbar overflow on mobile\" | \"stuff\" |\n| \"Remove unused API endpoint\" | \"changes\" |\n| \"Add dark mode toggle to settings\" | \"fixed it\" |\n\n**The Rule:** A good message explains *what* you changed and *why*. Write it in the imperative tense (\"Add,\" \"Fix,\" \"Remove\") as if giving a command. It's for your future self!\n\n### Useful Variations\n\n\\`\\`\\`bash\n# Commit with a longer, multi-line message\ngit commit\n\n# Stage AND commit all modified (tracked) files in one step\ngit commit -am \"Quick fix for typo in README\"\n\\`\\`\\`\n\n---\n\n## 11. Connecting to GitHub (Remote)\n\nTo share your code or back it up online, you need to connect your local repo to a [Remote](#4-core-git--github-terminology-table) server like [GitHub](#3-what-is-github).\n\n### Step-by-Step\n\n1. **Create a new repository on GitHub:**\n   - Go to [github.com/new](https://github.com/new).\n   - Give it a name (e.g., \\`my-project\\`).\n   - **Do NOT** initialize with a README if your local project already has files.\n   - Click \"Create repository.\"\n\n2. **Copy the repository URL** (e.g., \\`https://github.com/username/my-project.git\\`).\n\n3. **Connect your local repo to GitHub:**\n\n\\`\\`\\`bash\ngit remote add origin https://github.com/username/my-project.git\n\\`\\`\\`\n\n### Breaking Down the Command\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`git remote add\\` | Tells Git to register a new remote server. |\n| \\`origin\\` | A **nickname** for this remote. \"origin\" is the industry standard name for your primary server. You could call it \"home\" or \"cloud,\" but \"origin\" is what everyone uses. |\n| \\`https://...\\` | The URL of your GitHub repository. |\n\n### Useful Remote Commands\n\n\\`\\`\\`bash\n# See all registered remotes\ngit remote -v\n\n# Change the URL of an existing remote\ngit remote set-url origin https://github.com/username/new-repo.git\n\n# Remove a remote\ngit remote remove origin\n\\`\\`\\`\n\n**Why this matters:** Without a remote, your code only lives on your computer. One hard drive failure and everything is lost. A remote is your safety net.\n\n---\n\n## 12. Pushing Code to GitHub\n\nNow that you are [connected](#11-connecting-to-github-remote), use \\`git push\\` to upload your [commits](#10-committing-changes) to GitHub.\n\n### The Command\n\n\\`\\`\\`bash\n# First push (sets up the link between local and remote branch)\ngit push -u origin main\n\n# Every push after the first\ngit push\n\\`\\`\\`\n\n### Breaking Down the Command\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`git push\\` | Upload commits from your local machine to the remote server. |\n| \\`-u\\` | Short for \\`--set-upstream\\`. Links your local \"main\" branch to the remote \"main\" branch so future pushes only need \\`git push\\`. |\n| \\`origin\\` | The [nickname](#11-connecting-to-github-remote) for your GitHub server. |\n| \\`main\\` | The name of the [Branch](#15-branching) you are pushing. |\n\n### What Happens Inside\n\nWhen you push:\n1. Git compares your local commits with what's on GitHub.\n2. It uploads only the **new** commits (not the entire project every time).\n3. GitHub updates its copy to match yours.\n\n**\u26a0\ufe0f Common Error:** If someone else pushed changes that you don't have, Git will **reject** your push. You need to [pull](#14-pulling-updates) first.\n\n---\n\n## 13. Cloning Repositories\n\nTo download someone else's project (or your own on a new computer), use \\`git clone\\`.\n\n### The Command\n\n\\`\\`\\`bash\ngit clone https://github.com/username/repo-name.git\n\\`\\`\\`\n\nThis will create a new folder called \\`repo-name\\` in your current directory containing the entire project.\n\n### Breaking Down the Command\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`git clone\\` | Download a complete copy of the repository. |\n| \\`https://...\\` | The URL of the repository (found on the GitHub page under the green \"Code\" button). |\n\n### Clone vs. Download ZIP\n\n| Feature | \\`git clone\\` | Download ZIP |\n| :--- | :--- | :--- |\n| Gets files? | \u2705 Yes | \u2705 Yes |\n| Gets full history? | \u2705 Yes | \u274c No |\n| Can push/pull? | \u2705 Yes | \u274c No |\n| Sets up remote? | \u2705 Automatically | \u274c No |\n\n**Why use Clone:** A ZIP just gives you the current files. A **clone** gives you the files AND the entire history of every change ever made. You can immediately start working, committing, and pushing.\n\n### Cloning into a Specific Folder\n\n\\`\\`\\`bash\n# Clone into a folder named \"my-copy\"\ngit clone https://github.com/username/repo-name.git my-copy\n\\`\\`\\`\n\n---\n\n## 14. Pulling Updates\n\nIf someone else (or you from another laptop) uploads changes to GitHub, you need to sync your local files using \\`git pull\\`.\n\n### The Command\n\n\\`\\`\\`bash\ngit pull origin main\n\\`\\`\\`\n\n### Breaking Down the Command\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`git pull\\` | Download AND integrate remote changes into your local branch. |\n| \\`origin\\` | Which [remote](#11-connecting-to-github-remote) server to pull from. |\n| \\`main\\` | Which [Branch](#15-branching) to pull. |\n\n### What Happens Inside\n\n\\`git pull\\` actually does **two things** in one command:\n\n1. **\\`git fetch\\`:** Downloads the new data from the remote server (doesn't change your files yet).\n2. **\\`git merge\\`:** Integrates (merges) the downloaded changes into your current branch.\n\n### Pull vs. Fetch\n\n| Command | Downloads Changes? | Modifies Your Files? |\n| :--- | :--- | :--- |\n| \\`git fetch\\` | \u2705 Yes | \u274c No (safe preview) |\n| \\`git pull\\` | \u2705 Yes | \u2705 Yes (auto-merges) |\n\n**When to use Fetch:** If you want to see what changed on the remote before merging it into your work, use \\`git fetch\\` first. Then inspect the changes, and run \\`git merge\\` manually when you're ready.\n\n**Why this matters:** Always [pull](#14-pulling-updates) before you [push](#12-pushing-code-to-github). If you don't, you'll get a \"rejected\" error because your local copy is out of date.\n\n---\n\n## 15. Branching \ud83c\udf3f\n\n**Branches** are parallel versions of your project. They are one of Git's most powerful features.\n\n### Why Branches Exist\n\nImagine you have a website that is live and working. You want to add a \"dark mode\" feature, but it will take 3 days. Without branches, you'd have to edit the live code directly\u2014and if something breaks, your users see a broken site.\n\nWith branches, you create a separate copy (branch), work on dark mode safely, and only merge it back when it's perfect.\n\n### The Commands\n\n\\`\\`\\`bash\n# Create a new branch\ngit branch feature-dark-mode\n\n# Switch to an existing branch\ngit checkout feature-dark-mode\n\n# Create AND switch in one command (most common)\ngit checkout -b feature-dark-mode\n\n# List all branches (* marks the current one)\ngit branch\n\n# Delete a branch (after merging)\ngit branch -d feature-dark-mode\n\\`\\`\\`\n\n### How Branches Work Visually\n\n\\`\\`\\`\nmain:          A --- B --- C --- D (stable, live code)\n                      \\\\\nfeature-dark-mode:     E --- F --- G (your experimental work)\n\\`\\`\\`\n\nYou can break things in the \\`feature-dark-mode\\` branch without hurting the \\`main\\` branch. It's the ultimate safety net for experimentation.\n\n### Branch Naming Conventions\n\n| Pattern | Example | Use For |\n| :--- | :--- | :--- |\n| \\`feature-*\\` | \\`feature-login-page\\` | New features |\n| \\`fix-*\\` | \\`fix-navbar-bug\\` | Bug fixes |\n| \\`hotfix-*\\` | \\`hotfix-security-patch\\` | Urgent production fixes |\n| \\`dev\\` | \\`dev\\` | General development branch |\n\n---\n\n## 16. Merging Branches\n\nOnce your experiment in a [branch](#15-branching) is finished and working, you \"Merge\" it back into the main timeline.\n\n### The Commands\n\n\\`\\`\\`bash\n# Step 1: Switch to the branch you want to merge INTO\ngit checkout main\n\n# Step 2: Merge the feature branch into main\ngit merge feature-dark-mode\n\\`\\`\\`\n\n### Types of Merges\n\n| Type | When It Happens | What Git Does |\n| :--- | :--- | :--- |\n| **Fast-forward** | Main hasn't changed since you branched off. | Git just slides your commits onto main. Clean and simple. |\n| **Three-way merge** | Main has new commits since you branched off. | Git creates a new \"merge commit\" that combines both histories. |\n\n### Merge Conflicts \u26a0\ufe0f\n\nA **merge conflict** happens when two branches changed the **same line** of the **same file**. Git cannot decide which version to keep, so it asks you.\n\n**What a conflict looks like in the file:**\n\\`\\`\\`\n<<<<<<< HEAD\n<h1>Welcome to our website</h1>\n=======\n<h1>Welcome to our awesome website!</h1>\n>>>>>>> feature-dark-mode\n\\`\\`\\`\n\n**How to resolve it:**\n1. Open the file in your editor.\n2. Decide which version to keep (or combine both).\n3. Remove the \\`<<<<<<<\\`, \\`=======\\`, and \\`>>>>>>>\\` markers.\n4. Stage and commit the resolved file:\n\\`\\`\\`bash\ngit add index.html\ngit commit -m \"Resolve merge conflict in header\"\n\\`\\`\\`\n\n---\n\n## 17. Forking & Open-Source Workflow\n\n**Forking** is a GitHub feature. It creates a complete copy of someone else's project into your own account.\n\n### Why Fork?\n\nYou cannot directly [push](#12-pushing-code-to-github) to a repository you don't own. Forking gives you your own copy that you **do** own, so you can make changes freely.\n\n### The Complete Open-Source Workflow\n\n| Step | Action | Where |\n| :--- | :--- | :--- |\n| 1 | **Fork** the original repository | GitHub (click \"Fork\" button) |\n| 2 | **Clone** your fork to your computer | Terminal: \\`git clone <your-fork-url>\\` |\n| 3 | **Create a branch** for your changes | Terminal: \\`git checkout -b fix-typo\\` |\n| 4 | **Make changes** and commit them | Terminal: \\`git add .\\` + \\`git commit\\` |\n| 5 | **Push** your branch to your fork | Terminal: \\`git push origin fix-typo\\` |\n| 6 | **Create a Pull Request** to the original repo | GitHub (click \"New Pull Request\") |\n\n### Fork vs. Clone\n\n| Feature | Fork | Clone |\n| :--- | :--- | :--- |\n| Creates a copy on... | Your GitHub account | Your local computer |\n| Can push to original? | No (use [PR](#18-pull-requests-prs)) | Only if you have permission |\n| Used for... | Contributing to others' projects | Working on your own projects |\n\n---\n\n## 18. Pull Requests (PRs)\n\nA **Pull Request** is a polite way of saying: \"Hey, I improved your code. Please pull my changes into your project!\"\n\n### Why PRs Exist\n\nThey create a structured process for code review. Instead of directly merging changes (which could introduce bugs), PRs let team members:\n1. **Review** the code line by line.\n2. **Comment** on specific lines with questions or suggestions.\n3. **Request changes** before approving.\n4. **Approve** when the code is ready.\n5. **Merge** the changes into the main branch.\n\n### How to Create a PR\n\n1. [Push](#12-pushing-code-to-github) your branch to GitHub.\n2. Go to your repository on GitHub.\n3. Click the \"Compare & pull request\" button (it appears automatically after a push).\n4. Write a title and description explaining your changes.\n5. Click \"Create Pull Request.\"\n\n### Anatomy of a Good PR\n\n| Section | Example |\n| :--- | :--- |\n| **Title** | \"Add dark mode toggle to settings page\" |\n| **Description** | What changed, why, and how to test it. |\n| **Screenshots** | Before & after images (for UI changes). |\n| **Linked Issues** | \"Closes #42\" (auto-closes the issue when merged). |\n\n**The Analogy:** Think of a PR like submitting an essay to a teacher for review. The teacher (reviewer) reads it, marks corrections, and either approves it or asks you to revise it before it gets published.\n\n---\n\n## 19. Undoing Mistakes \u26a0\ufe0f\n\nDon't panic! Git makes it hard to lose work permanently. Here is a complete toolkit for fixing common mistakes.\n\n### Scenario Table\n\n| Situation | Command | What It Does |\n| :--- | :--- | :--- |\n| Unstage a file (undo \\`git add\\`) | \\`git restore --staged <file>\\` | Moves the file from \"staged\" back to \"modified.\" Your changes are still there. |\n| Discard local edits (revert to last commit) | \\`git restore <file>\\` | **\u26a0\ufe0f Destructive!** Throws away your local editing and restores the last committed version. |\n| Undo the last commit (keep code) | \\`git reset --soft HEAD~1\\` | Removes the last commit but keeps all your changes staged. |\n| Undo the last commit (keep code, unstaged) | \\`git reset HEAD~1\\` | Removes the last commit and un-stages the changes, but keeps the files modified. |\n| Completely erase the last commit | \\`git reset --hard HEAD~1\\` | **\u26a0\ufe0f Destructive!** Removes the last commit AND all changes. Gone forever. |\n| Undo a commit that was already pushed | \\`git revert <commit-hash>\\` | Creates a **new** commit that reverses the old one. Safe and public-history-friendly. |\n\n### Reset vs. Revert\n\n| Feature | \\`git reset\\` | \\`git revert\\` |\n| :--- | :--- | :--- |\n| Rewrites history? | \u2705 Yes (dangerous for shared branches) | \u274c No (safe for shared branches) |\n| Creates new commit? | \u274c No | \u2705 Yes (an \"undo\" commit) |\n| Use when... | You haven't pushed yet | You already pushed to GitHub |\n\n**The Analogy:** \\`reset\\` is like tearing a page out of a diary (it's gone). \\`revert\\` is like writing a new entry that says \"ignore what I wrote on page 5.\"\n\n### Common Undo Scenarios\n\n\\`\\`\\`bash\n# \"I accidentally staged the wrong file!\"\ngit restore --staged wrong-file.txt\n\n# \"I want to start over on this file!\"\ngit restore broken-file.js\n\n# \"My last commit message has a typo!\"\ngit commit --amend -m \"Corrected commit message\"\n\n# \"I committed to the wrong branch!\"\ngit reset --soft HEAD~1      # Undo the commit (keeps changes)\ngit checkout correct-branch  # Switch to the right branch\ngit add .                    # Stage the changes\ngit commit -m \"My changes\"  # Commit on the correct branch\n\\`\\`\\`\n\n---\n\n## 20. Viewing History (git log)\n\nTo see your project's history (who did what and when), use \\`git log\\`.\n\n### The Commands\n\n\\`\\`\\`bash\n# Full detailed log\ngit log\n\n# Compact one-line-per-commit view (most useful)\ngit log --oneline\n\n# Visual branch graph\ngit log --oneline --graph --all\n\n# See history for a specific file\ngit log --oneline -- filename.txt\n\n# Search commits by message keyword\ngit log --grep=\"login\"\n\\`\\`\\`\n\n### Understanding the Output\n\nA typical \\`git log\\` entry looks like this:\n\n\\`\\`\\`\ncommit a1b2c3d4e5f6g7h8i9j0 (HEAD -> main, origin/main)\nAuthor: Your Name <you@example.com>\nDate:   Mon Feb 17 2026 10:30:00\n\n    Add dark mode toggle to settings page\n\\`\\`\\`\n\n| Part | Meaning |\n| :--- | :--- |\n| \\`a1b2c3d...\\` | The unique ID (hash) of this commit. |\n| \\`HEAD -> main\\` | This is the current commit on the \"main\" branch. |\n| \\`origin/main\\` | GitHub's copy is also at this commit. |\n| \\`Author\\` | Who made the commit (from [git config](#6-initial-git-configuration)). |\n| \\`Date\\` | When the commit was created. |\n| Message | The description you wrote with \\`-m\\`. |\n\n### Comparing Changes\n\n\\`\\`\\`bash\n# See what changed between two commits\ngit diff a1b2c3d b4c5d6e\n\n# See what you changed but haven't staged yet\ngit diff\n\n# See what's staged but not committed\ngit diff --staged\n\\`\\`\\`\n\n---\n\n## 21. .gitignore\n\nSome files (like passwords, huge media files, or temporary system files) should **never** be tracked. We list these in a text file called \\`.gitignore\\`.\n\n### How to Create It\n\nCreate a file named \\`.gitignore\\` in the **root** of your project (same level as \\`.git\\` folder).\n\n### Common .gitignore Patterns\n\n\\`\\`\\`text\n# Environment variables (passwords, API keys)\n.env\n.env.local\n\n# Dependencies (can be reinstalled with npm install)\nnode_modules/\n\n# Build output (can be regenerated)\ndist/\nbuild/\n\n# Log files\n*.log\nnpm-debug.log*\n\n# OS-generated files\n.DS_Store\nThumbs.db\n\n# Editor/IDE settings\n.vscode/\n.idea/\n\\`\\`\\`\n\n### Pattern Syntax\n\n| Pattern | Meaning |\n| :--- | :--- |\n| \\`*.log\\` | Ignore ALL files ending in \\`.log\\`. |\n| \\`node_modules/\\` | Ignore the entire \\`node_modules\\` directory. |\n| \\`!important.log\\` | **Don't** ignore this specific file (exception). |\n| \\`docs/*.pdf\\` | Ignore PDF files only inside the \\`docs/\\` folder. |\n| \\`**/temp\\` | Ignore any folder named \\`temp\\`, no matter where it is. |\n\n**\u26a0\ufe0f Important:** \\`.gitignore\\` only prevents **new** files from being tracked. If a file is already committed, adding it to \\`.gitignore\\` won't remove it. You need to run:\n\\`\\`\\`bash\ngit rm --cached filename.txt\ngit commit -m \"Stop tracking filename.txt\"\n\\`\\`\\`\n\n---\n\n## 22. Authentication: HTTPS vs SSH\n\nHow does GitHub know it's really you? There are two methods:\n\n### Method 1: HTTPS (Beginner-Friendly)\n\nUses your GitHub username and a **Personal Access Token (PAT)** instead of your password.\n\n**How to set it up:**\n1. Go to GitHub \u2192 Settings \u2192 Developer Settings \u2192 Personal Access Tokens \u2192 Tokens (classic).\n2. Click \"Generate new token.\"\n3. Give it a name, select permissions (at minimum: \\`repo\\`).\n4. Copy the token and use it as your password when Git asks.\n\n### Method 2: SSH (Recommended for Daily Use)\n\nUses a \"key pair\" stored on your computer. No passwords needed ever again.\n\n**How to set it up:**\n\\`\\`\\`bash\n# Step 1: Generate a key pair\nssh-keygen -t ed25519 -C \"you@example.com\"\n\n# Step 2: Start the SSH agent\neval \"$(ssh-agent -s)\"\n\n# Step 3: Add your key to the agent\nssh-add ~/.ssh/id_ed25519\n\n# Step 4: Copy your PUBLIC key\ncat ~/.ssh/id_ed25519.pub\n\\`\\`\\`\nThen paste the public key into GitHub \u2192 Settings \u2192 SSH and GPG Keys \u2192 New SSH Key.\n\n### Comparison Table\n\n| Feature | HTTPS | SSH |\n| :--- | :--- | :--- |\n| **Setup difficulty** | Easy | Medium |\n| **Needs password/token?** | Yes, every push (or use a credential manager) | No, after initial setup |\n| **URL format** | \\`https://github.com/user/repo.git\\` | \\`git@github.com:user/repo.git\\` |\n| **Best for** | Beginners, quick access | Daily work, automation |\n\n---\n\n## 23. Common Git Errors & Fixes (Table)\n\nHere are the most frequent errors you'll encounter and exactly how to fix them:\n\n| Error Message | What Went Wrong | The Fix |\n| :--- | :--- | :--- |\n| **\\`error: failed to push some refs\\`** | GitHub has commits you don't have locally. | Run \\`git pull origin main\\` first, then push again. |\n| **\\`CONFLICT (content): Merge conflict\\`** | Two people changed the same line of the same file. | Open the file, choose the correct code, remove conflict markers, then \\`git add\\` and \\`git commit\\`. |\n| **\\`fatal: not a git repository\\`** | You're not inside a Git-tracked folder. | \\`cd\\` into the correct project folder, or run \\`git init\\`. |\n| **\\`error: pathspec 'branch' did not match\\`** | The branch name doesn't exist. | Check spelling with \\`git branch -a\\`. Run \\`git fetch\\` if it's a remote branch. |\n| **\\`detached HEAD state\\`** | You checked out a specific commit instead of a branch. | Run \\`git checkout main\\` to go back to a branch. |\n| **\\`Permission denied (publickey)\\`** | SSH key is not set up correctly. | Follow the [SSH setup steps](#22-authentication-https-vs-ssh). |\n| **\\`fatal: remote origin already exists\\`** | You tried to add a remote that's already registered. | Use \\`git remote set-url origin <new-url>\\` instead. |\n\n### Debugging Tips\n\n\\`\\`\\`bash\n# Check which branch you're on\ngit branch\n\n# Check if remote is connected\ngit remote -v\n\n# See the full status of your repo\ngit status\n\n# See a visual history\ngit log --oneline --graph --all\n\\`\\`\\`\n\n---\n\n## 24. Git & GitHub Best Practices \u2705\n\nThese are the habits that separate beginners from professionals:\n\n### Commit Practices\n\n| \u2705 Do This | \u274c Don't Do This |\n| :--- | :--- |\n| Commit small, focused changes. | Save 10 hours of work in one giant commit. |\n| Write descriptive messages: \"Fix login redirect bug\" | Write vague messages: \"update\" or \"stuff\" |\n| Commit frequently (every 30\u201360 min of work). | Commit once at the end of the day. |\n\n### Branch Practices\n\n| \u2705 Do This | \u274c Don't Do This |\n| :--- | :--- |\n| Create a new branch for every feature/fix. | Work directly on \\`main\\`. |\n| Use clear branch names: \\`feature-login\\`, \\`fix-navbar\\`. | Use random names: \\`branch1\\`, \\`test\\`. |\n| Delete branches after merging. | Leave hundreds of stale branches. |\n\n### Security Practices\n\n| \u2705 Do This | \u274c Don't Do This |\n| :--- | :--- |\n| Add \\`.env\\` to [.gitignore](#21-gitignore). | Commit API keys or passwords to Git. |\n| Use SSH keys for authentication. | Share your Personal Access Token publicly. |\n| Review every \\`git diff\\` before committing. | Blindly \\`git add .\\` without checking what changed. |\n\n---\n\n## 25. Daily Git Workflow \ud83d\udccc\n\nFollow this routine to stay safe and productive every day:\n\n### Morning (Start of Work)\n\n\\`\\`\\`bash\n# 1. Switch to main and get the latest code\ngit checkout main\ngit pull origin main\n\n# 2. Create a branch for today's task\ngit checkout -b feature-user-profile\n\\`\\`\\`\n\n### During the Day (While Working)\n\n\\`\\`\\`bash\n# 3. Check what's changed\ngit status\n\n# 4. Stage your changes\ngit add .\n\n# 5. Commit with a clear message\ngit commit -m \"Add user profile avatar upload\"\n\\`\\`\\`\n\n### End of Day (Wrap Up)\n\n\\`\\`\\`bash\n# 6. Push your branch to GitHub for backup\ngit push origin feature-user-profile\n\\`\\`\\`\n\n### When Feature is Done\n\n\\`\\`\\`bash\n# 7. Create a Pull Request on GitHub\n#    (Go to GitHub -> Click \"Compare & pull request\")\n\n# 8. After PR is approved and merged, clean up locally:\ngit checkout main\ngit pull origin main\ngit branch -d feature-user-profile\n\\`\\`\\`\n\n### Workflow Summary Table\n\n| Time | Action | Command |\n| :--- | :--- | :--- |\n| **Morning** | Get latest code | \\`git pull origin main\\` |\n| **Morning** | Create task branch | \\`git checkout -b feature-x\\` |\n| **During day** | Save progress | \\`git add .\\` \u2192 \\`git commit -m \"msg\"\\` |\n| **End of day** | Backup to GitHub | \\`git push origin feature-x\\` |\n| **Feature done** | Request review | Create PR on GitHub |\n| **After merge** | Clean up | \\`git branch -d feature-x\\` |\n\n---\n\n## 26. Conclusion \ud83c\udfaf\n\nVersion control is a superpower. You have gone from wondering what a \"terminal\" is to understanding the workflow used by teams at Google, Apple, and SpaceX. Here is a final summary of the most important commands:\n\n### Git Command Cheat Sheet\n\n| Command | Purpose |\n| :--- | :--- |\n| \\`git init\\` | Start tracking a folder. |\n| \\`git status\\` | See what has changed. |\n| \\`git add .\\` | Stage all changes for commit. |\n| \\`git commit -m \"msg\"\\` | Save a snapshot. |\n| \\`git push\\` | Upload to GitHub. |\n| \\`git pull\\` | Download from GitHub. |\n| \\`git clone <url>\\` | Copy a repo from GitHub. |\n| \\`git branch <name>\\` | Create a new branch. |\n| \\`git checkout <name>\\` | Switch branches. |\n| \\`git merge <name>\\` | Combine branches. |\n| \\`git log --oneline\\` | View history. |\n| \\`git diff\\` | See changes. |\n| \\`git restore <file>\\` | Undo local edits. |\n| \\`git reset --soft HEAD~1\\` | Undo last commit (keep code). |\n\n### The Core Workflow\n\n\\`\\`\\`\nEdit \u2192 Stage \u2192 Commit \u2192 Push\n\\`\\`\\`\n\nStay consistent, keep pushing to GitHub, and never fear a mistake again!",
+    "category": "Git & GitHub",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "February 10, 2026",
+    "readingTime": 31,
+    "image": "https://images.unsplash.com/photo-1618401471353-b98aedd07871?w=800&h=600&fit=crop",
+    "featured": true,
+    "tags": [
+      "git",
+      "github",
+      "version control",
+      "beginner"
+    ]
   },
   {
-    id: '3',
-    slug: 'the-quantum-library',
-    title: 'The Quantum Library',
-    excerpt: 'Science fiction has long imagined libraries that contain all knowledge. What happens when the technology catches up to the fiction?',
-    content: `
-## Borges and the Infinite Library
-
-Jorge Luis Borges imagined a library containing every possible combination of letters — a library so vast that it contained every book ever written and every book that could ever be written. It was a nightmare of abundance.
-
-Today, we live in a version of that library. The internet gives us access to more information than any human could process in a thousand lifetimes. Science fiction saw this coming.
-
-### From Asimov to Algorithms
-
-Isaac Asimov's Foundation series imagined a Galactic Encyclopedia — a compendium of all human knowledge compressed into a single planet. We now carry something similar in our pockets.
-
-> "The question is no longer how to find information, but how to survive the flood of it." — A thought I had at 3 AM, scrolling through Wikipedia.
-
-### The Fiction That Became Reality
-
-Science fiction has always been less about predicting the future and more about interrogating the present. When Arthur C. Clarke imagined a global library accessible to all, he was describing the internet before the internet existed.
-
-\`\`\`javascript
-// The evolution of the library
-const libraries = [
-  { era: "ancient",     form: "clay tablets",     scale: "hundreds" },
-  { era: "medieval",    form: "illuminated manuscripts", scale: "thousands" },
-  { era: "industrial",  form: "public libraries",  scale: "millions" },
-  { era: "digital",     form: "the internet",      scale: "infinite" },
-];
-\`\`\`
-
-![A futuristic library](https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800)
-
-The quantum library is not a place. It is a condition. We are all librarians now, navigating an infinite collection, searching for the books that matter.
-`,
-    category: 'Science Fiction',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-06-15',
-    readingTime: 8,
-    image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&h=600&fit=crop',
-    featured: true,
-    tags: ['science fiction', 'borges', 'libraries', 'technology'],
+    "id": "3",
+    "slug": "how-to-learn-programming",
+    "title": "How to Learn Programming as a Beginner",
+    "excerpt": "A universal roadmap for beginners to stay focused, consistent, and avoid burnout while learning to code.",
+    "content": "## \ud83d\ude80 Introduction / Context\nThe hardest part of coding isn't the math\u2014it is knowing where to start. \ud83d\udfe1 With thousands of tools, beginners often feel lost in the \"tutorial hell\".\n\n## \u2757 Problem or Motivation\nMost people quit because they try to learn everything at once. \ud83d\udfe1 Burnout happens when you follow tutorials without actually building anything of your own.\n\n## \ud83e\udde0 Core Concept / Idea\nProgramming is **Logic**, not Memorization. \ud83d\udfe1 You are learning how to solve problems; the coding language is just the tool you use to do it.\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Pick ONE Language \ud83d\udfe1\nDon't jump between languages. Start with Python or JavaScript and stick with it until you can build a basic app.\n\n### 2. The 20-Minute Rule \ud83d\udfe1\nConsistency beats intensity. Coding for 20 minutes every day is better than a 5-hour marathon once a week.\n\n### 3. Build \"Useless\" Things \ud83d\udfe1\nMake a tip calculator or a name generator. Building something from scratch teaches more than 100 video tutorials.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of learning to code like learning a **Musical Instrument**. \ud83d\udfe1\nWatching someone else play guitar doesn't make you a musician. You have to pick up the guitar, make some bad noises, and practice your scales every day.\n\n## \u26a0\ufe0f Limitations or Challenges\nThe \"Imposter Syndrome\" is real. \ud83d\udfe1 You will feel like you aren't \"smart enough\". Everyone feels this, even senior engineers at Google.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI spent months watching videos without writing a single line of code. \ud83d\udfe1 My progress only started when I tried to build a simple website and failed 50 times.\n\n## \ud83c\udfaf Conclusion / Takeaway\nStop overthinking the roadmap. \ud83d\udfe1 Pick a language, set a timer for 20 minutes, and write your first \\`print(\"Hello\")\\` today.",
+    "category": "Programming",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "February 9, 2026",
+    "readingTime": 2,
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "programming",
+      "beginner",
+      "learning"
+    ]
   },
   {
-    id: '4',
-    slug: 'whispers-in-the-stacks',
-    title: 'Whispers in the Stacks',
-    excerpt: "A mystery lover's guide to the best locked-room puzzles and why the genre keeps reinventing itself.",
-    content: `
-## The Locked Room Problem
-
-The locked-room mystery is the purest form of the genre. A body, a sealed room, no apparent way in or out. It is a puzzle that demands the reader become a detective.
-
-From Edgar Allan Poe's "The Murders in the Rue Morgue" to modern masters like Ruth Ware and John Dickson Carr, the locked-room mystery endures because it represents the ultimate challenge: the impossible made logical.
-
-### Why We Love Mysteries
-
-We read mysteries not just for the solution, but for the process. The detective's mind is a mirror — we see our own reasoning reflected and tested. Every red herring is a lesson in humility.
-
-> "The detective story is the only literary form in which the reader is an active participant." — G.K. Chesterton
-
-### The Modern Renaissance
-
-The genre is experiencing a renaissance. Authors like Anthony Horowitz, Lucy Foley, and Richard Osman have brought fresh energy to the classic puzzle mystery, blending humor, social commentary, and genuine surprise.
-
-\`\`\`python
-# Elements of a great mystery
-mystery_elements = {
-    "setup": "an impossible crime",
-    "detective": "a brilliant but flawed protagonist",
-    "suspects": "everyone has a motive",
-    "clues": "fair but hidden in plain sight",
-    "resolution": "logical but unexpected",
-}
-\`\`\`
-
-![A mysterious library scene](https://images.unsplash.com/photo-1535905557558-348435205d12?w=800)
-
-The next time you pick up a mystery, pay attention to the whispers in the stacks. The answer is always there, hiding between the lines.
-`,
-    category: 'Mystery',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-06-08',
-    readingTime: 5,
-    image: 'https://images.unsplash.com/photo-1535905557558-348435205d12?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['mystery', 'locked room', 'puzzles', 'detective'],
+    "id": "4",
+    "slug": "getting-started-with-react",
+    "title": "Getting Started with React",
+    "excerpt": "A comprehensive guide to building modern web applications with React, covering components, hooks, and best practices.",
+    "content": "## \ud83d\ude80 Introduction / Context\nReact is the engine behind modern websites like Facebook and Netflix. \ud83d\udd35 It changes how we build the web by letting us create small, reusable pieces.\n\n## \u2757 Problem or Motivation\nOld-school web coding required updating every single page manually. \ud83d\udd35 It was slow and led to messy, hard-to-maintain code as apps grew larger.\n\n## \ud83e\udde0 Core Concept / Idea\n**Components.** \ud83d\udd35 Think of your website as a set of LEGO bricks. You build a \"Button\" brick once and use it everywhere.\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Components (The Bricks) \ud83d\udd35\nEvery part of your UI\u2014the header, the sidebar, the buttons\u2014is a component. They are independent and easy to test.\n\n### 2. State (The Memory) \ud83d\udd35\nState is how a component remembers things, like \"Is this button clicked?\" or \"What is in the shopping cart?\".\n\n### 3. Hooks (The Simple Logic) \ud83d\udd35\nHooks like \\`useState\\` allow you to add \"life\" and interactive behavior to your components with very little code.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of React as a **Smart Blueprint**. \ud83d\udd35\nInstead of drawing the whole house every time, you create blueprints for \"Windows\" and \"Doors\". When you want to change the color of all windows, you just update the blueprint once.\n\n## \u26a0\ufe0f Limitations or Challenges\nReact has a learning curve. \ud83d\udd35 Concepts like \"State\" and \"Props\" can be confusing at first, and the setup (Vite/Node) can feel heavy.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI used to try and learn every React library at once. \ud83d\udd35 Focus on the core first. Once you understand components and props, the rest becomes much easier.\n\n## \ud83c\udfaf Conclusion / Takeaway\nReact makes web development faster and more fun. \ud83d\udd35 Start by building a small project, like a simple to-do list, to get a feel for how everything fits together.",
+    "category": "React",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "January 15, 2026",
+    "readingTime": 2,
+    "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "react",
+      "javascript",
+      "web dev"
+    ]
   },
   {
-    id: '5',
-    slug: 'verses-that-travel',
-    title: 'Verses That Travel',
-    excerpt: 'How poetry captures the essence of place better than any photograph ever could.',
-    content: `
-## The Poet as Traveler
-
-A photograph captures a place. A poem captures what it *feels like* to be there. The difference is everything.
-
-When Pablo Neruda wrote about the sea, he did not describe its color. He described its hunger. When Mary Oliver wrote about the marsh, she did not catalog its plants. She listened to its prayers.
-
-### Place as Metaphor
-
-Poetry transforms geography into emotion. A river becomes the passage of time. A mountain becomes an obstacle overcome. A city street becomes a labyrinth of memory.
-
-> "Poetry is the language of travel — it takes you somewhere your body cannot go." — Taylor Vance
-
-### The Travel Poem Tradition
-
-From Bashō's haiku journeys across Japan to Walt Whitman's sprawling American verses, the travel poem has always been about inner transformation as much as outer exploration.
-
-\`\`\`javascript
-// What a travel poem captures
-const travelPoem = {
-  sight: "the color of the sky at dusk",
-  sound: "the language of strangers",
-  smell: "rain on ancient stone",
-  feeling: "the ache of departure",
-  truth: "you are changed by every place you leave"
-};
-\`\`\`
-
-![Poetry and travel](https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800)
-
-Pack a book of poems on your next journey. You will find that the best travel guide is a poet who has been there before you.
-`,
-    category: 'Poetry',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-06-01',
-    readingTime: 4,
-    image: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['poetry', 'travel', 'neruda', 'basho'],
+    "id": "5",
+    "slug": "machine-learning-basics",
+    "title": "Machine Learning Basics",
+    "excerpt": "Understanding the fundamentals of machine learning, from supervised learning to neural networks.",
+    "content": "## \ud83d\ude80 Introduction / Context\nMachine Learning (ML) is the magic that lets computers learn patterns from data. \ud83d\udfe2 It is what powers your Netflix recommendations and face ID.\n\n## \u2757 Problem or Motivation\nIt's impossible to write code for every scenario (like recognizing every dog in the world). \ud83d\udfe2 We need a way for computers to \"figure it out\" themselves.\n\n## \ud83e\udde0 Core Concept / Idea\n**Learning from Examples.** \ud83d\udfe2 Instead of giving rules, you give the computer 10,000 photos and tell it: \"These are dogs, these are not.\"\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Supervised Learning \ud83d\udfe2\nThe \"Teacher\" method. You give labeled data (input + answer) so the computer can learn the relationship.\n\n### 2. Features (The Clues) \ud83d\udfe2\nFeatures are the specific details the computer looks at, like \"ear shape\" or \"fur color\", to make its decision.\n\n### 3. The Model (The Prediction) \ud83d\udfe2\nAfter training, the computer creates a \"Model\"\u2014a math formula that can predict the answer for new data it hasn't seen before.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of ML as a **Child Learning**. \ud83d\udfe2\nA child doesn't learn what a \"chair\" is through a technical definition. They learn by seeing 20 different chairs until their brain recognizes the pattern.\n\n## \u26a0\ufe0f Limitations or Challenges\nML requires **Good Data**. \ud83d\udfe2 If you give the computer bad examples (Bias), it will learn the wrong things and make bad predictions.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI thought I needed to be a math genius for ML. \ud83d\udfe2 I didn't. Most of it is about data cleaning and choosing the right tool for the job. Start with simple libraries!\n\n## \ud83c\udfaf Conclusion / Takeaway\nML is about finding patterns. \ud83d\udfe2 Start by playing with interactive tools like Google's Teachable Machine to see ML in action without any code.",
+    "category": "Python",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "January 10, 2026",
+    "readingTime": 2,
+    "image": "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "machine learning",
+      "ai",
+      "python"
+    ]
   },
   {
-    id: '6',
-    slug: 'the-heart-sails-on',
-    title: 'The Heart Sails On',
-    excerpt: 'Romance novels are not escape — they are return. A defense of the genre and its power to heal.',
-    content: `
-## In Defense of Romance
-
-Romance is the most read and most mocked genre in literature. It is also the most honest. While literary fiction often hides its heart behind clever prose, romance puts love front and center, where it belongs.
-
-The genre's critics misunderstand its purpose. Romance is not about escape. It is about *return* — returning to the fundamental human need for connection, for being seen, for mattering to someone.
-
-### The Structure of Hope
-
-Every romance novel follows a promise: love will win. In a world that often feels chaotic and cruel, that promise is not naive. It is revolutionary.
-
-> "Romance novels are the literature of hope, and hope is the most courageous emotion there is." — Taylor Vance
-
-### Beyond the Stereotype
-
-Modern romance has evolved far beyond its stereotypes. Authors like Talia Hibbert, Jasmine Guillory, and Emily Henry write stories that are funny, smart, socially aware, and deeply moving.
-
-\`\`\`python
-# The romance novel's emotional arc
-romance_arc = [
-    "meeting: the spark",
-    "conflict: the obstacle",
-    "growth: the transformation",
-    "vulnerability: the truth",
-    "union: love wins",
-]
-\`\`\`
-
-![A romantic reading scene](https://images.unsplash.com/photo-1474932430478-36ebdb226573?w=800)
-
-The heart sails on, regardless of the storms. That is not fantasy. That is the stubborn, beautiful truth of being human.
-`,
-    category: 'Romance',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-05-25',
-    readingTime: 6,
-    image: 'https://images.unsplash.com/photo-1474932430478-36ebdb226573?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['romance', 'love', 'hope', 'genre defense'],
+    "id": "6",
+    "slug": "data-visualization-tips",
+    "title": "Data Visualization Tips",
+    "excerpt": "Best practices for creating effective and beautiful data visualizations that tell compelling stories.",
+    "content": "## \ud83d\ude80 Introduction / Context\nData visualization is the art of turning boring numbers into a story everyone can understand. \ud83d\udfe2 It is the bridge between data and decisions.\n\n## \u2757 Problem or Motivation\nSpreadsheets are hard to read. \ud83d\udfe2 It is easy to miss a massive trend or a dangerous drop when it is buried in 1,000 rows of numbers.\n\n## \ud83e\udde0 Core Concept / Idea\n**Visual Efficiency.** \ud83d\udfe2 Humans process images 60,000 times faster than text. A good chart tells the whole story in 3 seconds.\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Choose the Right Chart \ud83d\udfe2\n- Line Charts: For trends over time.\n- Bar Charts: For comparing categories.\n- Scatter Plots: For relationships between two things.\n\n### 2. Less is More \ud83d\udfe2\nAvoid \"Chart Junk\". Remove unnecessary lines, backgrounds, and 3D effects. Let the data speak for itself.\n\n### 3. Color with Purpose \ud83d\udfe2\nUse color to highlight what matters. Don't use 10 colors just because they look pretty; use them to guide the viewer's eye.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of a chart like a **Traffic Sign**. \ud83d\udfe2\nA \"Stop\" sign is simple, clear, and uses color (Red) to tell you something vital instantly. Your data charts should be just as easy to understand at a glance.\n\n## \u26a0\ufe0f Limitations or Challenges\nCharts can be **Misleading**. \ud83d\udfe2 Changing the scale of a graph can make a tiny change look like a huge disaster. Always be honest with your scales.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI used to try to make my charts look \"complex\" to seem smarter. \ud83d\udfe2 I learned that the most complex thing you can do is make something simple and clear.\n\n## \ud83c\udfaf Conclusion / Takeaway\nSimplify your visuals. \ud83d\udfe2 Before you share a chart, ask: \"Can a stranger understand this in 5 seconds?\" If not, keep trimming.",
+    "category": "Python",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "January 5, 2026",
+    "readingTime": 2,
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "data science",
+      "python",
+      "visualization"
+    ]
   },
   {
-    id: '7',
-    slug: 'echoes-of-empires',
-    title: 'Echoes of Empires',
-    excerpt: 'Historical fiction does not just recreate the past — it gives voice to those history forgot.',
-    content: `
-## The Silence of History
-
-History is written by the victors, the literate, and the lucky. Historical fiction has the power to fill in the silences — to give voice to the women, the workers, the conquered, and the forgotten.
-
-When Hilary Mantel wrote Wolf Hall, she did not just retell the story of Thomas Cromwell. She *reimagined* him, giving us access to his inner world in a way that no history book could.
-
-### The Responsibility of the Novelist
-
-Historical novelists walk a tightrope between fact and fiction. They must be faithful to what is known while imagining what is not. The best ones — like Colson Whitehead, Min Jin Lee, and Ken Follett — understand that their job is not to replace history but to *animate* it.
-
-> "Fiction does not compete with history. It completes it." — A thought from the reading chair
-
-### Making the Past Present
-
-The magic of historical fiction is its ability to make the past feel immediate. When you read a novel set in ancient Rome or medieval Japan, you do not just learn about the era — you *live* in it.
-
-\`\`\`javascript
-// What historical fiction restores
-const restored = {
-  voices: "the silenced and the marginalized",
-  emotions: "what it felt like to be there",
-  daily_life: "the texture of ordinary moments",
-  perspective: "multiple views of the same event"
-};
-\`\`\`
-
-![Ancient ruins](https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800)
-
-The empires have fallen, but their echoes remain — in stone, in text, and in the novels that refuse to let them be forgotten.
-`,
-    category: 'History',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-05-18',
-    readingTime: 7,
-    image: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['history', 'historical fiction', 'mantel', 'voices'],
+    "id": "7",
+    "slug": "python-for-data-science",
+    "title": "Python for Data Science",
+    "excerpt": "Exploring Python libraries and tools essential for data science and analysis.",
+    "content": "## \ud83d\ude80 Introduction / Context\nPython is the king of data science. \ud83d\udfe2 It has a massive library for every task, from cleaning messy data to training AI models.\n\n## \u2757 Problem or Motivation\nManually analyzing millions of data points in Excel is slow and prone to errors. \ud83d\udfe2 We need automation and mathematical power that scales with the data.\n\n## \ud83e\udde0 Core Concept / Idea\n**The Ecosystem.** \ud83d\udfe2 Python's strength isn't just the language, but the \"Libraries\"\u2014pre-written code that handles the heavy lifting for you.\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Pandas (The Master Table) \ud83d\udfe2\nPandas is like Excel on steroids. It can filter, clean, and merge millions of rows in a fraction of a second.\n\n### 2. NumPy (The Engine) \ud83d\udfe2\nNumPy handles the complex math and large arrays that make AI and data analysis possible at high speeds.\n\n### 3. Scikit-Learn (The Toolkit) \ud83d\udfe2\nThis is where the actual \"science\" happens\u2014building models that can predict trends or classify data automatically.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of Python libraries like **Power Tools**. \ud83d\udfe2\nYou can build a house with a hand saw (Excel), but if you have to build 100 houses, you want a circular saw and a nail gun (Python Libraries).\n\n## \u26a0\ufe0f Limitations or Challenges\nThe \"Paradox of Choice\". \ud83d\udfe2 There are so many libraries that it is easy to get overwhelmed. Focus on **Pandas** first; it is the most useful.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI spent too much time trying to learn the math behind the tools. \ud83d\udfe2 Learn the **tools** first. Use them to solve real problems, and the math will start making sense later.\n\n## \ud83c\udfaf Conclusion / Takeaway\nData science is about solving problems. \ud83d\udfe2 Start by importing a small CSV file of something you care about (like your spending) into a Pandas DataFrame.",
+    "category": "Python",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "December 28, 2025",
+    "readingTime": 2,
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "data science",
+      "python",
+      "libraries"
+    ]
   },
   {
-    id: '8',
-    slug: 'a-life-in-chapters',
-    title: 'A Life in Chapters',
-    excerpt: 'What biographies teach us about the art of living — and why every life is worth writing down.',
-    content: `
-## The Biographer's Gift
-
-A great biography does not merely list the events of a life. It finds the narrative thread — the through-line that makes a person's existence *make sense*.
-
-When I read Robert Caro's The Years of Lyndon Johnson, I was not just learning about a president. I was learning about ambition, power, and the American century. The biography became a lens through which I understood not just one man, but an entire era.
-
-### Every Life is a Story
-
-We tend to think that only the famous deserve biographies. But the best biographers know that every life contains a story worth telling. The local teacher, the immigrant grandmother, the quiet neighbor — each carries a narrative as rich as any king's.
-
-> "Biography is the most democratic form of literature. It says: your life matters." — Taylor Vance
-
-### The Art of Listening
-
-Writing a biography is ultimately an act of listening — to letters, to diaries, to the memories of those who knew the subject. It is a form of resurrection through attention.
-
-\`\`\`python
-# What a biography captures
-biography = {
-    "events": "what happened",
-    "context": "when and where it happened",
-    "motivation": "why it happened",
-    "emotion": "how it felt",
-    "legacy": "what it means now"
-}
-\`\`\`
-
-![A biography on a shelf](https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=800)
-
-Every life is written in chapters. The biographer's job is to read them aloud, so the rest of us can hear what we might have missed.
-`,
-    category: 'Biography',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-05-10',
-    readingTime: 5,
-    image: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['biography', 'memoir', 'caro', 'life stories'],
+    "id": "8",
+    "slug": "understanding-neural-networks",
+    "title": "Understanding Neural Networks",
+    "excerpt": "A beginner-friendly introduction to neural networks and deep learning concepts.",
+    "content": "## \ud83d\ude80 Introduction / Context\nNeural networks are the \"brain\" of AI. \ud83d\udfe2 They are designed to mimic how human neurons fire to solve incredibly complex problems.\n\n## \u2757 Problem or Motivation\nSimple code is great for math, but terrible for things like \"understanding a face\". \ud83d\udfe2 Faces have too many variations for a human to write rules for.\n\n## \ud83e\udde0 Core Concept / Idea\n**Layers of Processing.** \ud83d\udfe2 Information flows through layers of artificial neurons, with each layer finding more complex patterns than the last.\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Input & Output \ud83d\udfe2\nThe network takes raw data (like pixels) at one end and produces a result (like \"Cat\") at the other.\n\n### 2. Hidden Layers \ud83d\udfe2\nThis is the \"Black Box\". These middle layers find features like edges, then shapes, then objects, without being told what to look for.\n\n### 3. Training (Weights) \ud83d\udfe2\nLearning is just adjusting the \"volume\" (weights) of the connections between neurons until the correct answer comes out.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of it as a **Committee of Experts**. \ud83d\udfe2\nThe first committee looks for simple lines. The second committee combines those lines into shapes. The final expert looks at the shapes and decides if it's a cat.\n\n## \u26a0\ufe0f Limitations or Challenges\nNeural networks are \"Hungry\". \ud83d\udfe2 They need massive amounts of data and huge computer power to learn effectively.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI used to think neural networks were \"thinking\". \ud83d\udfe2 They aren't. It's just massive amounts of very clever math. Realizing that made them much less intimidating.\n\n## \ud83c\udfaf Conclusion / Takeaway\nDeep learning is powerful but specific. \ud83d\udfe2 Don't use a neural network if a simple \\`if/else\\` or a basic chart can solve the problem.",
+    "category": "Python",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "December 20, 2025",
+    "readingTime": 1,
+    "image": "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "ai",
+      "deep learning",
+      "python"
+    ]
   },
   {
-    id: '9',
-    slug: 'the-classics-reborn',
-    title: 'The Classics Reborn',
-    excerpt: 'Why we keep returning to old books — and how each generation discovers new meaning in timeless texts.',
-    content: `
-## The Living Classic
-
-A classic is not a book that is old. It is a book that refuses to die. Each generation returns to the classics not out of obligation, but out of need. The questions change; the answers remain relevant.
-
-When I first read Jane Austen at sixteen, I saw romance. When I reread her at thirty, I saw economics. When I read her now, I see both — and a sharp critique of social class that feels startlingly modern.
-
-### Why We Return
-
-We return to classics because they grow with us. The book does not change, but we do. Each reading reveals a new layer, a new connection, a new understanding.
-
-> "A classic is a book that has never finished saying what it has to say." — Italo Calvino
-
-### The Modern Classic
-
-Today's classics are being written right now. Books by Kazuo Ishiguro, Toni Morrison, and Gabriel García Márquez have already achieved the status of timeless works. They will be read centuries from now because they speak to something permanent in the human condition.
-
-\`\`\`javascript
-// What makes a classic
-const classic = {
-  universality: "speaks across cultures and eras",
-  depth: "rewards rereading",
-  influence: "shapes what comes after",
-  relevance: "feels new every time",
-  truth: "says something essential about being human"
-};
-\`\`\`
-
-![Classic books on a shelf](https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800)
-
-The classics are reborn every time a new reader opens them. That is their magic — they are old and new at once, ancient and alive.
-`,
-    category: 'Classic Literature',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-05-03',
-    readingTime: 6,
-    image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['classics', 'austen', 'calvino', 'rereading'],
-  },
-  {
-    id: '10',
-    slug: 'the-compass-and-the-page',
-    title: 'The Compass and the Page',
-    excerpt: 'On the intersection of travel writing and literary criticism — where the journey meets the text.',
-    content: `
-## Two Forms of Exploration
-
-Travel writing and literary criticism seem like different genres, but they share a common root: both are acts of discovery. The travel writer explores the world; the critic explores the word. The best writers do both.
-
-When I travel, I bring books. Not guidebooks — novels, poems, essays. I read the place through the literature and the literature through the place. A trip to Dublin is incomplete without Joyce. A journey to Kolkata demands Tagore.
-
-### Reading as Travel
-
-Every time you open a book, you cross a border. You enter a world with its own rules, its own geography, its own culture. The best books, like the best journeys, change you permanently.
-
-> "I read the way I travel — hungrily, curiously, and always with a map in hand." — Taylor Vance
-
-### The Travel Writer's Library
-
-The great travel writers were always great readers. Bruce Chatwin carried notebooks filled with literary references. Pico Iyer's essays weave together literature and place so seamlessly you cannot tell where the reading ends and the traveling begins.
-
-\`\`\`python
-# The traveler's reading list
-travel_library = {
-    "Dublin": "James Joyce - Dubliners",
-    "Kolkata": "Rabindranath Tagore - Gitanjali",
-    "Tokyo": "Haruki Murakami - Norwegian Wood",
-    "Cairo": "Naguib Mahfouz - Palace Walk",
-    "Paris": "Hemingway - A Moveable Feast",
-}
-\`\`\`
-
-![Books and a compass](https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800)
-
-The compass and the page — two tools for the same endeavor. Both point toward the unseen. Both ask you to follow.
-`,
-    category: 'Travel',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-04-26',
-    readingTime: 5,
-    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['travel', 'literature', 'reading', 'exploration'],
-  },
-  {
-    id: '11',
-    slug: 'building-worlds-with-words',
-    title: 'Building Worlds with Words',
-    excerpt: 'A deep dive into the craft of worldbuilding — from magic systems to political structures to cuisine.',
-    content: `
-## The Worldbuilder's Toolkit
-
-Worldbuilding is the invisible art of fantasy and science fiction. When it is done well, you do not notice it. When it is done poorly, nothing else matters.
-
-The best worldbuilders understand that a world is not just a map and a magic system. It is economics, politics, religion, cuisine, slang, architecture, and agriculture. It is the thousand small details that make a place feel lived-in.
-
-### Sanderson's Laws
-
-Brandon Sanderson's three laws of magic are the foundation of modern worldbuilding:
-
-1. An author's ability to solve conflict with magic is directly proportional to how well the reader understands said magic.
-2. Limitations are greater than powers.
-3. Expand on what you have already established before adding something new.
-
-> "Worldbuilding is not about creating everything. It is about creating the *right* everything." — Taylor Vance
-
-### The Iceberg Principle
-
-A well-built world is like an iceberg: the reader sees ten percent, but the writer knows the other ninety. That hidden depth is what gives the visible portion its weight.
-
-\`\`\`javascript
-// The worldbuilder's checklist
-const worldElements = [
-  "geography & climate",
-  "magic/technology system",
-  "political structure",
-  "economic system",
-  "religion & mythology",
-  "language & slang",
-  "cuisine & agriculture",
-  "history & conflicts",
-  "art & entertainment",
-  "daily life & customs"
-];
-\`\`\`
-
-![A fantasy world map](https://images.unsplash.com/photo-1589834390005-5c39e6c1d9b4?w=800)
-
-Build worlds with words, but build them with *care*. Every detail is a brick. Every brick matters. The reader may not see them all, but they will feel the structure they create.
-`,
-    category: 'Fantasy',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-04-19',
-    readingTime: 8,
-    image: 'https://images.unsplash.com/photo-1589834390005-5c39e6c1d9b4?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['fantasy', 'worldbuilding', 'sanderson', 'craft'],
-  },
-  {
-    id: '12',
-    slug: 'the-detectors-mind',
-    title: "The Detective's Mind",
-    excerpt: 'What cognitive science tells us about why we love mysteries — and what they reveal about how we think.',
-    content: `
-## The Psychology of Mystery
-
-We are wired for mystery. The human brain is a pattern-seeking machine, and the mystery novel is the ultimate pattern puzzle. Every clue is a data point; every suspect is a hypothesis; every revelation is a dopamine reward.
-
-Cognitive scientists study mystery readers to understand how the brain processes narrative. What they have found is that reading a mystery is not passive entertainment — it is active cognitive exercise.
-
-### The Pleasure of the Puzzle
-
-There is a specific pleasure in being *almost right*. When you solve a mystery one step before the detective, your brain rewards you. When the solution surprises you, your brain rewards you differently. Either way, you win.
-
-> "The mystery novel is a gym for the mind. Every chapter is a rep." — Taylor Vance
-
-### From Poe to the Present
-
-The detective story has evolved from Poe's cerebral Dupin to the hard-boiled noir of Chandler to the cozy mysteries of today. But the core appeal remains: the satisfaction of order emerging from chaos.
-
-\`\`\`python
-# The cognitive stages of reading a mystery
-stages = [
-    "encounter: a crime disrupts the world",
-    "inquiry: gathering clues and suspects",
-    "hypothesis: forming a theory",
-    "revision: new evidence changes everything",
-    "revelation: the pattern becomes clear",
-    "satisfaction: order is restored"
-]
-\`\`\`
-
-![A detective's desk](https://images.unsplash.com/photo-1551029506-0807df8e2105?w=800)
-
-The detective's mind is our mind, sharpened and focused. We read mysteries to remember that chaos can be understood, that every puzzle has a solution, and that the truth is always waiting to be found.
-`,
-    category: 'Mystery',
-    author: 'Taylor Vance',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    date: '2026-04-12',
-    readingTime: 6,
-    image: 'https://images.unsplash.com/photo-1551029506-0807df8e2105?w=800&h=600&fit=crop',
-    featured: false,
-    tags: ['mystery', 'cognitive science', 'poe', 'psychology'],
-  },
+    "id": "9",
+    "slug": "web-performance-optimization",
+    "title": "Web Performance Optimization",
+    "excerpt": "Techniques and strategies to make your web applications faster and more efficient.",
+    "content": "## \ud83d\ude80 Introduction / Context\nPerformance is the most important \"feature\" of any website. \ud83d\udd35 If your site is slow, users will leave before they even see your content.\n\n## \u2757 Problem or Motivation\nModern websites are heavy. \ud83d\udd35 Large images and massive code files can make a site take 10 seconds to load on a mobile phone\u2014that is too long.\n\n## \ud83e\udde0 Core Concept / Idea\n**Perception vs Reality.** \ud83d\udd35 Making a site load faster is good, but making it *feel* fast (showing content early) is even more important.\n\n## \ud83d\udd11 Key Points or Observations\n\n### 1. Image Compression \ud83d\udd35\nImages are usually the biggest files. Modern formats like WebP can make them 80% smaller without losing quality.\n\n### 2. Lazy Loading \ud83d\udd35\nDon't load what the user can't see. Only download images and code as the user scrolls down to them.\n\n### 3. Minimize Code \ud83d\udd35\nBundlers like Vite can automatically remove unused code and shrink your files so they fly over the internet.\n\n## \ud83d\udee0 Practical Understanding / Intuition\nThink of your website as a **Backpack**. \ud83d\udd35\nIf you put everything you own in the backpack, you'll walk very slowly. Performance optimization is about only packing exactly what you need for today's trip.\n\n## \u26a0\ufe0f Limitations or Challenges\nThere is a balance. \ud83d\udd35 Sometimes adding complex optimization tools can actually make your code harder for other developers to read and maintain.\n\n## \u270d\ufe0f Personal Learning / Reflection\nI used to ignore performance until I tried to load my own site on a bad 3G connection. \ud83d\udd35 It was a wake-up call. Always test on \"slow\" devices!\n\n## \ud83c\udfaf Conclusion / Takeaway\nStart with the easy wins. \ud83d\udd35 Compress your images today. It is the fastest way to make your site feel like a premium experience.",
+    "category": "React",
+    "author": "Sahaya Savari",
+    "authorAvatar": "https://avatars.githubusercontent.com/u/104449853?v=4",
+    "date": "December 15, 2025",
+    "readingTime": 1,
+    "image": "https://images.unsplash.com/photo-1546074177-3a1527315cbb?w=800&h=600&fit=crop",
+    "featured": false,
+    "tags": [
+      "react",
+      "performance",
+      "web dev"
+    ]
+  }
 ];
 
 export const comments: Comment[] = [
   {
-    id: '1',
-    name: 'Elena Marsh',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
-    date: '2026-06-30',
-    content: 'This piece completely changed how I look at fantasy maps. I spent an hour last night just studying the map in my copy of The Way of Kings. Beautifully written!',
+    "id": "1",
+    "name": "Riya Sharma",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+    "date": "2026-06-30",
+    "content": "This guide is amazing! I was always confused about Virtual Environments in Python, but your bubble analogy made it click. Thanks!"
   },
   {
-    id: '2',
-    name: 'James Okonkwo',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop',
-    date: '2026-06-29',
-    content: 'The point about maps as emotional landmarks really resonated with me. I have been tracking Frodo\'s journey on the map since I was twelve, and it never gets old.',
-  },
-  {
-    id: '3',
-    name: 'Sofia Reyes',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a6e24a3?w=100&h=100&fit=crop',
-    date: '2026-06-28',
-    content: 'I would love to see a follow-up about sci-fi worldbuilding. The way Dune handles maps and ecology is fascinating. Great article as always, Taylor!',
-  },
+    "id": "2",
+    "name": "Alex Chen",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+    "date": "2026-06-29",
+    "content": "Absolutely love the detailed Git log section. Highly practical and visually clean."
+  }
 ];
 
 export const testimonials: Testimonial[] = [
   {
-    id: '1',
-    name: 'Margaret Chen',
-    role: 'Book Club Leader',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    content: 'Nomad Tome has become required reading for our book club. Taylor\'s insights have sparked the best discussions we have had in years. Every post feels like a journey.',
-    rating: 5,
+    "id": "1",
+    "name": "Riya Sharma",
+    "role": "Student peer",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+    "content": "Sahaya's Python guides are the most beginner-friendly tutorials I've ever read. The analogies are perfect.",
+    "rating": 5
   },
   {
-    id: '2',
-    name: 'David Park',
-    role: 'Librarian',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop',
-    content: 'As a librarian, I read a lot of book blogs. Nomad Tome stands out for its depth, its warmth, and its genuine love of literature. I recommend it to patrons constantly.',
-    rating: 5,
+    "id": "2",
+    "name": "Alex Chen",
+    "role": "Aspiring developer",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+    "content": "I finally understood Git branching thanks to the visual lifecycle diagrams in these posts. Extremely helpful!",
+    "rating": 5
   },
   {
-    id: '3',
-    name: 'Amara Johnson',
-    role: 'Author',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
-    content: 'Taylor Vance writes about books the way the best authors write about life — with curiosity, empathy, and an eye for the detail that changes everything. This blog is a treasure.',
-    rating: 5,
-  },
-  {
-    id: '4',
-    name: 'Liam Murphy',
-    role: 'English Teacher',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-    content: 'I use Nomad Tome posts in my classroom regularly. They show my students that literary criticism can be accessible, passionate, and fun. Taylor makes reading feel like an adventure.',
-    rating: 5,
-  },
+    "id": "3",
+    "name": "Priya Patel",
+    "role": "Tech blogger",
+    "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+    "content": "The clean layout and searchable topics list make finding tutorials incredibly fast and responsive.",
+    "rating": 5
+  }
 ];
 
 export const timelineEvents: TimelineEvent[] = [
-  { year: '2015', title: 'The First Page', description: 'Began a personal book journal that would eventually become Nomad Tome, documenting every book read on a year-long backpacking trip across Southeast Asia.' },
-  { year: '2017', title: 'The Library Aisles', description: 'Volunteered at a small-town library in Vermont, discovering a passion for connecting readers with books that would change their lives.' },
-  { year: '2019', title: 'The Launch', description: 'Published the first Nomad Tome blog post — a review of The Shadow of the Wind that received 10,000 reads in its first week.' },
-  { year: '2021', title: 'The Expedition Grows', description: 'Reached 50,000 subscribers and launched the newsletter, "Join the Expedition," now read by literary adventurers in 40+ countries.' },
-  { year: '2023', title: 'The Book Deal', description: 'Signed a deal with a major publisher for "Charting Fictional Worlds," a nonfiction book about the geography of imagination in literature.' },
-  { year: '2026', title: 'The Journey Continues', description: 'Now writing full-time, traveling to literary festivals worldwide, and building a community of readers who believe every book is a journey.' },
+  {
+    "year": "2023",
+    "title": "College & AI Studies",
+    "description": "Entered college to study AI & Data Analytics, starting my technical journey."
+  },
+  {
+    "year": "2024",
+    "title": "Python & Database Mastery",
+    "description": "Deep-dived into Python programming, database modeling, and automated data processing."
+  },
+  {
+    "year": "2025",
+    "title": "Technical Blog Launch",
+    "description": "Launched my personal learning blog blog.sahayasavari.me to share practical tutorials with other students."
+  },
+  {
+    "year": "2026",
+    "title": "Production Blog Overhaul",
+    "description": "Redesigned the entire blog platform with high-fidelity Wix layouts, and expanded posts on Git, React, and Machine Learning."
+  }
 ];
 
 export const skills: Skill[] = [
-  { name: 'Literary Criticism', level: 95 },
-  { name: 'Travel Writing', level: 90 },
-  { name: 'Genre Analysis', level: 88 },
-  { name: 'Creative Nonfiction', level: 92 },
-  { name: 'Editorial Writing', level: 85 },
-  { name: 'Book Curation', level: 93 },
+  {
+    "name": "Python Programming",
+    "level": 90
+  },
+  {
+    "name": "Data Analytics",
+    "level": 85
+  },
+  {
+    "name": "SQL & Databases",
+    "level": 80
+  },
+  {
+    "name": "Git & GitHub Workflow",
+    "level": 85
+  },
+  {
+    "name": "React Web Dev",
+    "level": 75
+  },
+  {
+    "name": "Technical Writing",
+    "level": 88
+  }
 ];
 
 export const achievements: Achievement[] = [
-  { title: 'Subscribers', value: '75K+', description: 'Readers across 40+ countries' },
-  { title: 'Blog Posts', value: '250+', description: 'Literary expeditions published' },
-  { title: 'Books Reviewed', value: '500+', description: 'Across all genres and eras' },
-  { title: 'Years Writing', value: '7+', description: 'Of literary adventures' },
+  {
+    "title": "Tutorials Written",
+    "value": "9+",
+    "description": "In-depth long-form guides"
+  },
+  {
+    "title": "GitHub Repos",
+    "value": "30+",
+    "description": "Personal and academic code"
+  },
+  {
+    "title": "Languages",
+    "value": "3+",
+    "description": "Python, SQL, JS"
+  },
+  {
+    "title": "Years Learning",
+    "value": "3+",
+    "description": "AI & Web development"
+  }
 ];

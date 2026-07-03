@@ -3,9 +3,10 @@ import React from 'react';
 interface ScrollIndicatorProps {
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export default function ScrollIndicator({ onClick, className = '' }: ScrollIndicatorProps) {
+export default function ScrollIndicator({ onClick, className = '', style }: ScrollIndicatorProps) {
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -27,6 +28,7 @@ export default function ScrollIndicator({ onClick, className = '' }: ScrollIndic
         height: '60.1125px',
         boxShadow: '-8px -8px 0px 0px #652929',
         transform: 'rotate(180deg)',
+        ...style,
       }}
     >
       {/* Down arrow pointing up because of 180deg rotation */}

@@ -21,7 +21,8 @@ export default function SearchBar({ value, onChange, placeholder = 'Search artic
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         aria-label="Search articles"
-        className="input-brutal pl-12 rounded-full"
+        className="input-ref pl-12"
+        style={{ height: '41.6px' }}
       />
 
       {/* Clear button */}

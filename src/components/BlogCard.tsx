@@ -25,7 +25,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             className="w-full h-52 object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-105"
           />
           {/* Category badge */}
-          <span className="absolute top-4 left-4 badge-brutal bg-yellow border-2 border-primary rounded-full px-3 py-1 text-xs font-bold uppercase">
+          <span className="absolute top-4 left-4 badge-brutal bg-gold border-ref border-primary rounded-badge px-3 py-1 text-xs font-bold uppercase">
             {post.category}
           </span>
         </div>
@@ -45,7 +45,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
               src={post.authorAvatar}
               alt={post.author}
               loading="lazy"
-              className="w-8 h-8 rounded-full border-2 border-primary/20 object-cover"
+              className="w-8 h-8 rounded-full border-ref border-primary/20 object-cover"
             />
             <span className="font-medium">{post.author}</span>
             <span aria-hidden="true">•</span>

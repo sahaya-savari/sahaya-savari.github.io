@@ -1,6 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import SectionLabel from './SectionLabel';
 
 interface FormErrors {
   email?: string;
@@ -48,15 +49,12 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="container-custom py-20 md:py-28" aria-label="Newsletter signup">
-      <div className="relative overflow-hidden bg-yellow/20 border-2 border-primary rounded-3xl p-8 md:p-12 shadow-brutal">
-        {/* Decorative BookOpen icon */}
-        <BookOpen
-          className="absolute -right-8 -bottom-8 w-48 h-48 text-primary/5 pointer-events-none"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
-
+    <section
+      className="relative bg-background border-t-ref border-b-ref border-primary flex items-center justify-center overflow-hidden grid-paper w-full"
+      style={{ minHeight: '759px' }}
+      aria-label="Newsletter signup"
+    >
+      <div className="w-full max-w-content px-page-x py-16 flex flex-col items-center text-center">
         <AnimatePresence mode="wait">
           {submitted ? (
             <motion.div
@@ -65,21 +63,21 @@ export default function Newsletter() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              className="relative flex flex-col items-center justify-center text-center py-8"
+              className="flex flex-col items-center justify-center py-8"
             >
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-                className="mb-4"
+                className="mb-6"
               >
                 <CheckCircle className="h-16 w-16 text-primary" strokeWidth={2.5} />
               </motion.div>
-              <h3 className="font-display text-3xl md:text-4xl text-primary mb-2">
+              <h3 className="font-display text-4xl text-primary mb-4">
                 Welcome aboard!
               </h3>
-              <p className="font-body text-base text-primary/70 max-w-md">
-                Welcome aboard! Check your inbox.
+              <p className="font-body text-body-lg text-primary/70 max-w-md">
+                You are now subscribed to the newsletter. Check your inbox for updates.
               </p>
             </motion.div>
           ) : (
@@ -87,24 +85,33 @@ export default function Newsletter() {
               key="form"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="relative flex flex-col items-center text-center"
+              className="w-full flex flex-col items-center"
             >
-              <span className="section-label mb-4">Newsletter</span>
-              <h2 className="font-display text-4xl md:text-5xl text-primary mb-4 display-text">
+              <SectionLabel className="mb-6">Newsletter</SectionLabel>
+              
+              <h2
+                className="font-display text-primary leading-none uppercase mb-6"
+                style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+              >
                 JOIN THE EXPEDITION
               </h2>
-              <p className="font-body text-base text-primary/70 max-w-lg mb-8">
-                Get new book journeys and curated reading lists delivered straight to your inbox.
+              
+              <p
+                className="font-body text-primary font-medium mb-12"
+                style={{ fontSize: '33.2719px', lineHeight: '36.5991px', maxWidth: '730.5px' }}
+              >
+                Get new coding tutorials and curated reading lists delivered straight to your inbox.
               </p>
 
               <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-md flex flex-col gap-4"
+                className="w-full max-w-[754px] flex flex-col gap-6 text-left"
                 noValidate
               >
-                <div className="flex flex-col gap-1 text-left">
-                  <label htmlFor="newsletter-email" className="sr-only">
-                    Email address
+                {/* Email Label + Input */}
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="newsletter-email" className="font-body text-sm font-medium text-primary">
+                    Email
                   </label>
                   <input
                     id="newsletter-email"
@@ -112,7 +119,11 @@ export default function Newsletter() {
                     value={email}
                     onChange={handleEmailChange}
                     placeholder="your@email.com"
-                    className="input-brutal rounded-full"
+                    className="input-ref w-full bg-white border-ref border-primary text-primary placeholder:text-primary/40 focus:outline-none"
+                    style={{
+                      height: '41.6px',
+                      borderRadius: '24px',
+                    }}
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? 'email-error' : undefined}
                   />
@@ -123,28 +134,42 @@ export default function Newsletter() {
                   )}
                 </div>
 
-                <div className="flex flex-col gap-1 text-left">
-                  <label className="flex items-start gap-3 cursor-pointer">
+                {/* Checkbox */}
+                <div className="flex flex-col gap-1 w-full mt-2">
+                  <label className="flex items-center gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={agreed}
                       onChange={handleCheckboxChange}
-                      className="mt-1 h-5 w-5 shrink-0 border-2 border-primary rounded accent-primary"
+                      className="h-[15.6px] w-[15.6px] border-ref border-primary rounded accent-primary bg-white cursor-pointer"
+                      style={{
+                        outline: 'none',
+                      }}
                       aria-invalid={!!errors.checkbox}
                       aria-describedby={errors.checkbox ? 'checkbox-error' : undefined}
                     />
-                    <span className="font-body text-sm text-primary/70">
+                    <span className="font-body text-body-sm text-primary select-none">
                       Yes, subscribe me to your newsletter.
                     </span>
                   </label>
                   {errors.checkbox && (
-                    <p id="checkbox-error" className="font-body text-sm text-primary font-semibold pl-8">
+                    <p id="checkbox-error" className="font-body text-sm text-primary font-semibold pl-8 mt-1">
                       {errors.checkbox}
                     </p>
                   )}
                 </div>
 
-                <button type="submit" className="btn-primary w-full mt-2">
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-white font-body font-medium hover:opacity-90 active:scale-[0.99] transition-all flex items-center justify-center cursor-pointer mt-4"
+                  style={{
+                    height: '42.8px',
+                    borderRadius: '100px',
+                    fontSize: '16px',
+                    border: '0.8px solid #652929',
+                  }}
+                >
                   Submit
                 </button>
               </form>

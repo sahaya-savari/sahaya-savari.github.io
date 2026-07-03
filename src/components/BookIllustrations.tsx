@@ -1,13 +1,14 @@
 import React from 'react';
 
 // Left Closed Book stack / tilted book representation
-export function ClosedBookIllustration({ className = '' }: { className?: string }) {
+export function ClosedBookIllustration({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg
       viewBox="0 0 300 400"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       {/* Outer book cover */}
       <rect
@@ -58,13 +59,14 @@ export function ClosedBookIllustration({ className = '' }: { className?: string 
 }
 
 // Middle open book representation
-export function OpenBookIllustrationLeft({ className = '' }: { className?: string }) {
+export function OpenBookIllustrationLeft({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg
       viewBox="0 0 300 400"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       {/* Left page outline */}
       <path
@@ -105,13 +107,14 @@ export function OpenBookIllustrationLeft({ className = '' }: { className?: strin
 }
 
 // Right open book representation
-export function OpenBookIllustrationRight({ className = '' }: { className?: string }) {
+export function OpenBookIllustrationRight({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg
       viewBox="0 0 500 360"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
     >
       {/* Left Page (perspective) */}
       <path

@@ -4,6 +4,8 @@ import Container from '../components/Container';
 import Button from '../components/Button';
 import Timeline from '../components/Timeline';
 import Testimonials from '../components/Testimonials';
+import SectionLabel from '../components/SectionLabel';
+import GridBackground from '../components/GridBackground';
 import { timelineEvents, skills, achievements, testimonials } from '../lib/data';
 
 export default function About() {
@@ -11,37 +13,18 @@ export default function About() {
     <>
       {/* ===== Hero Banner ===== */}
       <section
-        className="relative py-20 md:py-32 bg-background flex items-center justify-center text-center overflow-hidden"
+        className="relative bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full"
+        style={{ minHeight: '480px', paddingTop: '120px', paddingBottom: '80px' }}
         aria-label="About hero"
       >
-        {/* Decorative book images */}
-        <img
-          src="https://images.unsplash.com/photo-1544947950-fa07a7d85c5b?w=300&h=400&fit=crop"
-          alt=""
-          aria-hidden="true"
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-40 h-52 object-cover border-2 border-primary rounded-2xl shadow-brutal hidden md:block"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=300&h=400&fit=crop"
-          alt=""
-          aria-hidden="true"
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-40 h-52 object-cover border-2 border-primary rounded-2xl shadow-brutal hidden md:block"
-        />
-
-        <Container className="relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="section-label block mb-4"
-          >
-            About
-          </motion.span>
+        <Container className="relative z-10 flex flex-col items-center gap-6">
+          <SectionLabel>About</SectionLabel>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="font-display text-5xl md:text-7xl text-primary leading-[0.9] mb-6"
+            className="font-display text-primary leading-none text-center"
+            style={{ fontSize: '76.05px', letterSpacing: '-1.521px', maxWidth: '900px' }}
           >
             CHART THE UNSEEN WORLDS
           </motion.h1>
@@ -49,14 +32,16 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-            className="text-lg md:text-xl text-primary/60 max-w-2xl mx-auto mb-10"
+            className="font-body text-primary font-medium text-center"
+            style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px', maxWidth: '700px' }}
           >
-            Your compass to literary adventures that transport and transform
+            A notebook mapping algorithms, data structures, and learning paths.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
+            className="mt-6"
           >
             <Button variant="primary" to="/blog" ariaLabel="Start Exploring">
               Start Exploring
@@ -66,99 +51,116 @@ export default function About() {
       </section>
 
       {/* ===== Philosophy Section ===== */}
-      <section className="py-20 md:py-28 bg-background" aria-label="Philosophy">
-        <Container>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+      <section
+        className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-t-ref border-b-ref border-primary relative"
+        style={{ minHeight: '790.5px' }}
+        aria-label="Philosophy"
+      >
+        {/* Left Column - Yellow Background */}
+        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center min-h-[400px] md:min-h-0">
+          <div className="max-w-[550px] mx-auto md:ml-auto md:mr-0 flex flex-col gap-6 items-start">
+            <SectionLabel>My Philosophy</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase leading-none"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
             >
-              <span className="section-label">My Philosophy</span>
-              <h2 className="font-display text-4xl md:text-5xl text-primary mt-4 mb-6">
-                Every Book a New Horizon
-              </h2>
-              <p className="text-base md:text-lg text-primary/70 leading-relaxed">
-                For me, reading has always been the purest form of exploration. It's a
-                dialogue with the past, a glimpse into the future, and a deep dive into
-                the human condition. This blog is my map of those journeys.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+              Every Line a New Horizon
+            </h2>
+            <p
+              className="font-body text-primary font-medium"
+              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop"
-                alt="Taylor Vance portrait"
-                loading="lazy"
-                className="rounded-3xl border-2 border-primary shadow-brutal w-full object-cover"
-              />
-            </motion.div>
+              For me, coding has always been the purest form of exploration and building.
+            </p>
+            <p className="font-body text-body-lg text-primary/80 leading-relaxed">
+              Every programming concept is a map of a different system, a tool to mold data and logic. This blog records those journeys, explaining the patterns of code, algorithms, database logic, and technical writing.
+            </p>
           </div>
-        </Container>
+        </div>
+
+        {/* Right Column - White Background + Grid Paper */}
+        <GridBackground className="p-8 md:p-col-pad flex items-center justify-center min-h-[500px] md:min-h-0">
+          {/* Photo Frame Wrapper */}
+          <div
+            className="card-brutal bg-white p-4 select-none relative flex items-center justify-center"
+            style={{
+              width: '509.56px',
+              height: '607.91px',
+              border: '0.8px solid #7C4844',
+              boxShadow: '8px 8px 0px 0px #652929',
+            }}
+          >
+            <img
+              src="https://avatars.githubusercontent.com/u/104449853?v=4"
+              alt="Sahaya Savari portrait"
+              loading="lazy"
+              className="object-cover border-ref border-border-muted"
+              style={{
+                width: '470.67px',
+                height: '490.7px',
+              }}
+            />
+          </div>
+        </GridBackground>
       </section>
 
       {/* ===== Behind the Pages ===== */}
-      <section className="py-20 md:py-28 bg-cream" aria-label="Behind the pages">
+      <section className="py-20 md:py-28 bg-cream-bg border-b-ref border-primary" aria-label="Behind the pages">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="font-display text-4xl text-primary">
+          <div className="text-center mb-16">
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+            >
               Behind the Pages
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-12 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="card-brutal p-8"
+              className="card-brutal p-8 bg-white"
+              style={{ boxShadow: '8px 8px 0px 0px #652929' }}
             >
-              <h3 className="font-display text-2xl text-primary mb-4">The Library Chart</h3>
-              <p className="text-sm text-primary/70 leading-relaxed">
-                I'm Taylor Vance, and our journey began in the hushed aisles of a small-town
-                library. We believe that every book is a portal—a compass pointing toward
-                unseen worlds. My lifelong passion for tales of adventure was sparked not by
-                travel, but by the quiet power of a story well told, which eventually called
-                us to cross every continent in search of the extraordinary.
+              <h3 className="font-display text-2xl text-primary mb-4">The Development Path</h3>
+              <p className="font-body text-body-md text-primary/70 leading-relaxed">
+                Our journey began inside code editors and documentation pages. I believe that every library and utility is a portal — a roadmap pointing towards new logical architectures. My passion for AI and engineering was sparked by the quiet challenge of complex debugging sessions and logic design, leading me to explore modern web stacks and technical writing.
               </p>
             </motion.div>
+            
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
-              className="card-brutal p-8"
+              className="card-brutal p-8 bg-white"
+              style={{ boxShadow: '8px 8px 0px 0px #652929' }}
             >
               <h3 className="font-display text-2xl text-primary mb-4">Beyond the Horizon</h3>
-              <p className="text-sm text-primary/70 leading-relaxed">
-                Our philosophy is that reading is the purest form of exploration. It's a
-                dialogue with the past and a map for the human spirit. Nomad Tome was founded
-                to share that sense of wonder, connecting us with fellow explorers who hear
-                the call of distant lands and deep narratives. Together, we trace the
-                intersections of place and prose.
+              <p className="font-body text-body-md text-primary/70 leading-relaxed">
+                Our core philosophy is that reading and coding are pure forms of active learning. It is a dialogue with structural patterns and a map for technical execution. This site was founded to share that clarity, connecting with fellow developers and students who build and learn. Together, we track the intersection of logic and execution.
               </p>
             </motion.div>
           </div>
-          <div className="text-center">
+          <div className="text-center mt-12">
             <Button variant="primary" to="/blog" ariaLabel="Join our Voyage">
-              Join our Voyage
+              Explore Tutorials
             </Button>
           </div>
         </Container>
       </section>
 
       {/* ===== Mission, Vision, Values ===== */}
-      <section className="py-20 md:py-28 bg-background" aria-label="Mission, vision, and values">
+      <section className="py-20 md:py-28 bg-white border-b-ref border-primary" aria-label="Mission, vision, and values">
         <Container>
-          <div className="text-center mb-12">
-            <span className="section-label">Core Principles</span>
-            <h2 className="font-display text-4xl text-primary mt-2">
+          <div className="text-center mb-16 flex flex-col items-center gap-4">
+            <SectionLabel>Core Principles</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+            >
               What Drives Us
             </h2>
           </div>
@@ -167,17 +169,17 @@ export default function About() {
               {
                 icon: <Target className="w-8 h-8 text-primary" aria-hidden="true" />,
                 heading: 'Mission',
-                description: 'To make every reader feel like an explorer.',
+                description: 'To simplify complex coding concepts and make them accessible.',
               },
               {
                 icon: <Eye className="w-8 h-8 text-primary" aria-hidden="true" />,
                 heading: 'Vision',
-                description: 'A world where books are maps to infinite worlds.',
+                description: 'A space where software tutorials act as maps to advanced systems.',
               },
               {
                 icon: <Heart className="w-8 h-8 text-primary" aria-hidden="true" />,
                 heading: 'Values',
-                description: 'Curiosity, empathy, and the courage to read widely.',
+                description: 'Curiosity, precise engineering, and sharing open knowledge.',
               },
             ].map((item, index) => (
               <motion.div
@@ -186,13 +188,17 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.15, ease: 'easeOut' }}
-                className="card-brutal p-8 text-center"
+                className="card-brutal p-8 text-center bg-white"
+                style={{
+                  border: '0.8px solid #7C4844',
+                  boxShadow: '8px 8px 0px 0px #652929',
+                }}
               >
-                <div className="w-16 h-16 rounded-full bg-yellow border-2 border-primary flex items-center justify-center mx-auto shadow-brutal-sm">
+                <div className="w-16 h-16 rounded-full bg-gold border-ref border-primary flex items-center justify-center mx-auto shadow-sm">
                   {item.icon}
                 </div>
-                <h3 className="font-display text-xl text-primary mt-4">{item.heading}</h3>
-                <p className="text-sm text-primary/70 mt-2">{item.description}</p>
+                <h3 className="font-display text-2xl text-primary mt-6">{item.heading}</h3>
+                <p className="font-body text-body-md text-primary/70 mt-3">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -200,11 +206,14 @@ export default function About() {
       </section>
 
       {/* ===== Journey Timeline ===== */}
-      <section className="py-20 md:py-28 bg-cream" aria-label="Journey timeline">
+      <section className="py-20 md:py-28 bg-cream-bg border-b-ref border-primary" aria-label="Journey timeline">
         <Container>
-          <div className="text-center mb-12">
-            <span className="section-label">The Journey</span>
-            <h2 className="font-display text-4xl text-primary mt-2">
+          <div className="text-center mb-16 flex flex-col items-center gap-4">
+            <SectionLabel>The Journey</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+            >
               From Then to Now
             </h2>
           </div>
@@ -213,15 +222,18 @@ export default function About() {
       </section>
 
       {/* ===== Skills ===== */}
-      <section className="py-20 md:py-28 bg-background" aria-label="Skills and expertise">
+      <section className="py-20 md:py-28 bg-white border-b-ref border-primary" aria-label="Skills and expertise">
         <Container>
-          <div className="text-center mb-12">
-            <span className="section-label">Toolkit</span>
-            <h2 className="font-display text-4xl text-primary mt-2">
+          <div className="text-center mb-16 flex flex-col items-center gap-4">
+            <SectionLabel>Toolkit</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+            >
               Skills &amp; Expertise
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-8 max-w-4xl mx-auto">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -231,16 +243,16 @@ export default function About() {
                 transition={{ duration: 0.4, delay: index * 0.1, ease: 'easeOut' }}
               >
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-semibold text-primary">{skill.name}</span>
-                  <span className="font-display text-sm text-primary/60">{skill.level}%</span>
+                  <span className="font-body text-body-lg font-medium text-primary">{skill.name}</span>
+                  <span className="font-display text-body-lg text-primary/60">{skill.level}%</span>
                 </div>
-                <div className="h-3 bg-cream rounded-full border border-primary/20 overflow-hidden">
+                <div className="h-4 bg-cream rounded-full border-ref border-primary/20 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true, margin: '-50px' }}
                     transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
-                    className="h-full bg-primary rounded-full"
+                    className="h-full bg-primary"
                   />
                 </div>
               </motion.div>
@@ -250,9 +262,9 @@ export default function About() {
       </section>
 
       {/* ===== Achievements ===== */}
-      <section className="py-20 md:py-28 bg-yellow/20" aria-label="Achievements">
+      <section className="py-20 bg-gold border-b-ref border-primary" aria-label="Achievements">
         <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={achievement.title}
@@ -260,11 +272,11 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
-                className="text-center"
+                className="text-center flex flex-col items-center"
               >
-                <p className="font-display text-5xl text-primary">{achievement.value}</p>
-                <h3 className="text-sm font-semibold text-primary mt-2">{achievement.title}</h3>
-                <p className="text-xs text-primary/60 mt-1">{achievement.description}</p>
+                <p className="font-display text-primary leading-none" style={{ fontSize: '76.05px' }}>{achievement.value}</p>
+                <h3 className="font-body text-body-lg font-bold text-primary mt-3">{achievement.title}</h3>
+                <p className="font-body text-body-md text-primary/70 mt-1">{achievement.description}</p>
               </motion.div>
             ))}
           </div>
@@ -272,11 +284,14 @@ export default function About() {
       </section>
 
       {/* ===== Testimonials ===== */}
-      <section className="py-20 md:py-28 bg-background" aria-label="Reader testimonials">
+      <section className="py-20 md:py-28 bg-white border-b-ref border-primary" aria-label="Reader testimonials">
         <Container>
-          <div className="text-center mb-12">
-            <span className="section-label">Reader Voices</span>
-            <h2 className="font-display text-4xl text-primary mt-2">
+          <div className="text-center mb-16 flex flex-col items-center gap-4">
+            <SectionLabel>Reader Voices</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+            >
               What Readers Say
             </h2>
           </div>
@@ -285,15 +300,18 @@ export default function About() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="py-16 md:py-20 bg-background" aria-label="Call to action">
+      <section className="py-20 bg-white" aria-label="Call to action">
         <Container>
-          <div className="bg-primary text-white rounded-3xl mx-auto max-w-4xl p-12 md:p-16 text-center border-2 border-primary shadow-brutal">
+          <div
+            className="bg-primary text-white rounded-navbar mx-auto max-w-4xl p-12 md:p-16 text-center border-ref border-primary shadow-brutal flex flex-col items-center gap-8"
+          >
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="font-display text-3xl md:text-5xl text-white"
+              className="font-display text-white uppercase text-center leading-none"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px' }}
             >
               Ready to Begin Your Journey?
             </motion.h2>
@@ -302,9 +320,8 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-              className="mt-8"
             >
-              <Button variant="yellow" to="/blog" ariaLabel="Start Reading">
+              <Button variant="gold" to="/blog" ariaLabel="Start Reading">
                 Start Reading
               </Button>
             </motion.div>

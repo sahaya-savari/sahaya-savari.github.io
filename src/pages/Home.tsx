@@ -1,72 +1,93 @@
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 import Container from '../components/Container';
 import Button from '../components/Button';
 import Marquee from '../components/Marquee';
 import BlogGrid from '../components/BlogGrid';
 import Newsletter from '../components/Newsletter';
+import SectionLabel from '../components/SectionLabel';
+import ScrollIndicator from '../components/ScrollIndicator';
+import GridBackground from '../components/GridBackground';
+import {
+  ClosedBookIllustration,
+  OpenBookIllustrationLeft,
+  OpenBookIllustrationRight,
+} from '../components/BookIllustrations';
 import { blogPosts } from '../lib/data';
-
-const marqueeItems = [
-  'Read. Post. Repeat.',
-  'Chart the Unseen Worlds',
-  'Every Book a Journey',
-  'Explore. Discover. Read.',
-  'Literary Adventures Await',
-];
 
 export default function Home() {
   return (
     <>
       {/* ===== Hero Section ===== */}
       <section
-        className="relative min-h-screen bg-background flex items-center justify-center overflow-hidden"
+        className="relative bg-background flex items-center overflow-hidden select-none w-full"
+        style={{ height: '840.3px', paddingTop: '67.46px' }}
         aria-label="Hero"
       >
-        {/* Decorative book images */}
-        <img
-          src="https://images.unsplash.com/photo-1544947950-fa07a7d85c5b?w=400&h=520&fit=crop"
-          alt=""
-          aria-hidden="true"
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-48 h-64 object-cover border-2 border-primary rounded-2xl shadow-brutal hidden md:block"
+        {/* SVG Book Illustrations */}
+        <ClosedBookIllustration
+          className="absolute hidden lg:block opacity-45 pointer-events-none"
+          style={{
+            left: '24.125px',
+            top: '227.199px',
+            width: '298.75px',
+            height: '388.46px',
+          }}
         />
-        <img
-          src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=520&fit=crop"
-          alt=""
-          aria-hidden="true"
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-48 h-64 object-cover border-2 border-primary rounded-2xl shadow-brutal hidden md:block"
+        <OpenBookIllustrationLeft
+          className="absolute hidden lg:block opacity-45 pointer-events-none"
+          style={{
+            left: '582.4px',
+            top: '423.91px',
+            width: '286.91px',
+            height: '388.85px',
+          }}
         />
-        <img
-          src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=420&fit=crop"
-          alt=""
-          aria-hidden="true"
-          className="absolute bottom-8 right-8 w-72 h-48 object-cover border-2 border-primary rounded-2xl shadow-brutal hidden md:block"
+        <OpenBookIllustrationRight
+          className="absolute hidden lg:block opacity-45 pointer-events-none"
+          style={{
+            left: '948.27px',
+            top: '275.6px',
+            width: '514.4px',
+            height: '364.06px',
+          }}
         />
 
-        {/* Floating badges */}
+        {/* Floating Badges */}
         <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, type: 'spring', stiffness: 200 }}
-          className="absolute top-24 left-6 md:left-20 badge-brutal animate-float hidden md:inline-flex"
+          initial={{ y: 0 }}
+          animate={{ y: [-6, 6, -6] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute hidden lg:flex badge-pill items-center gap-2"
+          style={{ left: '566.86px', top: '510.83px', width: '249.4px', height: '49.4px' }}
         >
-          Exclusive Interviews
+          <span className="w-3 h-3 rounded-full bg-primary flex-shrink-0" />
+          <span className="font-body text-body-lg text-primary">AI & Data Science</span>
         </motion.div>
+        
         <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
-          className="absolute top-24 right-6 md:right-20 badge-brutal animate-float-delayed hidden md:inline-flex"
+          initial={{ y: 0 }}
+          animate={{ y: [6, -6, 6] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute hidden lg:flex badge-pill items-center gap-2"
+          style={{ left: '1092.54px', top: '368.42px', width: '286.9px', height: '50px' }}
         >
-          Hot Recommendations
+          <span className="w-3 h-3 rounded-full bg-primary flex-shrink-0" />
+          <span className="font-body text-body-lg text-primary">Python & Git Guides</span>
         </motion.div>
 
-        <Container className="relative z-10 text-center">
+        {/* Hero Content Container */}
+        <div className="w-full pl-6 md:pl-page-x relative z-10 flex flex-col justify-center h-full">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] text-primary leading-[0.85] tracking-tight max-w-5xl mx-auto"
+            className="font-display text-primary uppercase select-none text-left tracking-tight"
+            style={{
+              fontSize: '152.1px',
+              lineHeight: '136.89px',
+              letterSpacing: '-3.042px',
+              maxWidth: '1073.5px',
+            }}
           >
             CHART THE UNSEEN WORLDS
           </motion.h1>
@@ -75,167 +96,174 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="font-body text-lg md:text-xl text-primary/60 max-w-xl mx-auto mt-6"
+            className="font-body text-primary font-medium text-left mt-10"
+            style={{
+              fontSize: '33.2719px',
+              lineHeight: '36.5991px',
+              letterSpacing: '-0.665438px',
+              maxWidth: '551.5px',
+            }}
           >
-            Your compass to literary adventures that transport and transform.
+            A technical notebook on Python, Databases, Git, and Machine Learning by Sahaya Savari.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
-            className="mt-10"
-          >
-            <Button variant="white" to="/about" ariaLabel="Start Now">
-              Start Now
-            </Button>
-          </motion.div>
-        </Container>
-
-        {/* Scroll indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
-          aria-hidden="true"
-        >
-          <span className="text-xs uppercase tracking-widest text-primary/40 mb-1">Scroll</span>
-          <ChevronDown className="w-6 h-6 text-primary/40 animate-bounce-slow" />
         </div>
+
+        {/* Scroll Indicator button positioned bottom-right */}
+        <ScrollIndicator
+          className="absolute hidden lg:block"
+          style={{
+            left: '1403.63px',
+            top: '672.73px',
+          }}
+        />
       </section>
 
       {/* ===== Marquee Section ===== */}
-      <Marquee items={marqueeItems} />
+      <Marquee />
 
       {/* ===== About Section ===== */}
       <section
         id="about-blogger"
-        className="py-20 md:py-28 bg-background"
+        className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-b-ref border-primary relative"
+        style={{ minHeight: '790.5px' }}
         aria-label="About the blogger"
       >
-        <Container>
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: text */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+        {/* Left Column - Yellow Background */}
+        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center relative min-h-[400px] md:min-h-0">
+          <div className="max-w-[550px] mx-auto md:ml-auto md:mr-0 flex flex-col gap-6 items-start">
+            <SectionLabel>About the Blogger</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase leading-none"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
             >
-              <span className="section-label">About the Blogger</span>
-              <h2 className="font-display text-4xl md:text-5xl text-primary mt-4">
-                Meet Your Fellow Voyager
-              </h2>
-              <p className="font-body text-lg text-primary/60 mt-2">
-                I'm Taylor Vance, your guide through the vast landscapes of literature
-              </p>
-              <p className="text-primary/70 mt-4 leading-relaxed">
-                I believe every book is a journey waiting to be taken. Here at Nomad Tome,
-                we don't just read stories; we inhabit them, exploring the worlds they create
-                and the new perspectives they offer.
-              </p>
-              <div className="mt-8">
-                <Button variant="outline" to="/about" ariaLabel="The Story So Far">
-                  The Story So Far
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Right: portrait */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=700&fit=crop"
-                alt="Taylor Vance, literary blogger"
-                loading="lazy"
-                className="rounded-3xl border-2 border-primary shadow-brutal w-full max-w-md mx-auto object-cover"
-              />
-              <div className="absolute -top-6 -left-6 w-28 h-28 bg-yellow border-2 border-primary rounded-full flex items-center justify-center shadow-brutal animate-float">
-                <span className="font-display text-xs text-primary text-center leading-tight">
-                  Read.<br />Post.<br />Repeat.
-                </span>
-              </div>
-            </motion.div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ===== Blog Highlights ===== */}
-      <section className="py-20 md:py-28 bg-cream" aria-label="Blog highlights">
-        <Container>
-          <div className="text-center">
-            <span className="section-label">From the Travelog</span>
-            <h2 className="font-display text-4xl md:text-5xl text-primary mt-2">
-              Blog Highlights
+              Meet Your Fellow Voyager
             </h2>
-            <p className="text-primary/60 mt-2">
-              Dive into our latest literary expeditions and discoveries
+            <p
+              className="font-body text-primary font-medium"
+              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
+            >
+              I'm Sahaya Savari, your guide through Python programming and data engineering.
+            </p>
+            <p className="font-body text-body-lg text-primary/80 leading-relaxed">
+              I am an AI & Data Analytics Student and Aspiring AI Engineer. This blog is my public repository where I break down complex algorithms, database systems, and software engineering workflows into simple, visual, and highly readable guides.
             </p>
           </div>
-        </Container>
-        <BlogGrid posts={blogPosts.slice(0, 6)} />
-        <div className="text-center mt-12">
-          <Button variant="yellow" to="/blog" ariaLabel="View All Posts">
-            View All Posts
+        </div>
+
+        {/* Right Column - White Background + Grid Paper */}
+        <GridBackground className="p-8 md:p-col-pad flex items-center justify-center min-h-[500px] md:min-h-0">
+          {/* Photo Frame Wrapper */}
+          <div
+            className="card-brutal bg-white p-4 select-none relative flex items-center justify-center"
+            style={{
+              width: '509.56px',
+              height: '607.91px',
+              border: '0.8px solid #7C4844',
+              boxShadow: '8px 8px 0px 0px #652929',
+            }}
+          >
+            <img
+              src="https://avatars.githubusercontent.com/u/104449853?v=4"
+              alt="Sahaya Savari portrait"
+              loading="lazy"
+              className="object-cover border-ref border-border-muted"
+              style={{
+                width: '470.67px',
+                height: '490.7px',
+              }}
+            />
+          </div>
+        </GridBackground>
+
+        {/* Circular overlapping CTA button */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden lg:block">
+          <Button
+            variant="white-circle"
+            to="/about"
+            ariaLabel="The Story So Far"
+          >
+            <span className="font-body text-body-lg text-primary text-center leading-tight">
+              The Story<br />So Far
+            </span>
           </Button>
         </div>
       </section>
 
-      {/* ===== Genre Spotlight ===== */}
-      <section className="py-20 md:py-28 bg-background" aria-label="Genre spotlight">
+      {/* ===== Blog Highlights ===== */}
+      <section className="py-20 md:py-28 bg-cream-bg border-b-ref border-primary" aria-label="Blog highlights">
         <Container>
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: book image */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+          <div className="flex flex-col items-center gap-6 text-center mb-16">
+            <SectionLabel>Blog Highlights</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=700&fit=crop"
-                alt="Books representing various genres"
-                loading="lazy"
-                className="rounded-3xl border-2 border-primary shadow-brutal w-full object-cover"
-              />
-            </motion.div>
+              From the Travelog
+            </h2>
+            <p
+              className="font-body text-primary font-medium"
+              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
+            >
+              Dive into our latest coding expeditions and discoveries
+            </p>
+          </div>
 
-            {/* Right: text */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+          {/* Grid display of latest 3 posts */}
+          <BlogGrid posts={blogPosts.slice(0, 3)} />
+
+          <div className="text-center mt-16">
+            <Button
+              variant="blue"
+              to="/blog"
+              ariaLabel="View All Posts"
             >
-              <span className="section-label">Genre Spotlight</span>
-              <h2 className="font-display text-4xl md:text-5xl text-primary mt-4">
-                REALMS OF WONDER
-              </h2>
-              <p className="font-serif italic text-lg text-primary/60 mt-2">
-                Chart your next escape
-              </p>
-              <p className="text-primary/70 mt-4 leading-relaxed">
-                From sweeping historical sagas to mind-bending sci-fi, we treat every genre
-                as a new territory to be explored. Discover stories that don't just fill
-                pages—they build worlds that stay with you long after the journey ends.
-              </p>
-              <div className="mt-8">
-                <Button variant="primary" to="/categories" ariaLabel="Explore Genres">
-                  Explore Genres
-                </Button>
-              </div>
-            </motion.div>
+              View All Posts
+            </Button>
           </div>
         </Container>
       </section>
 
+      {/* ===== Genre Spotlight ===== */}
+      <section
+        className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-b-ref border-primary"
+        style={{ minHeight: '789.6px' }}
+        aria-label="Genre spotlight"
+      >
+        {/* Left Column - Graphic/Illustration */}
+        <div className="relative min-h-[400px] md:min-h-0 bg-[#C1E5E7] flex items-center justify-center overflow-hidden border-r-ref border-primary">
+          <img
+            src="https://static.wixstatic.com/media/c837a6_0870ba3496964f5d9955b0a02e4b9ffd~mv2.jpg/v1/fill/w_768,h_790,al_c,q_85,enc_auto/c837a6_0870ba3496964f5d9955b0a02e4b9ffd~mv2.jpg"
+            alt="3D book stack illustration"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Right Column - Yellow Background */}
+        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center min-h-[400px] md:min-h-0">
+          <div className="max-w-[550px] mx-auto md:mr-auto md:ml-0 flex flex-col gap-6 items-start">
+            <SectionLabel>Genre Spotlight</SectionLabel>
+            <h2
+              className="font-display text-primary uppercase"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+            >
+              Realms of Wonder
+            </h2>
+            <p
+              className="font-body text-primary font-medium"
+              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
+            >
+              Chart your next escape
+            </p>
+            <p className="font-body text-body-lg text-primary/80 leading-relaxed">
+              From the clean syntax of Python to the logic of neural networks, we treat every subject as a new territory to be charted. Discover guides that build mental models that stay with you long after the compiler exits.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ===== Newsletter Section ===== */}
-      <div className="bg-background">
-        <Newsletter />
-      </div>
+      <Newsletter />
     </>
   );
 }

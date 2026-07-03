@@ -1,92 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nomadtome.com/</loc>
+    <loc>https://blog.sahayasavari.me/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog</loc>
+    <loc>https://blog.sahayasavari.me/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/about</loc>
+    <loc>https://blog.sahayasavari.me/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/contact</loc>
+    <loc>https://blog.sahayasavari.me/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/categories</loc>
+    <loc>https://blog.sahayasavari.me/categories</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/newsletter</loc>
+    <loc>https://blog.sahayasavari.me/newsletter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/cartographer-of-imagined-realms</loc>
+    <loc>https://blog.sahayasavari.me/blog/python-foundations-part-1</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/midnight-trains-and-typewriters</loc>
+    <loc>https://blog.sahayasavari.me/blog/github-guide-for-beginners</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/the-quantum-library</loc>
+    <loc>https://blog.sahayasavari.me/blog/how-to-learn-programming</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/whispers-in-the-stacks</loc>
+    <loc>https://blog.sahayasavari.me/blog/getting-started-with-react</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/verses-that-travel</loc>
+    <loc>https://blog.sahayasavari.me/blog/machine-learning-basics</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/the-heart-sails-on</loc>
+    <loc>https://blog.sahayasavari.me/blog/data-visualization-tips</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/echoes-of-empires</loc>
+    <loc>https://blog.sahayasavari.me/blog/python-for-data-science</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/a-life-in-chapters</loc>
+    <loc>https://blog.sahayasavari.me/blog/understanding-neural-networks</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nomadtome.com/blog/the-classics-reborn</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://nomadtome.com/blog/the-compass-and-the-page</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://nomadtome.com/blog/building-worlds-with-words</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://nomadtome.com/blog/the-detectors-mind</loc>
+    <loc>https://blog.sahayasavari.me/blog/web-performance-optimization</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

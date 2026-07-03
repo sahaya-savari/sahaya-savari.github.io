@@ -90,7 +90,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
           src={earliestMatch[2]}
           alt={earliestMatch[1]}
           loading="lazy"
-          className="rounded-xl border-2 border-primary my-4 w-full h-auto object-cover"
+          className="rounded-xl border-ref border-primary my-4 w-full h-auto object-cover"
         />
       );
     } else if (earliestType === 'link') {
@@ -154,7 +154,7 @@ function renderMarkdown(content: string): { jsx: ReactNode[]; toc: TocItem[] } {
       jsx.push(
         <pre
           key={`code-${keyIdx}`}
-          className="bg-primary text-cream rounded-xl p-4 overflow-x-auto my-6 font-mono text-sm border-2 border-primary"
+          className="bg-primary text-cream rounded-xl p-4 overflow-x-auto my-6 font-mono text-sm border-ref border-primary"
         >
           <code>{codeLines.join('\n')}</code>
         </pre>
@@ -356,7 +356,7 @@ export default function BlogDetails() {
             transition={{ duration: 0.5 }}
             className="flex flex-col items-center text-center gap-6"
           >
-            <div className="w-20 h-20 rounded-full bg-cream border-2 border-primary flex items-center justify-center shadow-brutal-sm">
+            <div className="w-20 h-20 rounded-full bg-cream border-ref border-primary flex items-center justify-center shadow-brutal-sm">
               <BookOpen className="w-10 h-10 text-primary" aria-hidden="true" />
             </div>
             <h1 className="font-display text-4xl md:text-5xl text-primary">
@@ -382,7 +382,7 @@ export default function BlogDetails() {
         <img
           src={post.image}
           alt={post.title}
-          className="w-full h-64 md:h-96 object-cover rounded-b-3xl border-b-2 border-primary"
+          className="w-full h-64 md:h-96 object-cover rounded-b-3xl border-b-ref border-primary"
         />
       </div>
 
@@ -421,7 +421,7 @@ export default function BlogDetails() {
                     src={post.authorAvatar}
                     alt={post.author}
                     loading="lazy"
-                    className="w-12 h-12 rounded-full border-2 border-primary/20 object-cover"
+                    className="w-12 h-12 rounded-full border-ref border-primary/20 object-cover"
                   />
                   <div className="flex flex-col">
                     <span className="font-semibold text-sm text-primary">{post.author}</span>
@@ -445,7 +445,7 @@ export default function BlogDetails() {
                       target={href !== '#' ? '_blank' : undefined}
                       rel={href !== '#' ? 'noopener noreferrer' : undefined}
                       aria-label={label}
-                      className="w-10 h-10 rounded-full border-2 border-primary bg-white flex items-center justify-center hover:bg-yellow transition-all"
+                      className="w-10 h-10 rounded-full border-ref border-primary bg-white flex items-center justify-center hover:bg-gold transition-all"
                     >
                       <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
                     </a>
@@ -464,7 +464,7 @@ export default function BlogDetails() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full bg-cream border-2 border-primary text-xs font-bold text-primary"
+                      className="px-3 py-1 rounded-badge bg-cream border-ref border-primary text-xs font-bold text-primary"
                     >
                       #{tag}
                     </span>

@@ -36,10 +36,10 @@ export default function PrivacyPolicy() {
           >
             <h2>Introduction</h2>
             <p>
-              At Nomad Tome, we are committed to protecting your privacy and ensuring that your personal
+              At Sahaya Savari, we are committed to protecting your privacy and ensuring that your personal
               information is handled in a safe and responsible manner. This Privacy Policy explains how we
               collect, use, and safeguard your information when you visit our website or subscribe to our
-              newsletter. By using Nomad Tome, you agree to the practices described in this policy.
+              newsletter. By using Sahaya Savari, you agree to the practices described in this policy.
             </p>
 
             <h2>Information We Collect</h2>

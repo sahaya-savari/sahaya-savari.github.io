@@ -1,258 +1,114 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Twitter,
-  Instagram,
-  Facebook,
-  Youtube,
-  ChevronDown,
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Github, Globe, Linkedin, ArrowRight } from 'lucide-react';
 import Container from '../components/Container';
 import ContactForm from '../components/ContactForm';
+import SectionLabel from '../components/SectionLabel';
+import GridBackground from '../components/GridBackground';
 
 const socialLinks = [
-  { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
-  { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
-  { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
-  { icon: Youtube, label: 'Youtube', href: 'https://youtube.com' },
-];
-
-const contactDetails = [
-  { icon: Phone, label: 'Phone', value: '123-456-7890', href: 'tel:123-456-7890' },
-  { icon: Mail, label: 'Email', value: 'info@nomadtome.com', href: 'mailto:info@nomadtome.com' },
-  { icon: MapPin, label: 'Location', value: '123 Literary Lane, Bookville', href: undefined },
-];
-
-const faqItems = [
-  {
-    question: 'How often do you publish new content?',
-    answer: 'I publish new blog posts every week, usually on Tuesdays and Fridays.',
-  },
-  {
-    question: 'Can I suggest a book for you to review?',
-    answer: 'Absolutely! Use the contact form above or send me an email. I love hearing from readers.',
-  },
-  {
-    question: 'Do you accept guest posts?',
-    answer: 'Yes, I occasionally accept guest posts from fellow literary enthusiasts. Reach out with your pitch.',
-  },
-  {
-    question: 'How can I subscribe to the newsletter?',
-    answer: 'You can subscribe using the newsletter form on the home page or visit the newsletter page directly.',
-  },
-  {
-    question: 'Are your reviews sponsored?',
-    answer: 'No. All reviews are my honest opinions. I do not accept payment for reviews.',
-  },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/sahaya-savari' },
+  { icon: Globe, label: 'Portfolio', href: 'https://sahayasavari.me' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
 ];
 
 export default function Contact() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-
   return (
     <>
-      {/* Hero */}
-      <section className="bg-background py-16 md:py-24" aria-labelledby="contact-hero-heading">
-        <Container>
-          <motion.div
+      {/* ===== Hero ===== */}
+      <section
+        className="bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full border-b-ref border-primary"
+        style={{ minHeight: '360px', paddingTop: '120px', paddingBottom: '60px' }}
+        aria-labelledby="contact-hero-heading"
+      >
+        <Container className="flex flex-col items-center gap-6">
+          <SectionLabel>Contact</SectionLabel>
+          <motion.h1
+            id="contact-hero-heading"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center"
+            className="font-display text-primary uppercase text-center"
+            style={{ fontSize: '76.05px', letterSpacing: '-1.521px' }}
           >
-            <span className="section-label">CONTACT</span>
-            <h1
-              id="contact-hero-heading"
-              className="display-text font-display text-5xl md:text-7xl text-primary mt-4"
+            Send a Dispatch
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-primary font-medium text-center"
+            style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px', maxWidth: '700px' }}
+          >
+            For collaborations, questions, or to share your own learning journey.
+          </motion.p>
+        </Container>
+      </section>
+
+      {/* ===== Contact Info + Form Split Layout ===== */}
+      <section
+        className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-b-ref border-primary relative"
+        style={{ minHeight: '790.5px' }}
+        aria-labelledby="contact-info-heading"
+      >
+        {/* Left Column - White Background + Grid Paper */}
+        <GridBackground className="p-8 md:p-col-pad flex flex-col justify-center border-r-ref border-primary">
+          <div className="max-w-[550px] mx-auto md:ml-auto md:mr-0 flex flex-col gap-8 items-start">
+            <SectionLabel>Let's Connect</SectionLabel>
+            
+            <h2
+              id="contact-info-heading"
+              className="font-display text-primary uppercase leading-none"
+              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
             >
-              Send a Dispatch
-            </h1>
-            <p className="text-lg md:text-xl text-primary/60 mt-4 font-body max-w-2xl mx-auto">
-              For collaborations, questions, or to share your own reading journey
+              Have a learning query or collaboration idea?
+            </h2>
+            
+            <p className="font-body text-body-lg text-primary/80 leading-relaxed">
+              I'm always eager to connect with fellow learners, developers, and educators. Reach out for projects or technical writing opportunities.
             </p>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="hidden md:block mt-8"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=400&fit=crop"
-                alt="Stack of books on a wooden surface"
-                className="rounded-3xl border-2 border-primary shadow-brutal mx-auto max-w-md w-full"
-                loading="lazy"
-              />
-            </motion.div>
-          </motion.div>
-        </Container>
-      </section>
 
-      {/* Contact Info + Form */}
-      <section className="bg-cream py-12 md:py-20" aria-labelledby="contact-info-heading">
-        <Container>
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Left column */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="section-label">LET'S CONNECT</span>
-              <h2
-                id="contact-info-heading"
-                className="font-display text-3xl text-primary mt-4"
-              >
-                Have a book recommendation that will change my world?
-              </h2>
-              <p className="text-primary/70 mt-2 font-body">
-                I'm always eager to hear from fellow explorers.
-              </p>
-
-              {/* Contact details */}
-              <div className="mt-8 space-y-4">
-                {contactDetails.map((detail) => {
-                  const content = (
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-primary shrink-0">
-                        <detail.icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                      </div>
-                      <span className="font-body text-lg text-primary">{detail.value}</span>
-                    </div>
-                  );
-                  return detail.href ? (
-                    <a
-                      key={detail.label}
-                      href={detail.href}
-                      className="block hover:opacity-70 transition-opacity"
-                      aria-label={`${detail.label}: ${detail.value}`}
-                    >
-                      {content}
-                    </a>
-                  ) : (
-                    <div key={detail.label} aria-label={`${detail.label}: ${detail.value}`}>
-                      {content}
-                    </div>
-                  );
-                })}
+            {/* Email Contact Detail Card */}
+            <div className="card-brutal bg-white p-6 w-full flex items-center gap-4 border-ref border-primary" style={{ boxShadow: '8px 8px 0px 0px #652929' }}>
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gold border-ref border-primary shrink-0">
+                <Mail className="w-5 h-5 text-primary" aria-hidden="true" />
               </div>
-
-              {/* Social links */}
-              <div className="flex gap-3 mt-8">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit Nomad Tome on ${social.label}`}
-                    className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-primary bg-white hover:bg-yellow transition-all"
-                  >
-                    <social.icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </a>
-                ))}
+              <div className="flex flex-col">
+                <span className="font-body text-sm font-semibold text-primary/60 uppercase">Email</span>
+                <a href="mailto:contact@sahayasavari.me" className="font-body text-body-lg font-bold text-primary hover:underline">
+                  contact@sahayasavari.me
+                </a>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right column */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="card-brutal p-8">
-                <ContactForm />
-              </div>
-            </motion.div>
+            {/* Social Links */}
+            <div className="flex gap-4 mt-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit Sahaya Savari on ${social.label}`}
+                  className="flex items-center justify-center w-12 h-12 rounded-full border-ref border-primary bg-white hover:bg-gold transition-all"
+                  style={{ boxShadow: '4px 4px 0px 0px #652929' }}
+                >
+                  <social.icon className="w-5 h-5 text-primary" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
           </div>
-        </Container>
-      </section>
+        </GridBackground>
 
-      {/* Google Map */}
-      <section className="bg-background py-12" aria-labelledby="map-heading">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 id="map-heading" className="font-display text-3xl text-primary mb-6">
-              Find Me Here
-            </h2>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.123456789!2d-73.988!3d40.748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzUzJzEuMCJX!5e0!3m2!1sen!2sus!4v123456789"
-              width="100%"
-              height="320"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Google Map showing Nomad Tome location"
-              className="w-full h-80 rounded-3xl border-2 border-primary shadow-brutal"
-            />
-          </motion.div>
-        </Container>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-cream py-12 md:py-20" aria-labelledby="faq-heading">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
-          >
-            <h2 id="faq-heading" className="font-display text-4xl text-primary">
-              Frequently Asked Questions
-            </h2>
-          </motion.div>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqItems.map((item, index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div key={index} className="card-brutal overflow-hidden">
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full flex justify-between items-center p-6 text-left"
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${index}`}
-                  >
-                    <span className="font-semibold text-primary font-body">{item.question}</span>
-                    <motion.div
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex-shrink-0 ml-4"
-                    >
-                      <ChevronDown className="w-5 h-5 text-primary" aria-hidden="true" />
-                    </motion.div>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        id={`faq-answer-${index}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                      >
-                        <p className="p-6 pt-0 text-sm text-primary/70 font-body">{item.answer}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
+        {/* Right Column - Gold Background with Form */}
+        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center min-h-[500px] md:min-h-0">
+          <div className="max-w-[550px] mx-auto md:mr-auto md:ml-0 w-full flex flex-col gap-6">
+            <SectionLabel>Send Message</SectionLabel>
+            <div className="card-brutal bg-white p-8 w-full border-ref border-primary" style={{ boxShadow: '8px 8px 0px 0px #652929' }}>
+              <ContactForm />
+            </div>
           </div>
-        </Container>
+        </div>
       </section>
     </>
   );

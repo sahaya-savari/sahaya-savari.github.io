@@ -38,7 +38,7 @@ export default function AccessibilityStatement() {
           >
             <h2>Our Commitment</h2>
             <p>
-              At Nomad Tome, we believe that every reader deserves equal access to great literature and the
+              At Sahaya Savari, we believe that every reader deserves equal access to great literature and the
               stories that shape our world. We are committed to making our website accessible to all
               visitors, regardless of ability or assistive technology. Accessibility is not an afterthought
               — it is woven into the fabric of our design and development process from the very beginning.
@@ -88,7 +88,7 @@ export default function AccessibilityStatement() {
             <h2>Feedback</h2>
             <p>
               Your feedback is invaluable in helping us improve. If you have experienced any difficulty
-              accessing content on Nomad Tome, or if you have suggestions for how we can make the site more
+              accessing content on Sahaya Savari, or if you have suggestions for how we can make the site more
               inclusive, we want to hear from you. Please reach out through our contact form or email us
               directly — every piece of feedback helps us build a better experience for all readers.
             </p>
@@ -96,7 +96,7 @@ export default function AccessibilityStatement() {
             <h2>Contact</h2>
             <p>
               For accessibility-related questions or concerns, please contact us at{' '}
-              <a href="mailto:info@nomadtome.com">info@nomadtome.com</a>. We are committed to responding to
+              <a href="mailto:contact@sahayasavari.me">contact@sahayasavari.me</a>. We are committed to responding to
               accessibility inquiries within two business days and working with you to resolve any issues
               as quickly as possible.
             </p>

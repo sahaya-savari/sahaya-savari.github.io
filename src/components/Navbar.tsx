@@ -36,9 +36,9 @@ export default function Navbar() {
           to="/"
           className="flex items-center justify-center bg-primary rounded-full select-none hover:opacity-90 transition-opacity"
           style={{ width: '57px', height: '57px', marginLeft: '6px' }}
-          aria-label="Nomad Tome home"
+          aria-label="Sahaya Savari home"
         >
-          <span className="text-white font-display text-[32px] leading-none mb-1">N</span>
+          <span className="text-white font-display text-[32px] leading-none mb-1">S</span>
         </Link>
 
         {/* Desktop Nav Links */}
@@ -99,8 +99,9 @@ export default function Navbar() {
                 className="flex items-center justify-center bg-primary rounded-full select-none"
                 style={{ width: '57px', height: '57px' }}
                 onClick={() => setIsOpen(false)}
+                aria-label="Sahaya Savari home"
               >
-                <span className="text-white font-display text-[32px] leading-none mb-1">N</span>
+                <span className="text-white font-display text-[32px] leading-none mb-1">S</span>
               </Link>
               <button
                 className="p-3 text-primary"

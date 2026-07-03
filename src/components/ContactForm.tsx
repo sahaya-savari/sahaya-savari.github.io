@@ -25,8 +25,6 @@ export default function ContactForm() {
     const newErrors: FormErrors = {};
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
     }
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -35,13 +33,9 @@ export default function ContactForm() {
     }
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
-    } else if (formData.subject.trim().length < 3) {
-      newErrors.subject = 'Subject must be at least 3 characters';
     }
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -66,23 +60,17 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card-brutal p-6 md:p-8 space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-6 w-full" noValidate>
       <AnimatePresence>
         {submitted && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -10 }}
-            className="flex items-center gap-3 p-4 rounded-xl bg-yellow border-2 border-primary"
+            className="flex items-center gap-3 p-4 rounded-xl bg-gold border-ref border-primary"
             role="status"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.1 }}
-            >
-              <CheckCircle2 className="w-6 h-6 text-primary" aria-hidden="true" />
-            </motion.div>
+            <CheckCircle2 className="w-6 h-6 text-primary" aria-hidden="true" />
             <p className="font-semibold text-primary text-sm">
               Message sent! We'll get back to you soon.
             </p>
@@ -91,9 +79,9 @@ export default function ContactForm() {
       </AnimatePresence>
 
       {/* Name */}
-      <div>
-        <label htmlFor="contact-name" className="block text-sm font-semibold text-primary mb-1">
-          Name <span className="text-primary">*</span>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="contact-name" className="font-body text-sm font-medium text-primary">
+          Name
         </label>
         <input
           id="contact-name"
@@ -103,19 +91,20 @@ export default function ContactForm() {
           placeholder="Your name"
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? 'contact-name-error' : undefined}
-          className="input-brutal"
+          className="input-ref"
+          style={{ height: '41.6px' }}
         />
         {errors.name && (
-          <p id="contact-name-error" className="text-xs text-red-600 mt-1" role="alert">
+          <p id="contact-name-error" className="text-xs font-semibold text-primary pl-4 mt-1" role="alert">
             {errors.name}
           </p>
         )}
       </div>
 
       {/* Email */}
-      <div>
-        <label htmlFor="contact-email" className="block text-sm font-semibold text-primary mb-1">
-          Email <span className="text-primary">*</span>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="contact-email" className="font-body text-sm font-medium text-primary">
+          Email
         </label>
         <input
           id="contact-email"
@@ -125,19 +114,20 @@ export default function ContactForm() {
           placeholder="you@example.com"
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? 'contact-email-error' : undefined}
-          className="input-brutal"
+          className="input-ref"
+          style={{ height: '41.6px' }}
         />
         {errors.email && (
-          <p id="contact-email-error" className="text-xs text-red-600 mt-1" role="alert">
+          <p id="contact-email-error" className="text-xs font-semibold text-primary pl-4 mt-1" role="alert">
             {errors.email}
           </p>
         )}
       </div>
 
       {/* Subject */}
-      <div>
-        <label htmlFor="contact-subject" className="block text-sm font-semibold text-primary mb-1">
-          Subject <span className="text-primary">*</span>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="contact-subject" className="font-body text-sm font-medium text-primary">
+          Subject
         </label>
         <input
           id="contact-subject"
@@ -147,39 +137,50 @@ export default function ContactForm() {
           placeholder="What is this about?"
           aria-invalid={!!errors.subject}
           aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
-          className="input-brutal"
+          className="input-ref"
+          style={{ height: '41.6px' }}
         />
         {errors.subject && (
-          <p id="contact-subject-error" className="text-xs text-red-600 mt-1" role="alert">
+          <p id="contact-subject-error" className="text-xs font-semibold text-primary pl-4 mt-1" role="alert">
             {errors.subject}
           </p>
         )}
       </div>
 
       {/* Message */}
-      <div>
-        <label htmlFor="contact-message" className="block text-sm font-semibold text-primary mb-1">
-          Message <span className="text-primary">*</span>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="contact-message" className="font-body text-sm font-medium text-primary">
+          Message
         </label>
         <textarea
           id="contact-message"
           value={formData.message}
           onChange={handleChange('message')}
           placeholder="Tell me more..."
-          rows={5}
+          rows={4}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
-          className="input-brutal resize-y"
+          className="input-ref resize-none py-3"
+          style={{ height: '120px', borderRadius: '16px' }}
         />
         {errors.message && (
-          <p id="contact-message-error" className="text-xs text-red-600 mt-1" role="alert">
+          <p id="contact-message-error" className="text-xs font-semibold text-primary pl-4 mt-1" role="alert">
             {errors.message}
           </p>
         )}
       </div>
 
-      <button type="submit" className="btn-primary w-full md:w-auto">
-        Send Message
+      <button
+        type="submit"
+        className="w-full bg-[#C1E5E7] text-primary font-body font-medium hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center cursor-pointer mt-4"
+        style={{
+          height: '42.8px',
+          borderRadius: '100px',
+          fontSize: '16px',
+          border: '0.8px solid #652929',
+        }}
+      >
+        Submit
       </button>
     </form>
   );

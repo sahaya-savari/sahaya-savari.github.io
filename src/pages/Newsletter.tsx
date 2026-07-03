@@ -1,23 +1,24 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, BookOpen, Users, List } from 'lucide-react';
+import { CheckCircle, Code, GitBranch, List } from 'lucide-react';
 import Container from '../components/Container';
+import SectionLabel from '../components/SectionLabel';
 
 const benefits = [
   {
-    icon: BookOpen,
-    title: 'Weekly Book Recommendations',
-    description: 'Get curated picks delivered every week',
+    icon: Code,
+    title: 'Weekly Coding Tutorials',
+    description: 'Get deep-dives on Python, React, and DB systems',
   },
   {
-    icon: Users,
-    title: 'Exclusive Author Interviews',
-    description: 'Read conversations with your favorite authors',
+    icon: GitBranch,
+    title: 'Git & GitHub Workflows',
+    description: 'Master version control and team collaborations',
   },
   {
     icon: List,
-    title: 'Curated Reading Lists',
-    description: 'Thematic lists for every mood and genre',
+    title: 'Curated Tech Resources',
+    description: 'Helpful libraries, roadmaps, and cheat sheets',
   },
 ];
 
@@ -59,25 +60,29 @@ export default function Newsletter() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-background py-16 md:py-24" aria-labelledby="newsletter-hero-heading">
-        <Container>
-          <motion.div
+      <section
+        className="bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full border-b-ref border-primary"
+        style={{ minHeight: '360px', paddingTop: '120px', paddingBottom: '60px' }}
+        aria-labelledby="newsletter-hero-heading"
+      >
+        <Container className="flex flex-col items-center gap-6">
+          <SectionLabel>Newsletter</SectionLabel>
+          <motion.h1
+            id="newsletter-hero-heading"
+            className="font-display text-primary uppercase text-center"
+            style={{ fontSize: '76.05px', letterSpacing: '-1.521px' }}
+          >
+            JOIN THE EXPEDITION
+          </motion.h1>
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-primary font-medium text-center"
+            style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px', maxWidth: '700px' }}
           >
-            <span className="section-label">Newsletter</span>
-            <h1
-              id="newsletter-hero-heading"
-              className="display-text font-display text-5xl md:text-7xl text-primary mt-4"
-            >
-              JOIN THE EXPEDITION
-            </h1>
-            <p className="text-lg md:text-xl text-primary/60 mt-4 font-body max-w-lg mx-auto">
-              Get new book journeys and curated reading lists delivered straight to your inbox.
-            </p>
-          </motion.div>
+            Get new coding tutorials and curated reading lists delivered straight to your inbox.
+          </motion.p>
         </Container>
       </section>
 
@@ -94,7 +99,7 @@ export default function Newsletter() {
             transition={{ duration: 0.5 }}
             className="max-w-2xl mx-auto"
           >
-            <div className="card-brutal p-8 md:p-12">
+            <div className="card-brutal p-8 md:p-12 bg-white" style={{ border: '0.8px solid #7C4844', boxShadow: '8px 8px 0px 0px #652929' }}>
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -130,8 +135,8 @@ export default function Newsletter() {
                     noValidate
                   >
                     {/* Email input */}
-                    <div>
-                      <label htmlFor="newsletter-email" className="block text-sm font-semibold text-primary mb-2">
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="newsletter-email" className="block text-sm font-semibold text-primary">
                         Email Address
                       </label>
                       <input
@@ -145,10 +150,11 @@ export default function Newsletter() {
                         placeholder="you@example.com"
                         aria-invalid={!!emailError}
                         aria-describedby={emailError ? 'newsletter-email-error' : undefined}
-                        className="input-brutal rounded-full text-lg py-4"
+                        className="input-ref"
+                        style={{ height: '41.6px' }}
                       />
                       {emailError && (
-                        <p id="newsletter-email-error" className="text-red-600 text-sm mt-1" role="alert">
+                        <p id="newsletter-email-error" className="text-primary font-semibold text-sm pl-4" role="alert">
                           {emailError}
                         </p>
                       )}
@@ -164,23 +170,32 @@ export default function Newsletter() {
                             setAgreed(e.target.checked);
                             if (checkboxError) setCheckboxError('');
                           }}
-                          className="mt-1 w-5 h-5 accent-primary border-2 border-primary rounded"
+                          className="mt-1 w-[15.6px] h-[15.6px] accent-primary border-ref border-primary rounded"
                           aria-invalid={!!checkboxError}
                           aria-describedby={checkboxError ? 'newsletter-checkbox-error' : undefined}
                         />
-                        <span className="text-sm text-primary/70 font-body">
+                        <span className="text-sm text-primary/70 font-body select-none">
                           Yes, subscribe me to your newsletter.
                         </span>
                       </label>
                       {checkboxError && (
-                        <p id="newsletter-checkbox-error" className="text-red-600 text-sm mt-1" role="alert">
+                        <p id="newsletter-checkbox-error" className="text-primary font-semibold text-sm pl-8 mt-1" role="alert">
                           {checkboxError}
                         </p>
                       )}
                     </div>
 
                     {/* Submit button */}
-                    <button type="submit" className="btn-yellow w-full py-4">
+                    <button
+                      type="submit"
+                      className="w-full bg-primary text-white font-body font-medium hover:opacity-90 active:scale-[0.99] transition-all flex items-center justify-center cursor-pointer mt-4"
+                      style={{
+                        height: '42.8px',
+                        borderRadius: '100px',
+                        fontSize: '16px',
+                        border: '0.8px solid #652929',
+                      }}
+                    >
                       Subscribe Now
                     </button>
                   </motion.form>
@@ -205,9 +220,10 @@ export default function Newsletter() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="card-brutal p-8 text-center"
+                className="card-brutal p-8 text-center bg-white"
+                style={{ border: '0.8px solid #7C4844', boxShadow: '8px 8px 0px 0px #652929' }}
               >
-                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-yellow border-2 border-primary mx-auto">
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gold border-ref border-primary mx-auto">
                   <benefit.icon className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-display text-xl text-primary mt-4">{benefit.title}</h3>
