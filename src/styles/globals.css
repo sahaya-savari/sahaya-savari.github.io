@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-primary font-body;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display uppercase;
+  }
+
+  ::selection {
+    @apply bg-gold text-primary;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-custom {
+    @apply max-w-content mx-auto px-page-x;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-primary text-white font-body text-body-md rounded-submit border-ref border-primary shadow-brutal transition-all duration-200;
+    padding: 12px 40px;
+  }
+  .btn-primary:hover {
+    @apply shadow-brutal-hover;
+    transform: translate(4px, 4px);
+  }
+  .btn-primary:active {
+    @apply shadow-brutal-none;
+    transform: translate(8px, 8px);
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-primary font-body text-body-md rounded-cta border-ref border-primary transition-all duration-200;
+    padding: 12px 40px;
+  }
+
+  .btn-blue {
+    @apply inline-flex items-center justify-center gap-2 bg-background text-primary font-body text-body-md rounded-view-all border-ref border-primary shadow-brutal transition-all duration-200;
+    padding: 16px 60px;
+  }
+  .btn-blue:hover {
+    @apply shadow-brutal-hover;
+    transform: translate(4px, 4px);
+  }
+  .btn-blue:active {
+    @apply shadow-brutal-none;
+    transform: translate(8px, 8px);
+  }
+
+  .btn-white-circle {
+    @apply inline-flex items-center justify-center bg-white text-primary font-body text-body-md rounded-story border-ref border-primary shadow-brutal transition-all duration-200;
+    width: 190px;
+    height: 194px;
+  }
+  .btn-white-circle:hover {
+    @apply shadow-brutal-hover;
+    transform: translate(4px, 4px);
+  }
+
+  /* Section label (capsule pill) */
+  .section-label {
+    @apply inline-flex items-center justify-center font-body text-body-lg text-primary rounded-badge border-ref border-border-muted;
+    padding: 6px 24px;
+  }
+
+  /* Input */
+  .input-ref {
+    @apply w-full bg-white border-ref border-primary rounded-input font-body text-body-sm text-primary placeholder:text-primary/40 focus:outline-none transition-all duration-200;
+    padding: 10px 20px;
+  }
+
+  /* Card */
+  .card-brutal {
+    @apply bg-white border-ref border-border-muted shadow-brutal transition-all duration-300;
+  }
+
+  .card-brutal-hover:hover {
+    @apply shadow-brutal-hover;
+    transform: translate(4px, 4px);
+  }
+
+  /* Badge (floating pills in hero) */
+  .badge-pill {
+    @apply inline-flex items-center gap-2 bg-cream text-primary font-body text-body-lg rounded-badge border-ref border-border-muted;
+    padding: 10px 20px;
+  }
+
+  /* Display text utility */
+  .display-text {
+    @apply font-display uppercase;
+    line-height: 0.95;
+  }
+
+  /* Grid paper background pattern */
+  .grid-paper {
+    background-image:
+      linear-gradient(rgba(124, 72, 68, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124, 72, 68, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Prose for blog content */
+  .prose-custom h2 {
+    @apply font-display text-section-h3 text-primary mt-12 mb-4;
+  }
+  .prose-custom h3 {
+    @apply font-display text-body-lg text-primary mt-8 mb-3 font-bold;
+  }
+  .prose-custom p {
+    @apply font-body text-body-lg text-primary/80 leading-relaxed mb-6;
+  }
+  .prose-custom ul {
+    @apply list-disc list-inside mb-6 space-y-2;
+  }
+  .prose-custom ol {
+    @apply list-decimal list-inside mb-6 space-y-2;
+  }
+  .prose-custom li {
+    @apply font-body text-body-lg text-primary/80;
+  }
+  .prose-custom blockquote {
+    @apply border-l-4 border-gold bg-cream p-6 rounded-r-xl my-8;
+  }
+  .prose-custom blockquote p {
+    @apply font-serif italic text-xl text-primary mb-0;
+  }
+  .prose-custom code {
+    @apply bg-cream text-primary px-2 py-1 rounded-md font-mono text-sm border-ref border-primary/20;
+  }
+  .prose-custom pre {
+    @apply bg-primary text-white p-6 rounded-xl overflow-x-auto my-6 border-ref border-primary shadow-brutal;
+  }
+  .prose-custom pre code {
+    @apply bg-transparent text-white border-0 p-0;
+  }
+  .prose-custom img {
+    @apply rounded-xl border-ref border-primary shadow-brutal my-8 w-full;
+  }
+  .prose-custom a {
+    @apply text-primary font-semibold underline decoration-gold decoration-2 underline-offset-4 hover:decoration-primary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Marquee */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-content {
+  display: flex;
+  animation: marquee 18s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

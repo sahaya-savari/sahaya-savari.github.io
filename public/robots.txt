@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /privacy-policy
+Disallow: /accessibility
+
+Sitemap: https://nomadtome.com/sitemap.xml
