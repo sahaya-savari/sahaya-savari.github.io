@@ -1,110 +1,109 @@
-# Nomad Tome
+# Sahaya Savari — Python, Git & AI Blog
 
-A modern, production-ready literary blog website built with React, Vite, TypeScript, Tailwind CSS, and Framer Motion.
+A high-performance, responsive personal learning blog and professional portfolio website built using React, Vite, TypeScript, Tailwind CSS, and Framer Motion. 
 
-## Design Style
+The site features a bold Neo-Brutalist editorial design, client-side dynamic search and categorization, and automated GitHub Pages deployment.
 
-Neo-Brutalist editorial magazine with:
-- Large condensed display typography (Bebas Neue)
-- Modern sans-serif body text (Inter)
-- Playfair Display for serif accents
-- Pastel color palette with soft brutalist shadows
-- Rounded components with hard offset shadows
+---
 
-## Color Palette
+## 🚀 Features
 
-| Color      | Hex       | Usage              |
-|------------|-----------|-------------------|
-| Background | #D8F4F5   | Page background    |
-| Cream      | #FFF8E6   | Section accents    |
-| Yellow     | #E9DA79   | Badges, highlights |
-| Primary    | #6B2B2B   | Text, borders      |
-| Shadow     | #5A2020   | Brutalist shadows  |
-| White      | #FFFFFF   | Cards, inputs      |
+- **Neo-Brutalist Aesthetic:** Flat colors, thick dark red borders (`#652929`), custom Display fonts for headings, and high-impact hard offset block shadows (`shadow-brutal`).
+- **Client-Side Search & Filter:** Responsive article queries matching titles and excerpts, along with custom category toggles and pagination.
+- **TOC & Markdown Rendering:** Custom Markdown-to-JSX parsing that dynamically formats blog content, slugifies headings for anchor links, and compiles a Table of Contents (TOC).
+- **Service Worker / PWA Caching:** Built-in caching mechanisms to enable offline asset fallback and caching capability.
+- **SPA Routing:** Configured with `react-router-dom` using `BrowserRouter` and local 404 redirection script decoding for GitHub Pages.
+- **Search Engine Optimization (SEO):** Fully compliant semantic HTML templates, meta headers, Open Graph tag configurations, Twitter Cards, canonical URL mapping, and pre-built `robots.txt` / `sitemap.xml` scripts.
+- **Performance Optimized:** Route code-splitting via `React.lazy`/`Suspense`, manual vendor chunking in Vite, and lightweight vector graphics.
 
-## Tech Stack
+---
 
-- **React 18** + **TypeScript** — Type-safe component architecture
-- **Vite 5** — Fast dev server and optimized builds
-- **Tailwind CSS 3** — Utility-first styling with custom theme
-- **Framer Motion** — Page transitions, scroll reveals, hover animations
-- **React Router 6** — Client-side routing with lazy-loaded pages
-- **Lucide React** — Icon system
+## 🛠️ Tech Stack
 
-## Pages
+- **Framework:** React 18
+- **Language:** TypeScript
+- **Bundler:** Vite 5
+- **Styling:** Tailwind CSS 3 + Autoprefixer & PostCSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Routing:** React Router DOM v6
 
-| Route                | Page              | Features                                    |
-|---------------------|-------------------|---------------------------------------------|
-| `/`                 | Home              | Hero, Marquee, About, Blog Highlights, Genre Spotlight, Newsletter |
-| `/blog`             | Blog              | Featured posts, search, category filter, pagination |
-| `/blog/:slug`       | Blog Details      | Full article, TOC, social share, comments, related posts, prev/next |
-| `/about`            | About             | Bio, philosophy, timeline, skills, achievements, testimonials |
-| `/contact`          | Contact           | Contact form, map, FAQ accordion            |
-| `/categories`       | Categories        | All genre categories with post counts       |
-| `/newsletter`       | Newsletter        | Email signup with success animation         |
-| `/privacy-policy`   | Privacy Policy    | Legal content                               |
-| `/accessibility`    | Accessibility     | WCAG AA statement                           |
-| `*`                 | 404               | Custom illustration + back to home          |
+---
 
-## Project Structure
+## 📂 Folder Structure
 
-```
+```text
 src/
-├── assets/          # Static assets
-├── components/       # Reusable UI components
-│   ├── Button.tsx
-│   ├── Container.tsx
-│   ├── Navbar.tsx
-│   ├── Footer.tsx
-│   ├── Hero.tsx
-│   ├── Marquee.tsx
-│   ├── BlogCard.tsx
-│   ├── BlogGrid.tsx
-│   ├── SearchBar.tsx
-│   ├── Pagination.tsx
-│   ├── CategoryFilter.tsx
-│   ├── CommentSection.tsx
-│   ├── ContactForm.tsx
-│   ├── Timeline.tsx
-│   ├── Testimonials.tsx
-│   ├── Newsletter.tsx
-│   ├── ScrollToTop.tsx
-│   └── LoadingSpinner.tsx
-├── pages/           # Route pages
-├── hooks/           # Custom React hooks
-├── lib/             # Data and configuration
-├── styles/          # Global CSS
-├── types/           # TypeScript type definitions
-├── utils/           # Utility functions
-├── App.tsx          # Root component with routing
-└── main.tsx         # Entry point
+├── components/          # Reusable modular UI elements (e.g., BlogCard, Navbar, Footer)
+├── hooks/               # Custom React hooks (e.g., useLocation tracking)
+├── lib/                 # Static data sources (data.ts contains raw blog contents)
+├── pages/               # Lazy-loaded page view components (e.g., Home, Blog, About, Contact)
+├── styles/              # Global styles and Tailwind layers directives
+├── types/               # TypeScript interface definitions (e.g., BlogPost, Category)
+├── utils/               # Common helper functions (helpers.ts handles parsing and formatting)
+├── App.tsx              # Root component managing Routing switch tables
+└── main.tsx             # Entry point initializing React DOM
 ```
 
-## Features
+---
 
-- **Responsive**: Optimized for 320px to 1920px+ screens
-- **Animations**: Fade, slide, scale, hover, reveal, marquee, button press
-- **SEO**: Semantic HTML, meta tags, Open Graph, Twitter Card, JSON-LD, sitemap, robots.txt
-- **Accessibility**: WCAG AA, keyboard navigation, ARIA labels, focus states
-- **Performance**: Code splitting, lazy loading, manual chunks, optimized fonts
-- **Forms**: Client-side validation with inline errors and success states
+## ⚡ Getting Started
 
-## Getting Started
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm (v9 or higher)
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/sahaya-savari/sahaya-savari.github.io.git
+
+# Navigate into the project directory
+cd sahaya-savari.github.io
+
 # Install dependencies
 npm install
+```
 
-# Start dev server
+### Development Server
+
+Run the local development server with hot-module reloading:
+
+```bash
 npm run dev
+```
 
-# Build for production
+### Build & Compilation
+
+Compile and bundle the production-ready assets into the `dist/` directory:
+
+```bash
 npm run build
+```
 
-# Preview production build
+### Production Preview
+
+Host the built assets locally to simulate the production environment:
+
+```bash
 npm run preview
 ```
 
-## License
+---
 
-© 2026 Nomad Tome. All rights reserved.
+## 📦 Deployment
+
+The application is deployed using **GitHub Pages** via a custom GitHub Actions workflow:
+- The pipeline configuration is stored in `.github/workflows/deploy.yml`.
+- Pushes to the `main` branch trigger a deployment run automatically.
+- Built files inside `dist/` are served under the custom domain `blog.sahayasavari.me`.
+
+*Note: Ensure the repository settings have Pages configured to build and deploy from **GitHub Actions**.*
+
+---
+
+## 📄 License
+
+© 2026 Sahaya Savari F. All rights reserved.
