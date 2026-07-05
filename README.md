@@ -103,11 +103,9 @@ The application is deployed using **GitHub Pages** via a custom GitHub Actions w
 *Note: Ensure the repository settings have Pages configured to build and deploy from **GitHub Actions**.*
 
 ---
-## Star History
+## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&legend=bottom-right)](https://www.star-history.com/?repos=sahaya-savari%2Fsahaya-savari.github.io&type=date&legend=bottom-right)
-
----
+[![Star History Chart](https://api.star-history.com/svg?repos=sahaya-savari/sahaya-savari.github.io&type=Date)](https://star-history.com/#sahaya-savari/sahaya-savari.github.io&Date)
 
 ## 📄 License
 
