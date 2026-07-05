@@ -38,7 +38,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
 
   return (
     <nav
-      className="flex items-center gap-2 justify-center flex-wrap"
+      className="flex items-center gap-2 justify-center flex-wrap max-w-full"
       aria-label="Pagination navigation"
     >
       {/* Previous */}
@@ -47,7 +47,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
         aria-label="Go to previous page"
-        className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-primary bg-white text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-cream transition-colors"
+        className="w-11 h-11 flex items-center justify-center rounded-full border-2 border-primary bg-white text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-cream transition-colors"
       >
         <ChevronLeft className="w-5 h-5" aria-hidden="true" />
       </motion.button>
@@ -58,7 +58,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           return (
             <span
               key={`ellipsis-${index}`}
-              className="w-10 h-10 flex items-center justify-center text-primary/50 font-body"
+              className="w-8 sm:w-10 h-11 flex items-center justify-center text-primary/50 font-body"
               aria-hidden="true"
             >
               …
@@ -74,7 +74,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
             onClick={() => handleClick(page as number)}
             aria-label={`Go to page ${page}`}
             aria-current={isActive ? 'page' : undefined}
-            className={`w-10 h-10 flex items-center justify-center rounded-full border-2 border-primary font-body text-sm font-semibold transition-colors ${
+            className={`w-11 h-11 flex items-center justify-center rounded-full border-2 border-primary font-body text-sm font-semibold transition-colors ${
               isActive
                 ? 'bg-primary text-white'
                 : 'bg-white text-primary hover:bg-cream'
@@ -91,7 +91,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         onClick={() => handleClick(currentPage + 1)}
         disabled={currentPage === totalPages}
         aria-label="Go to next page"
-        className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-primary bg-white text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-cream transition-colors"
+        className="w-11 h-11 flex items-center justify-center rounded-full border-2 border-primary bg-white text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-cream transition-colors"
       >
         <ChevronRight className="w-5 h-5" aria-hidden="true" />
       </motion.button>

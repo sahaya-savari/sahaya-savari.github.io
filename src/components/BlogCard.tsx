@@ -1,12 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, BookOpen } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import type { BlogPost } from '../types';
 import { formatDateShort } from '../utils/helpers';
+import { resolveBlogFallbackCover } from '../utils/blogImages';
 
 export default function BlogCard({ post }: { post: BlogPost }) {
-  const [imgError, setImgError] = useState(false);
+  const fallbackImage = useMemo(() => resolveBlogFallbackCover(post), [post]);
+  const [imageSrc, setImageSrc] = useState(fallbackImage);
+
+  useEffect(() => {
+    let isActive = true;
+
+    setImageSrc(fallbackImage);
+
+    if (!post.image || post.image === fallbackImage) {
+      return () => {
+        isActive = false;
+      };
+    }
+
+    const image = new Image();
+    image.decoding = 'async';
+    image.onload = () => {
+      if (isActive) {
+        setImageSrc(post.image);
+      }
+    };
+    image.onerror = () => {
+      if (isActive) {
+        setImageSrc(fallbackImage);
+      }
+    };
+    image.src = post.image;
+
+    return () => {
+      isActive = false;
+    };
+  }, [fallbackImage, post.image, post.slug]);
+
+  const handleImageError = () => {
+    setImageSrc(fallbackImage);
+  };
 
   return (
     <motion.div
@@ -16,25 +52,25 @@ export default function BlogCard({ post }: { post: BlogPost }) {
     >
       <Link
         to={`/blog/${post.slug}`}
-        className="card-brutal card-brutal-hover flex flex-col h-full overflow-hidden group"
+        className="card-brutal card-brutal-hover flex flex-col h-full overflow-hidden group min-w-0"
         aria-label={`Read ${post.title}`}
       >
         {/* Image */}
-        <div className="relative overflow-hidden flex-shrink-0">
-          {imgError ? (
-            /* Fallback placeholder */
-            <div className="w-full h-52 bg-cream flex items-center justify-center rounded-t-3xl border-b-ref border-border-muted">
-              <BookOpen className="w-12 h-12 text-primary/30" aria-hidden="true" />
-            </div>
-          ) : (
-            <img
-              src={post.image}
-              alt={post.title}
-              loading="lazy"
-              onError={() => setImgError(true)}
-              className="w-full h-52 object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-105"
-            />
-          )}
+        <div
+          className="relative overflow-hidden flex-shrink-0 bg-cover bg-center"
+          style={{ backgroundImage: `url("${fallbackImage}")` }}
+        >
+          <img
+            src={imageSrc}
+            alt={post.title}
+            loading="lazy"
+            decoding="async"
+            width={1200}
+            height={675}
+            sizes="(min-width: 1280px) 31vw, (min-width: 768px) 45vw, 100vw"
+            onError={handleImageError}
+            className="w-full h-48 sm:h-52 object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-105"
+          />
           {/* Category badge */}
           <span className="absolute top-4 left-4 badge-brutal">
             {post.category}
@@ -42,23 +78,24 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         </div>
 
         {/* Content — flex-grow ensures all cards stretch to same height */}
-        <div className="p-6 flex flex-col flex-grow">
-          <h3 className="font-display text-xl text-primary line-clamp-2 leading-tight">
+        <div className="p-5 sm:p-6 flex flex-col flex-grow min-w-0">
+          <h3 className="font-display text-xl text-primary line-clamp-2 leading-tight break-word">
             {post.title}
           </h3>
-          <p className="text-sm text-primary/60 line-clamp-3 mt-2 flex-grow">
+          <p className="text-sm text-primary/60 line-clamp-3 mt-2 flex-grow break-word">
             {post.excerpt}
           </p>
 
           {/* Meta row */}
-          <div className="flex items-center gap-3 mt-4 text-xs text-primary/50">
+          <div className="flex items-center gap-x-2 gap-y-2 mt-4 text-xs text-primary/50 flex-wrap min-w-0">
             <img
               src={post.authorAvatar}
               alt={post.author}
               loading="lazy"
+              decoding="async"
               className="w-7 h-7 rounded-full border-ref border-primary/20 object-cover flex-shrink-0"
             />
-            <span className="font-medium truncate">{post.author}</span>
+            <span className="font-medium truncate max-w-[9rem]">{post.author}</span>
             <span aria-hidden="true">•</span>
             <span className="whitespace-nowrap">{formatDateShort(post.date)}</span>
             <span aria-hidden="true">•</span>

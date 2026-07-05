@@ -18,11 +18,11 @@ export default function Home() {
   return (
     <>
       {/* ===== Hero Section ===== */}
-      <section
-        className="relative bg-background flex items-center overflow-hidden select-none w-full"
-        style={{ height: '840.3px', paddingTop: '67.46px' }}
-        aria-label="Hero"
-      >
+        <section
+          className="relative bg-background flex items-center overflow-hidden select-none w-full pt-28 md:pt-20 lg:pt-[67.46px]"
+          style={{ minHeight: 'clamp(500px, 100vh, 840.3px)' }}
+          aria-label="Hero"
+        >
         {/* SVG Book Illustrations */}
         <ClosedBookIllustration
           className="absolute hidden lg:block opacity-45 pointer-events-none"
@@ -76,18 +76,12 @@ export default function Home() {
         </motion.div>
 
         {/* Hero Content Container */}
-        <div className="w-full pl-6 md:pl-page-x relative z-10 flex flex-col justify-center h-full">
+        <div className="w-full px-4 md:px-page-x relative z-10 flex flex-col justify-center h-full">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-display text-primary uppercase select-none text-left tracking-tight"
-            style={{
-              fontSize: '152.1px',
-              lineHeight: '136.89px',
-              letterSpacing: '-3.042px',
-              maxWidth: '1073.5px',
-            }}
+            className="font-display text-hero text-primary uppercase select-none text-left text-balance"
           >
             CHART THE UNSEEN WORLDS
           </motion.h1>
@@ -96,13 +90,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="font-body text-primary font-medium text-left mt-10"
-            style={{
-              fontSize: '33.2719px',
-              lineHeight: '36.5991px',
-              letterSpacing: '-0.665438px',
-              maxWidth: '551.5px',
-            }}
+            className="font-body text-subtitle text-primary text-left mt-6 md:mt-10 max-w-[551.5px]"
           >
             A technical notebook on Python, Databases, Git, and Machine Learning by Sahaya Savari.
           </motion.p>
@@ -125,23 +113,17 @@ export default function Home() {
       <section
         id="about-blogger"
         className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-b-ref border-primary relative"
-        style={{ minHeight: '790.5px' }}
+        style={{ minHeight: 'clamp(500px, 80vh, 790.5px)' }}
         aria-label="About the blogger"
       >
         {/* Left Column - Yellow Background */}
-        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center relative min-h-[400px] md:min-h-0">
+        <div className="bg-gold p-6 md:p-col-pad flex flex-col justify-center relative min-h-[400px] md:min-h-0">
           <div className="max-w-[550px] mx-auto md:ml-auto md:mr-0 flex flex-col gap-6 items-start">
             <SectionLabel>About the Blogger</SectionLabel>
-            <h2
-              className="font-display text-primary uppercase leading-none"
-              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
-            >
+            <h2 className="font-display text-section-h2 text-primary uppercase leading-[0.98] lg:leading-none">
               Meet Your Fellow Voyager
             </h2>
-            <p
-              className="font-body text-primary font-medium"
-              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
-            >
+            <p className="font-body text-subtitle text-primary">
               I'm Sahaya Savari, your guide through Python programming and data engineering.
             </p>
             <p className="font-body text-body-lg text-primary/80 leading-relaxed">
@@ -151,25 +133,25 @@ export default function Home() {
         </div>
 
         {/* Right Column - White Background + Grid Paper */}
-        <GridBackground className="p-8 md:p-col-pad flex items-center justify-center min-h-[500px] md:min-h-0">
+        <GridBackground className="p-6 md:p-col-pad flex items-center justify-center min-h-[500px] md:min-h-0">
           {/* Photo Frame Wrapper */}
           <div
-            className="card-brutal bg-white p-4 select-none relative flex items-center justify-center"
+            className="card-brutal bg-white p-4 select-none relative flex items-center justify-center photo-frame"
             style={{
-              width: '509.56px',
-              height: '607.91px',
               border: '0.8px solid #7C4844',
               boxShadow: '8px 8px 0px 0px #652929',
             }}
           >
             <img
-              src="https://avatars.githubusercontent.com/u/104449853?v=4"
+              src="https://github.com/sahaya-savari.png?size=512"
               alt="Sahaya Savari portrait"
               loading="lazy"
-              className="object-cover border-ref border-border-muted"
+              decoding="async"
+              className="block object-cover border-ref border-border-muted"
               style={{
-                width: '470.67px',
-                height: '490.7px',
+                width: 'min(470.67px, calc(100% - 2rem))',
+                aspectRatio: '470.67 / 490.7',
+                height: 'auto',
               }}
             />
           </div>
@@ -190,20 +172,14 @@ export default function Home() {
       </section>
 
       {/* ===== Blog Highlights ===== */}
-      <section className="py-20 md:py-28 bg-cream-bg border-b-ref border-primary" aria-label="Blog highlights">
+      <section className="py-12 md:py-28 bg-cream-bg border-b-ref border-primary" aria-label="Blog highlights">
         <Container>
           <div className="flex flex-col items-center gap-6 text-center mb-16">
             <SectionLabel>Blog Highlights</SectionLabel>
-            <h2
-              className="font-display text-primary uppercase"
-              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
-            >
+            <h2 className="font-display text-section-h2 text-primary uppercase leading-[0.98] lg:leading-none">
               From the Travelog
             </h2>
-            <p
-              className="font-body text-primary font-medium"
-              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
-            >
+            <p className="font-body text-subtitle text-primary">
               Dive into our latest coding expeditions and discoveries
             </p>
           </div>
@@ -226,7 +202,7 @@ export default function Home() {
       {/* ===== Genre Spotlight ===== */}
       <section
         className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-b-ref border-primary"
-        style={{ minHeight: '789.6px' }}
+        style={{ minHeight: 'clamp(500px, 80vh, 789.6px)' }}
         aria-label="Genre spotlight"
       >
         {/* Left Column - Graphic/Illustration */}
@@ -240,19 +216,13 @@ export default function Home() {
         </div>
 
         {/* Right Column - Yellow Background */}
-        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center min-h-[400px] md:min-h-0">
+        <div className="bg-gold p-6 md:p-col-pad flex flex-col justify-center min-h-[400px] md:min-h-0">
           <div className="max-w-[550px] mx-auto md:mr-auto md:ml-0 flex flex-col gap-6 items-start">
             <SectionLabel>Genre Spotlight</SectionLabel>
-            <h2
-              className="font-display text-primary uppercase"
-              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
-            >
+            <h2 className="font-display text-section-h2 text-primary uppercase leading-[0.98] lg:leading-none">
               Realms of Wonder
             </h2>
-            <p
-              className="font-body text-primary font-medium"
-              style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px' }}
-            >
+            <p className="font-body text-subtitle text-primary">
               Chart your next escape
             </p>
             <p className="font-body text-body-lg text-primary/80 leading-relaxed">

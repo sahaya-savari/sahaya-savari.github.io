@@ -14,6 +14,14 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
   },
+  server: {
+    host: true,
+    allowedHosts: ['latitude-veal-carnival.ngrok-free.dev'],
+  },
+  preview: {
+    host: true,
+    allowedHosts: ['latitude-veal-carnival.ngrok-free.dev'],
+  },
   plugins: [
     mdx({
       include: /\.mdx$/,

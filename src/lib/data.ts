@@ -1,4 +1,5 @@
 import type { BlogPost, Category, Comment, Testimonial, TimelineEvent, Skill, Achievement } from '../types';
+import { resolveBlogCoverImage } from '../utils/blogImages';
 
 export const categories: Category[] = [
   {
@@ -8,7 +9,7 @@ export const categories: Category[] = [
     "description": "Master Python from scratch to data analytics and AI.",
     "color": "#3776AB",
     "icon": "Code",
-    "postCount": 4
+    "postCount": 5
   },
   {
     "id": "2",
@@ -198,7 +199,13 @@ export const blogPosts: BlogPost[] = Object.entries(mdxModules)
       authorAvatar: fm.authorAvatar,
       date: fm.date,
       readingTime: fm.readingTime,
-      image: fm.image,
+      image: resolveBlogCoverImage({
+        title: fm.title,
+        category: fm.category,
+        image: fm.image,
+        slug,
+        sourcePath: path,
+      }),
       featured: fm.featured,
       tags: fm.tags,
       draft: fm.draft ?? false,

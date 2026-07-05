@@ -11,7 +11,7 @@ interface BlogGridProps {
 
 export default function BlogGrid({ posts, title, showSectionHeader = false }: BlogGridProps) {
   return (
-    <div aria-label={title || 'Blog posts'}>
+    <div className="min-w-0" aria-label={title || 'Blog posts'}>
       {showSectionHeader && (
         <div className="mb-8 flex flex-col gap-2">
           <span className="section-label">The Blog</span>
@@ -28,7 +28,7 @@ export default function BlogGrid({ posts, title, showSectionHeader = false }: Bl
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 min-w-0">
           {posts.map((post, index) => (
             <motion.div
               key={post.id}

@@ -35,10 +35,11 @@ export default function Button({
   style,
 }: ButtonProps) {
   const classes = `${variantClasses[variant]} ${className}`;
+  const wrapperClassName = className.includes('w-full') ? 'w-full' : 'inline-block';
 
   if (to) {
     return (
-      <motion.div whileTap={{ scale: 0.98 }} className="inline-block">
+      <motion.div whileTap={{ scale: 0.98 }} className={wrapperClassName}>
         <Link to={to} className={classes} onClick={onClick} aria-label={ariaLabel} style={style}>
           {children}
         </Link>
@@ -48,7 +49,7 @@ export default function Button({
 
   if (href) {
     return (
-      <motion.div whileTap={{ scale: 0.98 }} className="inline-block">
+      <motion.div whileTap={{ scale: 0.98 }} className={wrapperClassName}>
         <a
           href={href}
           className={classes}
@@ -65,7 +66,7 @@ export default function Button({
   }
 
   return (
-    <motion.div whileTap={{ scale: 0.98 }} className="inline-block">
+    <motion.div whileTap={{ scale: 0.98 }} className={wrapperClassName}>
       <button type={type} onClick={onClick} className={classes} aria-label={ariaLabel} style={style}>
         {children}
       </button>

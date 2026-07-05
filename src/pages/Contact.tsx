@@ -17,7 +17,7 @@ export default function Contact() {
       {/* ===== Hero ===== */}
       <section
         className="bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full border-b-ref border-primary"
-        style={{ minHeight: '360px', paddingTop: '120px', paddingBottom: '60px' }}
+        style={{ minHeight: 'clamp(300px, 40vh, 360px)', paddingTop: 'clamp(90px, 12vw, 120px)', paddingBottom: 'clamp(30px, 5vw, 60px)' }}
         aria-labelledby="contact-hero-heading"
       >
         <Container className="flex flex-col items-center gap-6">
@@ -27,8 +27,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-display text-primary uppercase text-center"
-            style={{ fontSize: '76.05px', letterSpacing: '-1.521px' }}
+            className="font-display text-section-h2 text-primary uppercase text-center leading-[0.98] lg:leading-none"
           >
             Send a Dispatch
           </motion.h1>
@@ -36,8 +35,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-primary font-medium text-center"
-            style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px', maxWidth: '700px' }}
+            className="font-body text-subtitle text-primary text-center max-w-[700px]"
           >
             For collaborations, questions, or to share your own learning journey.
           </motion.p>
@@ -47,18 +45,17 @@ export default function Contact() {
       {/* ===== Contact Info + Form Split Layout ===== */}
       <section
         className="w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-b-ref border-primary relative"
-        style={{ minHeight: '790.5px' }}
+        style={{ minHeight: 'clamp(500px, 80vh, 790.5px)' }}
         aria-labelledby="contact-info-heading"
       >
         {/* Left Column - White Background + Grid Paper */}
-        <GridBackground className="p-8 md:p-col-pad flex flex-col justify-center border-r-ref border-primary">
+        <GridBackground className="p-6 md:p-col-pad flex flex-col justify-center border-r-ref border-primary">
           <div className="max-w-[550px] mx-auto md:ml-auto md:mr-0 flex flex-col gap-8 items-start">
             <SectionLabel>Let's Connect</SectionLabel>
             
             <h2
               id="contact-info-heading"
-              className="font-display text-primary uppercase leading-none"
-              style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
+              className="font-display text-section-h2 text-primary uppercase leading-[0.98] lg:leading-none"
             >
               Have a learning query or collaboration idea?
             </h2>
@@ -100,10 +97,10 @@ export default function Contact() {
         </GridBackground>
 
         {/* Right Column - Gold Background with Form */}
-        <div className="bg-gold p-8 md:p-col-pad flex flex-col justify-center min-h-[500px] md:min-h-0">
+        <div className="bg-gold p-6 md:p-col-pad flex flex-col justify-center min-h-[500px] md:min-h-0">
           <div className="max-w-[550px] mx-auto md:mr-auto md:ml-0 w-full flex flex-col gap-6">
             <SectionLabel>Send Message</SectionLabel>
-            <div className="card-brutal bg-white p-8 w-full border-ref border-primary" style={{ boxShadow: '8px 8px 0px 0px #652929' }}>
+            <div className="card-brutal bg-white p-6 md:p-8 w-full border-ref border-primary" style={{ boxShadow: '8px 8px 0px 0px #652929' }}>
               <ContactForm />
             </div>
           </div>

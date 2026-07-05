@@ -21,19 +21,19 @@ export default {
         'border-muted': '#7C4844',
       },
       fontFamily: {
-        display: ['Impact', '"Arial Black"', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
         body: ['"Inter"', 'system-ui', 'sans-serif'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       fontSize: {
-        'hero': ['152.1px', { lineHeight: '136.89px', letterSpacing: '-3.042px', fontWeight: '700' }],
-        'section-h2': ['76.05px', { lineHeight: '72.2475px', letterSpacing: '-1.521px', fontWeight: '700' }],
-        'section-h3': ['38.025px', { lineHeight: '41.8275px', fontWeight: '700' }],
-        'subtitle': ['33.2719px', { lineHeight: '36.5991px', letterSpacing: '-0.665438px', fontWeight: '500' }],
-        'body-lg': ['21.3891px', { lineHeight: '29.9447px', fontWeight: '400' }],
-        'body-md': ['19.0125px', { lineHeight: '26.6175px', fontWeight: '400' }],
-        'body-sm': ['16px', { lineHeight: '24px', fontWeight: '400' }],
-        'label': ['14px', { lineHeight: '19.6px', fontWeight: '400' }],
+        'hero': ['clamp(2.75rem, 0.42vw + 2.4rem, 9.50625rem)', { lineHeight: '0.94', letterSpacing: '-1.1px', fontWeight: '700' }],
+        'section-h2': ['clamp(2rem, 0.21vw + 1.33rem, 4.753125rem)', { lineHeight: '0.98', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'section-h3': ['clamp(1.375rem, 0.07vw + 1.15rem, 2.3765625rem)', { lineHeight: '1.12', fontWeight: '700' }],
+        'subtitle': ['clamp(1.125rem, 0.065vw + 0.92rem, 2.07949375rem)', { lineHeight: '1.1', letterSpacing: '-0.665438px', fontWeight: '500' }],
+        'body-lg': ['clamp(0.9375rem, 0.03vw + 0.84rem, 1.33681875rem)', { lineHeight: '1.4', fontWeight: '400' }],
+        'body-md': ['clamp(0.875rem, 0.025vw + 0.80rem, 1.18828125rem)', { lineHeight: '1.4', fontWeight: '400' }],
+        'body-sm': ['clamp(0.875rem, 0.015vw + 0.83rem, 1rem)', { lineHeight: '1.5', fontWeight: '400' }],
+        'label': ['clamp(0.8125rem, 0.01vw + 0.78rem, 0.875rem)', { lineHeight: '1.4', fontWeight: '400' }],
       },
       boxShadow: {
         'brutal': '8px 8px 0px 0px #652929',
@@ -72,8 +72,11 @@ export default {
       },
       spacing: {
         'page-x': '73px',
+        'page-x-sm': '16px',
         'col-pad': '48px',
+        'col-pad-sm': '24px',
         'navbar-top': '48px',
+        'navbar-top-sm': '24px',
       },
       maxWidth: {
         'navbar': '1390px',
@@ -84,6 +87,7 @@ export default {
       height: {
         'navbar': '67.46px',
         'hero': '840px',
+        'hero-sm': '600px',
       },
       width: {
         'logo': '57px',

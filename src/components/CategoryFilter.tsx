@@ -9,7 +9,7 @@ export default function CategoryFilter({ categories, selectedCategory, onSelect 
 
   return (
     <div
-      className="flex flex-wrap gap-2.5"
+      className="flex flex-wrap gap-2.5 min-w-0"
       role="group"
       aria-label="Filter posts by category"
     >
@@ -20,7 +20,7 @@ export default function CategoryFilter({ categories, selectedCategory, onSelect 
             key={category}
             onClick={() => onSelect(category)}
             aria-pressed={isActive}
-            className={`rounded-badge px-5 py-2.5 text-sm font-semibold border-ref border-primary transition-all duration-200 cursor-pointer ${
+            className={`min-h-[44px] rounded-badge px-4 sm:px-5 py-2.5 text-sm font-semibold border-ref border-primary transition-all duration-200 cursor-pointer ${
               isActive
                 ? 'bg-primary text-white'
                 : 'bg-white text-primary hover:bg-cream'

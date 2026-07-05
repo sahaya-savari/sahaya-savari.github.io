@@ -145,7 +145,209 @@ As an AI agent operating on this project, you must:
 
 ---
 
-## 14. Verification Checklist
+## 14. Project Philosophy
+
+- Treat every project as a production-quality software project.
+- Never prioritize speed over correctness.
+- Always preserve existing architecture unless explicitly instructed to refactor.
+- Avoid unnecessary rewrites.
+- Always make the smallest possible change.
+
+## 15. Workflow
+
+For every task:
+
+1. Understand the entire feature before editing.
+2. Read all related files.
+3. Identify root cause.
+4. Explain planned changes.
+5. Make minimal edits.
+6. Verify locally.
+7. Build the project.
+8. Check runtime.
+9. Stop and report.
+
+Never skip verification.
+
+## 16. Responsive Design
+
+When asked to improve responsiveness:
+
+- Never redesign.
+- Preserve desktop appearance.
+- Preserve branding.
+- Preserve typography personality.
+- Preserve animations.
+- Preserve layout hierarchy.
+- Preserve spacing philosophy.
+
+Support:
+
+320
+360
+375
+390
+412
+430
+480
+576
+768
+820
+1024
+1280
+1440
+1920
+
+Verify:
+
+✓ no horizontal scrolling
+
+✓ no clipped headings
+
+✓ no navbar overlap
+
+✓ no overflowing cards
+
+✓ responsive images
+
+✓ responsive typography
+
+✓ proper touch targets
+
+## 17. Typography
+
+Typography is part of the design language.
+
+Never blindly replace font sizes.
+
+Avoid:
+
+- giant headings
+- tiny text
+- clipped letters
+- excessive wrapping
+- overly aggressive clamp() scaling
+
+Desktop typography should remain visually identical unless instructed otherwise.
+
+## 18. Visual Polish
+
+Prefer refinement over redesign.
+
+Improve:
+
+- alignment
+- spacing
+- visual balance
+- consistent padding
+- consistent margins
+- button alignment
+- card alignment
+- content hierarchy
+
+Only add visuals when they improve the experience.
+
+Avoid decorative clutter.
+
+## 19. Images
+
+Never distort images.
+
+Always:
+
+- object-fit: cover
+- maintain aspect ratio
+- prevent overflow
+- preserve quality
+
+## 20. Code Quality
+
+Prefer maintainable code.
+
+- Avoid duplication.
+- Avoid unnecessary abstraction.
+- Avoid changing unrelated files.
+- Avoid renaming components without reason.
+
+## 21. Debugging
+
+When fixing bugs:
+
+- Find the root cause.
+- Never hide the symptom.
+- Never rewrite large components to fix a small issue.
+
+## 22. Build Verification
+
+Before marking any task complete:
+
+Run:
+
+`npm run build`
+
+If available:
+
+`npm run test`
+
+Run:
+
+`npm run preview`
+
+Check browser rendering.
+
+Check console.
+
+Verify responsive layouts.
+
+## 23. Git Workflow
+
+- Never commit automatically.
+- Never push automatically.
+- Always wait for my approval before:
+  - `git add`
+  - `git commit`
+  - `git push`
+
+## 24. Communication
+
+- Be concise.
+- Do not over-explain.
+- Report:
+  - What changed
+  - Why
+  - Files modified
+  - Verification completed
+  - Remaining manual testing
+
+## 25. When Unsure
+
+If uncertain:
+
+- Read more code.
+- Ask for clarification.
+- Never guess.
+
+## 26. Final Rule
+
+Do not declare success until:
+
+✓ Build succeeds
+
+✓ Runtime verified
+
+✓ No console errors
+
+✓ Responsive verification completed
+
+✓ Desktop appearance preserved
+
+✓ Mobile tested
+
+✓ No regressions introduced
+
+---
+
+## 27. Verification Checklist
 
 Use this checklist to validate your output before completing the task:
 

@@ -65,7 +65,7 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
   return (
     <section className="mt-12" aria-label="Comments section">
       {/* Heading */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-6 flex-wrap">
         <h2 className="font-display text-2xl text-primary">Comments</h2>
         <span className="bg-yellow rounded-full px-3 py-0.5 text-xs font-bold text-primary border-2 border-primary">
           {commentList.length}
@@ -82,12 +82,13 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="flex gap-4"
+              className="flex gap-4 min-w-0"
             >
               <img
                 src={comment.avatar}
                 alt={comment.name}
                 loading="lazy"
+                decoding="async"
                 className="w-12 h-12 rounded-full border-2 border-primary/20 object-cover flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
@@ -103,7 +104,7 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
       </div>
 
       {/* Comment form */}
-      <form onSubmit={handleSubmit} className="card-brutal p-6 mt-8 space-y-4" noValidate>
+      <form onSubmit={handleSubmit} className="card-brutal p-5 md:p-6 mt-8 space-y-4 min-w-0" noValidate>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="comment-name" className="block text-sm font-semibold text-primary mb-1">
@@ -166,7 +167,7 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
             </p>
           )}
         </div>
-        <button type="submit" className="btn-primary">
+        <button type="submit" className="btn-primary w-full sm:w-auto">
           Post Comment
         </button>
       </form>

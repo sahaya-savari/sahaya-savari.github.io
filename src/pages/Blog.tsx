@@ -75,21 +75,21 @@ export default function Blog() {
   const categoryNames = categories.map((c) => c.name);
 
   return (
-    <div className="bg-background">
+    <div className="bg-background overflow-x-hidden">
       {/* ── Hero Header ── */}
-      <header className="py-12 md:py-16 bg-background">
+      <header className="pt-28 pb-10 sm:pt-32 md:pt-36 md:pb-16 bg-background">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center text-center"
+            className="flex flex-col items-center text-center min-w-0"
           >
             <span className="section-label">From the Travelog</span>
-            <h1 className="font-display text-5xl md:text-7xl text-primary mt-3">
+            <h1 className="font-display text-section-h2 text-primary mt-3 leading-[0.98] lg:leading-none break-word">
               Blog
             </h1>
-            <p className="text-center text-primary/60 mt-3 max-w-xl font-body text-body-lg">
+            <p className="text-center text-primary/60 mt-3 max-w-xl font-body text-body-lg break-word">
               Dive into our latest literary expeditions and discoveries
             </p>
           </motion.div>
@@ -101,7 +101,7 @@ export default function Blog() {
         <section className="pb-10 bg-background" aria-label="Featured posts">
           <Container>
             <span className="section-label">Featured Posts</span>
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mt-6 min-w-0">
               {featuredPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
@@ -119,7 +119,7 @@ export default function Blog() {
       )}
 
       {/* ── Search + Filter + Grid ── */}
-      <section className="py-10 bg-cream" aria-label="All blog posts">
+      <section className="py-8 md:py-10 bg-cream overflow-hidden" aria-label="All blog posts">
         <Container>
           {/* Search */}
           <div className="mb-6">

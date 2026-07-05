@@ -51,10 +51,10 @@ export default function Newsletter() {
   return (
     <section
       className="relative bg-background border-t-ref border-b-ref border-primary flex items-center justify-center overflow-hidden grid-paper w-full"
-      style={{ minHeight: '759px' }}
+      style={{ minHeight: 'clamp(500px, 90vh, 759px)' }}
       aria-label="Newsletter signup"
     >
-      <div className="w-full max-w-content px-page-x py-16 flex flex-col items-center text-center">
+      <div className="w-full max-w-content px-4 md:px-page-x py-10 md:py-16 flex flex-col items-center text-center min-w-0">
         <AnimatePresence mode="wait">
           {submitted ? (
             <motion.div
@@ -85,27 +85,21 @@ export default function Newsletter() {
               key="form"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full flex flex-col items-center"
+              className="w-full flex flex-col items-center min-w-0"
             >
               <SectionLabel className="mb-6">Newsletter</SectionLabel>
               
-              <h2
-                className="font-display text-primary leading-none uppercase mb-6"
-                style={{ fontSize: '76.05px', lineHeight: '72.2475px', letterSpacing: '-1.521px' }}
-              >
+              <h2 className="font-display text-section-h2 text-primary leading-[0.98] lg:leading-none uppercase mb-6 break-word">
                 JOIN THE EXPEDITION
               </h2>
               
-              <p
-                className="font-body text-primary font-medium mb-12"
-                style={{ fontSize: '33.2719px', lineHeight: '36.5991px', maxWidth: '730.5px' }}
-              >
+              <p className="font-body text-subtitle text-primary mb-8 md:mb-12 max-w-[730.5px] break-word">
                 Get new coding tutorials and curated reading lists delivered straight to your inbox.
               </p>
 
               <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-[754px] flex flex-col gap-6 text-left"
+                className="w-full max-w-full sm:max-w-[754px] flex flex-col gap-6 text-left px-0"
                 noValidate
               >
                 {/* Email Label + Input */}
@@ -121,7 +115,7 @@ export default function Newsletter() {
                     placeholder="your@email.com"
                     className="input-ref w-full bg-white border-ref border-primary text-primary placeholder:text-primary/40 focus:outline-none"
                     style={{
-                      height: '41.6px',
+                      minHeight: '48px',
                       borderRadius: '24px',
                     }}
                     aria-invalid={!!errors.email}
@@ -164,7 +158,7 @@ export default function Newsletter() {
                   type="submit"
                   className="w-full bg-primary text-white font-body font-medium hover:opacity-90 active:scale-[0.99] transition-all flex items-center justify-center cursor-pointer mt-4"
                   style={{
-                    height: '42.8px',
+                    minHeight: '48px',
                     borderRadius: '100px',
                     fontSize: '16px',
                     border: '0.8px solid #652929',

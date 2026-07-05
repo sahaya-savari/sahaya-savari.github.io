@@ -62,15 +62,14 @@ export default function Newsletter() {
       {/* Hero */}
       <section
         className="bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full border-b-ref border-primary"
-        style={{ minHeight: '360px', paddingTop: '120px', paddingBottom: '60px' }}
+        style={{ minHeight: 'clamp(300px, 40vh, 360px)', paddingTop: 'clamp(90px, 12vw, 120px)', paddingBottom: 'clamp(30px, 5vw, 60px)' }}
         aria-labelledby="newsletter-hero-heading"
       >
         <Container className="flex flex-col items-center gap-6">
           <SectionLabel>Newsletter</SectionLabel>
           <motion.h1
             id="newsletter-hero-heading"
-            className="font-display text-primary uppercase text-center"
-            style={{ fontSize: '76.05px', letterSpacing: '-1.521px' }}
+            className="font-display text-section-h2 text-primary uppercase text-center"
           >
             JOIN THE EXPEDITION
           </motion.h1>
@@ -78,8 +77,7 @@ export default function Newsletter() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-primary font-medium text-center"
-            style={{ fontSize: '33.2719px', lineHeight: '36.5991px', letterSpacing: '-0.665438px', maxWidth: '700px' }}
+            className="font-body text-subtitle text-primary text-center max-w-[700px]"
           >
             Get new coding tutorials and curated reading lists delivered straight to your inbox.
           </motion.p>
@@ -87,7 +85,7 @@ export default function Newsletter() {
       </section>
 
       {/* Form Card */}
-      <section className="bg-background py-12" aria-labelledby="newsletter-form-heading">
+      <section className="bg-background py-8 md:py-12" aria-labelledby="newsletter-form-heading">
         <Container>
           <h2 id="newsletter-form-heading" className="sr-only">
             Newsletter Sign Up Form
@@ -99,7 +97,7 @@ export default function Newsletter() {
             transition={{ duration: 0.5 }}
             className="max-w-2xl mx-auto"
           >
-            <div className="card-brutal p-8 md:p-12 bg-white" style={{ border: '0.8px solid #7C4844', boxShadow: '8px 8px 0px 0px #652929' }}>
+            <div className="card-brutal p-6 md:p-12 bg-white" style={{ border: '0.8px solid #7C4844', boxShadow: '8px 8px 0px 0px #652929' }}>
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -207,7 +205,7 @@ export default function Newsletter() {
       </section>
 
       {/* Benefits */}
-      <section className="bg-cream py-12" aria-labelledby="benefits-heading">
+      <section className="bg-cream py-8 md:py-12" aria-labelledby="benefits-heading">
         <Container>
           <h2 id="benefits-heading" className="sr-only">
             Newsletter Benefits

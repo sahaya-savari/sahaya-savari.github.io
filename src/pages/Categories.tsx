@@ -33,7 +33,7 @@ export default function Categories() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-background py-16 md:py-24" aria-labelledby="categories-hero-heading">
+      <section className="bg-background py-8 md:py-16" aria-labelledby="categories-hero-heading">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,11 +44,11 @@ export default function Categories() {
             <span className="section-label">Browse by Genre</span>
             <h1
               id="categories-hero-heading"
-              className="display-text font-display text-5xl md:text-7xl text-primary mt-4"
+              className="display-text font-display text-section-h2 text-primary mt-4"
             >
               Explore Genres
             </h1>
-            <p className="text-lg md:text-xl text-primary/60 mt-4 font-body">
+            <p className="text-subtitle text-primary/60 mt-4 font-body">
               Chart your next literary adventure by genre
             </p>
           </motion.div>
@@ -56,12 +56,12 @@ export default function Categories() {
       </section>
 
       {/* Category Grid */}
-      <section className="bg-background py-12 md:py-20" aria-labelledby="categories-grid-heading">
+      <section className="bg-background py-8 md:py-20" aria-labelledby="categories-grid-heading">
         <Container>
           <h2 id="categories-grid-heading" className="sr-only">
             Category Grid
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
             {categories.map((category, index) => {
               const Icon = iconMap[category.icon] || BookOpen;
               return (
@@ -114,7 +114,7 @@ export default function Categories() {
       </section>
 
       {/* CTA */}
-      <section className="bg-cream py-12" aria-labelledby="categories-cta-heading">
+      <section className="bg-cream py-8 md:py-12" aria-labelledby="categories-cta-heading">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

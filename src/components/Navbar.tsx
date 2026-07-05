@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -14,6 +14,16 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-body text-body-lg text-primary relative transition-colors duration-200 py-1 ${
       isActive
@@ -22,13 +32,13 @@ export default function Navbar() {
     }`;
 
   return (
-    <header className="absolute top-navbar-top left-0 w-full z-50 px-4 md:px-page-x flex justify-center">
+    <header className="absolute left-0 w-full z-50 flex justify-center px-3 sm:px-4 md:px-page-x pt-[max(1rem,env(safe-area-inset-top))] md:pt-navbar-top">
       {/* Navbar Container Pill */}
       <div 
-        className="w-full max-w-navbar bg-white border-ref border-border-muted rounded-navbar flex items-center justify-between px-2 py-1.5 transition-all duration-300"
+        className="w-full max-w-navbar bg-white border-ref border-border-muted rounded-navbar flex items-center justify-between px-2 py-1.5 transition-all duration-300 min-w-0"
         style={{
           boxShadow: '8px 8px 0px 0px #652929',
-          height: '67.46px',
+          minHeight: '67.46px',
         }}
       >
         {/* Logo Badge */}
@@ -42,7 +52,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-12">
+        <div className="hidden md:flex items-center gap-7 lg:gap-12 min-w-0">
           {navLinks.map((link) => (
             <NavLink key={link.path} to={link.path} className={linkClass}>
               {link.label}
@@ -51,7 +61,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA Button */}
-        <div className="hidden md:block" style={{ marginRight: '6px' }}>
+        <div className="hidden lg:block shrink-0" style={{ marginRight: '6px' }}>
           <Button
             variant="gold"
             to="/blog"
@@ -73,7 +83,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden p-3 text-primary"
+          className="md:hidden p-3 text-primary min-h-[44px] min-w-[44px] flex items-center justify-center"
           onClick={() => setIsOpen(true)}
           aria-label="Open menu"
           aria-expanded={isOpen}
@@ -90,7 +100,11 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-white md:hidden flex flex-col p-6"
+            className="fixed inset-0 z-50 bg-white md:hidden flex flex-col overflow-y-auto p-4 sm:p-6"
+            style={{
+              paddingTop: 'calc(1rem + env(safe-area-inset-top, 0px))',
+              paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))',
+            }}
           >
             {/* Header in Drawer */}
             <div className="flex items-center justify-between pb-6 border-b border-primary/10">
@@ -104,7 +118,7 @@ export default function Navbar() {
                 <span className="text-white font-display text-[32px] leading-none mb-1">S</span>
               </Link>
               <button
-                className="p-3 text-primary"
+                className="p-3 text-primary min-h-[44px] min-w-[44px] flex items-center justify-center"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close menu"
               >
@@ -113,13 +127,13 @@ export default function Navbar() {
             </div>
 
             {/* Menu items in Drawer */}
-            <div className="flex flex-col gap-8 mt-12 items-center">
+            <div className="flex flex-col gap-7 sm:gap-8 mt-10 sm:mt-12 items-center">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.path}
                   to={link.path}
                   className={({ isActive }) =>
-                    `font-display text-4xl text-primary tracking-wide ${
+                    `font-display text-3xl sm:text-4xl text-primary tracking-wide min-h-[44px] inline-flex items-center ${
                       isActive ? 'underline underline-offset-8 decoration-4' : 'opacity-70'
                     }`
                   }
@@ -131,7 +145,7 @@ export default function Navbar() {
             </div>
 
             {/* Drawer CTA button */}
-            <div className="mt-auto w-full pb-8">
+            <div className="mt-auto w-full pb-[max(2rem,env(safe-area-inset-bottom))]">
               <Button
                 variant="gold"
                 to="/blog"
