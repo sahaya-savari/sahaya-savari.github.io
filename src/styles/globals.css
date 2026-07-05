@@ -91,6 +91,12 @@
     padding: 6px 24px;
   }
 
+  /* Badge — category / tag pill on cards and blog content */
+  .badge-brutal {
+    @apply inline-flex items-center gap-1 bg-cream text-primary font-body text-sm font-semibold rounded-badge border-ref border-border-muted;
+    padding: 4px 12px;
+  }
+
   /* Input */
   .input-ref {
     @apply w-full bg-white border-ref border-primary rounded-input font-body text-body-sm text-primary placeholder:text-primary/40 focus:outline-none transition-all duration-200;
@@ -127,45 +133,111 @@
     background-size: 40px 40px;
   }
 
-  /* Prose for blog content */
+  /* ─── Blog Article Prose ─── */
+  /* These are the authoritative styles for MDX content inside .prose-custom */
+
+  .prose-custom {
+    @apply max-w-none;
+  }
+
+  .prose-custom h1 {
+    /* H1 inside MDX falls through here as a safety net */
+    @apply font-display text-section-h3 text-primary mt-12 mb-4 scroll-mt-28;
+  }
+
   .prose-custom h2 {
-    @apply font-display text-section-h3 text-primary mt-12 mb-4;
+    @apply font-display text-section-h3 text-primary mt-12 mb-4 scroll-mt-28;
   }
+
   .prose-custom h3 {
-    @apply font-display text-body-lg text-primary mt-8 mb-3 font-bold;
+    @apply font-display text-2xl text-primary mt-8 mb-3 scroll-mt-28;
   }
+
+  .prose-custom h4 {
+    @apply font-display text-xl text-primary mt-6 mb-2 scroll-mt-28;
+  }
+
   .prose-custom p {
     @apply font-body text-body-lg text-primary/80 leading-relaxed mb-6;
   }
+
   .prose-custom ul {
-    @apply list-disc list-inside mb-6 space-y-2;
+    @apply mb-6 space-y-2;
+    list-style: none;
+    padding-left: 0;
   }
+
   .prose-custom ol {
-    @apply list-decimal list-inside mb-6 space-y-2;
+    @apply list-decimal pl-6 mb-6 space-y-2;
   }
+
   .prose-custom li {
     @apply font-body text-body-lg text-primary/80;
   }
+
+  .prose-custom ul > li {
+    @apply flex items-start gap-3;
+  }
+
+  .prose-custom ul > li > *:first-child {
+    /* bullet dot */
+    flex-shrink: 0;
+    margin-top: 0.55em;
+  }
+
   .prose-custom blockquote {
     @apply border-l-4 border-gold bg-cream p-6 rounded-r-xl my-8;
   }
+
   .prose-custom blockquote p {
     @apply font-serif italic text-xl text-primary mb-0;
   }
-  .prose-custom code {
-    @apply bg-cream text-primary px-2 py-1 rounded-md font-mono text-sm border-ref border-primary/20;
+
+  /* Inline code — inside any element that is NOT a pre */
+  .prose-custom :not(pre) > code {
+    @apply bg-cream text-primary px-2 py-0.5 rounded-md font-mono text-sm border-ref border-primary/20;
   }
+
+  /* Code block pre wrapper */
   .prose-custom pre {
-    @apply bg-primary text-white p-6 rounded-xl overflow-x-auto my-6 border-ref border-primary shadow-brutal;
+    @apply rounded-xl overflow-x-auto my-8 border-ref border-primary shadow-brutal;
+    /* Prism theme handles background/text; we handle layout */
+    padding: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
   }
+
+  /* Code inside pre — let Prism theme take full control */
   .prose-custom pre code {
-    @apply bg-transparent text-white border-0 p-0;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: inherit;
+    color: inherit;
   }
+
   .prose-custom img {
-    @apply rounded-xl border-ref border-primary shadow-brutal my-8 w-full;
+    @apply rounded-xl border-ref border-primary shadow-brutal my-8 w-full h-auto;
   }
+
   .prose-custom a {
-    @apply text-primary font-semibold underline decoration-gold decoration-2 underline-offset-4 hover:decoration-primary;
+    @apply text-primary font-semibold underline decoration-gold decoration-2 underline-offset-4 hover:decoration-primary transition-all;
+  }
+
+  .prose-custom table {
+    @apply w-full border-collapse;
+  }
+
+  .prose-custom hr {
+    @apply border-primary/20 my-10;
+  }
+
+  .prose-custom strong {
+    @apply font-semibold text-primary;
+  }
+
+  .prose-custom em {
+    @apply italic;
   }
 }
 
@@ -196,3 +268,4 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, Suspense, type ReactNode } from 'react';
+import { useState, useMemo, useEffect, useRef, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -11,6 +11,7 @@ import {
   Facebook,
   Linkedin,
   BookOpen,
+  List,
 } from 'lucide-react';
 import Container from '../components/Container';
 import BlogCard from '../components/BlogCard';
@@ -20,330 +21,192 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { blogPosts, postComponents } from '../lib/data';
 import { formatDate } from '../utils/helpers';
 
-/* ── Markdown-to-JSX Renderer ─────────────────────────────────────────── */
-
 interface TocItem {
   id: string;
   text: string;
   level: number;
 }
 
-function slugifyHeading(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-}
-
-/** Parse inline markdown: **bold**, *italic*, [text](url), ![alt](url) */
-function renderInline(text: string, keyPrefix: string): ReactNode[] {
-  const nodes: ReactNode[] = [];
-  let remaining = text;
-  let keyIdx = 0;
-
-  const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/;
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
-  const codeRegex = /`([^`]+)`/;
-  const boldRegex = /\*\*([^*]+)\*\*/;
-  const italicRegex = /\*([^*]+)\*/;
-
-  while (remaining.length > 0) {
-    const candidates: { regex: RegExp; type: string }[] = [
-      { regex: imageRegex, type: 'image' },
-      { regex: linkRegex, type: 'link' },
-      { regex: codeRegex, type: 'code' },
-      { regex: boldRegex, type: 'bold' },
-      { regex: italicRegex, type: 'italic' },
-    ];
-
-    let earliestMatch: RegExpExecArray | null = null;
-    let earliestType = '';
-    let earliestStart = remaining.length;
-
-    for (const candidate of candidates) {
-      const match = candidate.regex.exec(remaining);
-      if (match && match.index < earliestStart) {
-        earliestStart = match.index;
-        earliestMatch = match;
-        earliestType = candidate.type;
-      }
-    }
-
-    if (!earliestMatch) {
-      if (remaining.length > 0) {
-        nodes.push(<span key={`${keyPrefix}-text-${keyIdx}`}>{remaining}</span>);
-      }
-      break;
-    }
-
-    if (earliestMatch.index > 0) {
-      nodes.push(
-        <span key={`${keyPrefix}-text-${keyIdx}`}>{remaining.slice(0, earliestMatch.index)}</span>
-      );
-      keyIdx++;
-    }
-
-    const key = `${keyPrefix}-${earliestType}-${keyIdx}`;
-    keyIdx++;
-
-    if (earliestType === 'image') {
-      nodes.push(
-        <img
-          key={key}
-          src={earliestMatch[2]}
-          alt={earliestMatch[1]}
-          loading="lazy"
-          className="rounded-xl border-ref border-primary my-4 w-full h-auto object-cover"
-        />
-      );
-    } else if (earliestType === 'link') {
-      nodes.push(
-        <a
-          key={key}
-          href={earliestMatch[2]}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary font-bold underline decoration-2 underline-offset-2 hover:text-primary/70"
-        >
-          {earliestMatch[1]}
-        </a>
-      );
-    } else if (earliestType === 'code') {
-      nodes.push(
-        <code
-          key={key}
-          className="bg-primary text-cream px-1.5 py-0.5 rounded font-mono text-xs border border-primary/20"
-        >
-          {earliestMatch[1]}
-        </code>
-      );
-    } else if (earliestType === 'bold') {
-      nodes.push(
-        <strong key={key} className="font-bold text-primary">
-          {earliestMatch[1]}
-        </strong>
-      );
-    } else if (earliestType === 'italic') {
-      nodes.push(
-        <em key={key} className="italic">
-          {earliestMatch[1]}
-        </em>
-      );
-    }
-
-    remaining = remaining.slice(earliestMatch.index + earliestMatch[0].length);
-  }
-
-  return nodes;
-}
-
-/** Parse full markdown content into JSX elements and extract TOC headings */
-function renderMarkdown(content: string): { jsx: ReactNode[]; toc: TocItem[] } {
-  const lines = content.split('\n');
-  const jsx: ReactNode[] = [];
-  const toc: TocItem[] = [];
-  let keyIdx = 0;
-
-  let i = 0;
-  while (i < lines.length) {
-    const line = lines[i];
-
-    // Skip empty lines
-    if (line.trim() === '') {
-      i++;
-      continue;
-    }
-
-    // Code block: ```lang ... ```
-    if (line.trim().startsWith('```')) {
-      const codeLines: string[] = [];
-      i++;
-      while (i < lines.length && !lines[i].trim().startsWith('```')) {
-        codeLines.push(lines[i]);
-        i++;
-      }
-      i++; // skip closing ```
-      jsx.push(
-        <pre
-          key={`code-${keyIdx}`}
-          className="bg-primary text-cream rounded-xl p-4 overflow-x-auto my-6 font-mono text-sm border-ref border-primary"
-        >
-          <code>{codeLines.join('\n')}</code>
-        </pre>
-      );
-      keyIdx++;
-      continue;
-    }
-
-    // H2: ## Heading
-    if (line.startsWith('## ')) {
-      const text = line.slice(3).trim();
-      const id = slugifyHeading(text);
-      toc.push({ id, text, level: 2 });
-      jsx.push(
-        <h2
-          key={`h2-${keyIdx}`}
-          id={id}
-          className="font-display text-2xl md:text-3xl text-primary mt-10 mb-4 scroll-mt-24"
-        >
-          {renderInline(text, `h2-${keyIdx}`)}
-        </h2>
-      );
-      keyIdx++;
-      i++;
-      continue;
-    }
-
-    // H3: ### Heading
-    if (line.startsWith('### ')) {
-      const text = line.slice(4).trim();
-      const id = slugifyHeading(text);
-      toc.push({ id, text, level: 3 });
-      jsx.push(
-        <h3
-          key={`h3-${keyIdx}`}
-          id={id}
-          className="font-display text-xl md:text-2xl text-primary mt-8 mb-3 scroll-mt-24"
-        >
-          {renderInline(text, `h3-${keyIdx}`)}
-        </h3>
-      );
-      keyIdx++;
-      i++;
-      continue;
-    }
-
-    // Blockquote: > text
-    if (line.startsWith('> ')) {
-      const quoteLines: string[] = [];
-      while (i < lines.length && lines[i].startsWith('> ')) {
-        quoteLines.push(lines[i].slice(2));
-        i++;
-      }
-      jsx.push(
-        <blockquote
-          key={`quote-${keyIdx}`}
-          className="border-l-4 border-primary bg-yellow/20 pl-6 pr-4 py-4 my-6 rounded-r-xl"
-        >
-          <p className="font-serif text-lg italic text-primary/90">
-            {renderInline(quoteLines.join(' '), `quote-${keyIdx}`)}
-          </p>
-        </blockquote>
-      );
-      keyIdx++;
-      continue;
-    }
-
-    // Bullet list: - item
-    if (line.startsWith('- ')) {
-      const items: string[] = [];
-      while (i < lines.length && lines[i].startsWith('- ')) {
-        items.push(lines[i].slice(2));
-        i++;
-      }
-      jsx.push(
-        <ul
-          key={`ul-${keyIdx}`}
-          className="list-none space-y-2 my-6"
-        >
-          {items.map((item, idx) => (
-            <li
-              key={`li-${keyIdx}-${idx}`}
-              className="flex items-start gap-3 text-primary/80"
-            >
-              <span
-                className="mt-2 w-2 h-2 rounded-full bg-primary flex-shrink-0"
-                aria-hidden="true"
-              />
-              <span>{renderInline(item, `li-${keyIdx}-${idx}`)}</span>
-            </li>
-          ))}
-        </ul>
-      );
-      keyIdx++;
-      continue;
-    }
-
-    // Regular paragraph
-    const paraLines: string[] = [];
-    while (
-      i < lines.length &&
-      lines[i].trim() !== '' &&
-      !lines[i].startsWith('## ') &&
-      !lines[i].startsWith('### ') &&
-      !lines[i].startsWith('> ') &&
-      !lines[i].startsWith('- ') &&
-      !lines[i].trim().startsWith('```')
-    ) {
-      paraLines.push(lines[i]);
-      i++;
-    }
-    jsx.push(
-      <p
-        key={`p-${keyIdx}`}
-        className="text-primary/80 leading-relaxed my-4"
-      >
-        {renderInline(paraLines.join(' '), `p-${keyIdx}`)}
-      </p>
-    );
-    keyIdx++;
-  }
-
-  return { jsx, toc };
-}
+/* ── MDX Component Map ───────────────────────────────────────────────── */
+/* These override MDX-rendered elements with our design tokens.          */
+/* The prose-custom CSS class on the wrapper is the source of truth for  */
+/* base styling; these add interactive features (scroll-mt, etc).        */
 
 const mdxComponents = {
-  h2: (props: any) => <h2 className="font-display text-2xl md:text-3xl text-primary mt-10 mb-4 scroll-mt-24" {...props} />,
-  h3: (props: any) => <h3 className="font-display text-xl md:text-2xl text-primary mt-8 mb-3 scroll-mt-24" {...props} />,
-  p: (props: any) => <p className="text-primary/80 leading-relaxed my-4" {...props} />,
-  blockquote: (props: any) => (
-    <blockquote className="border-l-4 border-primary bg-yellow/20 pl-6 pr-4 py-4 my-6 rounded-r-xl">
-      <p className="font-serif text-lg italic text-primary/90">{props.children}</p>
-    </blockquote>
+  // Headings — rehype-slug adds the id automatically
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2 className="font-display text-section-h3 text-primary mt-12 mb-4 scroll-mt-28 uppercase" {...props} />
   ),
-  ul: (props: any) => <ul className="list-none space-y-2 my-6" {...props} />,
-  li: (props: any) => (
-    <li className="flex items-start gap-3 text-primary/80">
-      <span className="mt-2 w-2 h-2 rounded-full bg-primary flex-shrink-0" aria-hidden="true" />
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2 className="font-display text-section-h3 text-primary mt-12 mb-4 scroll-mt-28 uppercase" {...props} />
+  ),
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 className="font-display text-2xl text-primary mt-8 mb-3 scroll-mt-28 uppercase" {...props} />
+  ),
+  h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h4 className="font-display text-xl text-primary mt-6 mb-2 scroll-mt-28 uppercase" {...props} />
+  ),
+
+  // Paragraph
+  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+    <p className="font-body text-body-lg text-primary/80 leading-relaxed mb-6" {...props} />
+  ),
+
+  // Blockquote — children already contains a <p> rendered by MDX, don't add another
+  blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
+    <blockquote
+      className="border-l-4 border-gold bg-cream p-6 rounded-r-xl my-8 font-serif italic text-xl text-primary"
+      {...props}
+    />
+  ),
+
+  // Lists
+  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
+    <ul className="mb-6 space-y-2" style={{ listStyle: 'none', paddingLeft: 0 }} {...props} />
+  ),
+  ol: (props: React.OlHTMLAttributes<HTMLOListElement>) => (
+    <ol className="list-decimal pl-6 mb-6 space-y-2 font-body text-body-lg text-primary/80" {...props} />
+  ),
+  li: (props: React.LiHTMLAttributes<HTMLLIElement>) => (
+    <li className="font-body text-body-lg text-primary/80 flex items-start gap-3">
+      <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2" aria-hidden="true" />
       <span>{props.children}</span>
     </li>
   ),
-  pre: (props: any) => (
-    <pre className="bg-primary text-cream rounded-xl p-4 overflow-x-auto my-6 font-mono text-sm border-ref border-primary" {...props} />
+
+  // Code blocks — pre wraps code; let Prism theme control colors
+  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
+    <pre
+      className="rounded-xl overflow-x-auto my-8 border-ref border-primary shadow-brutal"
+      style={{ padding: '1.5rem', fontSize: '0.875rem', lineHeight: 1.7 }}
+      {...props}
+    />
   ),
-  code: (props: any) => (
-    <code className="bg-primary text-cream px-1.5 py-0.5 rounded font-mono text-xs border border-primary/20" {...props} />
+  // Inline code vs code inside pre
+  code: (props: React.HTMLAttributes<HTMLElement> & { className?: string }) => {
+    const isBlock = props.className?.includes('language-');
+    if (isBlock) {
+      // Inside pre — let Prism handle everything
+      return <code {...props} />;
+    }
+    // Inline code
+    return (
+      <code
+        className="bg-cream text-primary px-2 py-0.5 rounded-md font-mono text-sm border-ref border-primary/20"
+        {...props}
+      />
+    );
+  },
+
+  // Links
+  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a
+      className="text-primary font-semibold underline decoration-gold decoration-2 underline-offset-4 hover:decoration-primary transition-all"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    />
   ),
-  a: (props: any) => (
-    <a className="text-primary font-bold underline decoration-2 underline-offset-2 hover:text-primary/70" target="_blank" rel="noopener noreferrer" {...props} />
+
+  // Images
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img
+      className="rounded-xl border-ref border-primary shadow-brutal my-8 w-full h-auto"
+      loading="lazy"
+      {...props}
+    />
   ),
-  img: (props: any) => (
-    <img className="rounded-xl border-ref border-primary my-4 w-full h-auto object-cover" loading="lazy" {...props} />
-  ),
-  table: (props: any) => (
-    <div className="overflow-x-auto my-6 border-2 border-primary rounded-xl shadow-brutal-sm bg-cream">
+
+  // Tables — wrapped for horizontal scrolling
+  table: (props: React.TableHTMLAttributes<HTMLTableElement>) => (
+    <div className="overflow-x-auto my-8 border-ref border-primary rounded-xl shadow-brutal bg-cream">
       <table className="w-full text-left border-collapse" {...props} />
     </div>
   ),
-  thead: (props: any) => <thead className="bg-primary text-cream border-b-2 border-primary" {...props} />,
-  tbody: (props: any) => <tbody className="divide-y divide-primary/20" {...props} />,
-  tr: (props: any) => <tr className="hover:bg-primary/5" {...props} />,
-  th: (props: any) => <th className="px-4 py-3 font-display font-semibold" {...props} />,
-  td: (props: any) => <td className="px-4 py-3 text-primary/85" {...props} />,
+  thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead className="bg-primary text-cream border-b-2 border-primary" {...props} />
+  ),
+  tbody: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <tbody className="divide-y divide-primary/20" {...props} />
+  ),
+  tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr className="hover:bg-primary/5 transition-colors" {...props} />
+  ),
+  th: (props: React.ThHTMLAttributes<HTMLTableCellElement>) => (
+    <th className="px-4 py-3 font-display font-semibold text-sm uppercase tracking-wide" {...props} />
+  ),
+  td: (props: React.TdHTMLAttributes<HTMLTableCellElement>) => (
+    <td className="px-4 py-3 font-body text-primary/85 text-sm" {...props} />
+  ),
+
+  // Horizontal rule
+  hr: () => <hr className="border-primary/20 my-10" />,
+
+  // Strong / em
+  strong: (props: React.HTMLAttributes<HTMLElement>) => (
+    <strong className="font-semibold text-primary" {...props} />
+  ),
 };
 
 /* ── Page Component ───────────────────────────────────────────────────── */
 
 export default function BlogDetails() {
   const { slug } = useParams<{ slug: string }>();
+  const articleRef = useRef<HTMLDivElement>(null);
 
   const post = useMemo(() => blogPosts.find((p) => p.slug === slug), [slug]);
 
-  const { renderedContent, toc } = useMemo(() => {
-    if (!post) return { renderedContent: [] as ReactNode[], toc: [] as TocItem[] };
-    const { jsx, toc: tocItems } = renderMarkdown(post.content);
-    return { renderedContent: jsx, toc: tocItems };
-  }, [post]);
+  // TOC state
+  const [toc, setToc] = useState<TocItem[]>([]);
+  const [activeId, setActiveId] = useState<string>('');
+
+  // Build TOC from rendered DOM after MDX mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const article = articleRef.current;
+      if (!article) return;
+      const headings = Array.from(article.querySelectorAll('h2, h3'));
+      const extractedToc = headings.map((h) => {
+        const text = h.textContent || '';
+        const id = h.id || text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        if (!h.id) h.id = id;
+        return {
+          id,
+          text,
+          level: h.tagName === 'H2' ? 2 : 3,
+        };
+      });
+      setToc(extractedToc);
+    }, 150); // Small delay to ensure MDX has fully rendered
+    return () => clearTimeout(timer);
+  }, [slug, post]);
+
+  // Scroll-spy: highlight active TOC entry using IntersectionObserver
+  useEffect(() => {
+    if (toc.length === 0) return;
+
+    const headingEls = toc
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+            break;
+          }
+        }
+      },
+      {
+        rootMargin: '-20% 0% -70% 0%',
+        threshold: 0,
+      }
+    );
+
+    headingEls.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [toc]);
 
   const PostContent = useMemo(() => {
     if (!post) return null;
@@ -351,10 +214,6 @@ export default function BlogDetails() {
   }, [post]);
 
 
-  // Scroll to top on slug change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [slug]);
 
   // Related posts (same category, excluding current)
   const relatedPosts = useMemo(() => {
@@ -380,11 +239,16 @@ export default function BlogDetails() {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = post ? post.title : '';
 
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(shareUrl).catch(() => {});
+  };
+
   const socialShares = [
     {
       icon: Share2,
       label: 'Copy link',
-      href: '#',
+      onClick: handleCopyLink,
+      href: undefined as string | undefined,
     },
     {
       icon: Twitter,
@@ -414,13 +278,13 @@ export default function BlogDetails() {
             transition={{ duration: 0.5 }}
             className="flex flex-col items-center text-center gap-6"
           >
-            <div className="w-20 h-20 rounded-full bg-cream border-ref border-primary flex items-center justify-center shadow-brutal-sm">
+            <div className="w-20 h-20 rounded-full bg-cream border-ref border-primary flex items-center justify-center shadow-brutal">
               <BookOpen className="w-10 h-10 text-primary" aria-hidden="true" />
             </div>
             <h1 className="font-display text-4xl md:text-5xl text-primary">
               Post Not Found
             </h1>
-            <p className="text-primary/70 max-w-md">
+            <p className="text-primary/70 max-w-md font-body">
               The article you're looking for may have been moved or doesn't exist.
             </p>
             <Link to="/blog" className="btn-primary inline-flex items-center gap-2">
@@ -436,19 +300,25 @@ export default function BlogDetails() {
   return (
     <article className="bg-background">
       {/* ── Hero Image ── */}
-      <div className="relative w-full">
+      <div className="relative w-full overflow-hidden">
         <img
           src={post.image}
           alt={post.title}
-          className="w-full h-64 md:h-96 object-cover rounded-b-3xl border-b-ref border-primary"
+          className="w-full h-64 md:h-[28rem] object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
         />
+        {/* Dark overlay gradient for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
       </div>
 
       {/* ── Article Layout ── */}
       <Container>
-        <section className="py-12">
-          <div className="grid lg:grid-cols-[1fr_280px] gap-12">
-            {/* Main article column */}
+        <section className="py-10 md:py-14">
+          <div className="grid lg:grid-cols-[1fr_260px] gap-10 xl:gap-16 items-start">
+
+            {/* ── Main article column ── */}
             <div className="min-w-0">
               {/* Article Header */}
               <motion.div
@@ -466,10 +336,12 @@ export default function BlogDetails() {
                 </Link>
 
                 {/* Category badge */}
-                <span className="badge-brutal">{post.category}</span>
+                <div className="mb-3">
+                  <span className="badge-brutal">{post.category}</span>
+                </div>
 
                 {/* Title */}
-                <h1 className="font-display text-3xl md:text-5xl text-primary mt-4 leading-tight text-balance">
+                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-tight text-balance">
                   {post.title}
                 </h1>
 
@@ -479,13 +351,13 @@ export default function BlogDetails() {
                     src={post.authorAvatar}
                     alt={post.author}
                     loading="lazy"
-                    className="w-12 h-12 rounded-full border-ref border-primary/20 object-cover"
+                    className="w-12 h-12 rounded-full border-ref border-primary/20 object-cover flex-shrink-0"
                   />
                   <div className="flex flex-col">
                     <span className="font-semibold text-sm text-primary">{post.author}</span>
-                    <div className="flex items-center gap-2 text-sm text-primary/50">
+                    <div className="flex items-center gap-2 text-sm text-primary/50 flex-wrap">
                       <time dateTime={post.date}>{formatDate(post.date)}</time>
-                      <span aria-hidden="true">&bull;</span>
+                      <span aria-hidden="true">•</span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" aria-hidden="true" />
                         {post.readingTime} min read
@@ -495,30 +367,44 @@ export default function BlogDetails() {
                 </div>
 
                 {/* Social share */}
-                <div className="flex gap-3 mt-6">
-                  {socialShares.map(({ icon: Icon, label, href }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target={href !== '#' ? '_blank' : undefined}
-                      rel={href !== '#' ? 'noopener noreferrer' : undefined}
-                      aria-label={label}
-                      className="w-10 h-10 rounded-full border-ref border-primary bg-white flex items-center justify-center hover:bg-gold transition-all"
-                    >
-                      <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
-                    </a>
-                  ))}
+                <div className="flex gap-3 mt-6" role="group" aria-label="Share this article">
+                  {socialShares.map(({ icon: Icon, label, href, onClick }) =>
+                    onClick ? (
+                      <button
+                        key={label}
+                        onClick={onClick}
+                        aria-label={label}
+                        className="w-10 h-10 rounded-full border-ref border-primary bg-white flex items-center justify-center hover:bg-gold transition-all cursor-pointer"
+                      >
+                        <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
+                      </button>
+                    ) : (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className="w-10 h-10 rounded-full border-ref border-primary bg-white flex items-center justify-center hover:bg-gold transition-all"
+                      >
+                        <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
+                      </a>
+                    )
+                  )}
                 </div>
               </motion.div>
 
               {/* Article Content */}
-              <div className="prose-custom mt-10">
+              <div ref={articleRef} className="prose-custom mt-10">
                 {PostContent ? (
                   <Suspense fallback={<LoadingSpinner />}>
                     <PostContent components={mdxComponents} />
                   </Suspense>
                 ) : (
-                  renderedContent
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <BookOpen className="w-12 h-12 text-primary/30 mb-4" aria-hidden="true" />
+                    <p className="text-primary/60 font-body">Article content is not available.</p>
+                  </div>
                 )}
               </div>
 
@@ -528,7 +414,7 @@ export default function BlogDetails() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-badge bg-cream border-ref border-primary text-xs font-bold text-primary"
+                      className="badge-brutal"
                     >
                       #{tag}
                     </span>
@@ -540,10 +426,10 @@ export default function BlogDetails() {
               {relatedPosts.length > 0 && (
                 <div className="mt-16">
                   <span className="section-label">Related Posts</span>
-                  <h2 className="font-display text-3xl text-primary mt-2">
+                  <h2 className="font-display text-3xl text-primary mt-3 mb-6">
                     Keep Reading
                   </h2>
-                  <div className="grid sm:grid-cols-3 gap-6 mt-8">
+                  <div className="grid sm:grid-cols-3 gap-6">
                     {relatedPosts.map((rp) => (
                       <BlogCard key={rp.id} post={rp} />
                     ))}
@@ -563,67 +449,91 @@ export default function BlogDetails() {
 
               {/* Prev/Next Navigation */}
               <nav
-                className="grid grid-cols-2 gap-6 mt-16"
+                className="grid grid-cols-2 gap-4 mt-12"
                 aria-label="Previous and next post navigation"
               >
-                {prevPost && (
+                {prevPost ? (
                   <Link
                     to={`/blog/${prevPost.slug}`}
-                    className="card-brutal card-brutal-hover p-6 flex flex-col gap-2 group"
+                    className="card-brutal card-brutal-hover p-5 flex flex-col gap-2 group"
                     aria-label={`Previous post: ${prevPost.title}`}
                   >
                     <span className="flex items-center gap-1 text-xs font-bold text-primary/60">
                       <ChevronLeft className="w-4 h-4" aria-hidden="true" />
                       Previous Post
                     </span>
-                    <span className="font-display text-lg text-primary line-clamp-2">
+                    <span className="font-display text-base text-primary line-clamp-2 leading-tight">
                       {prevPost.title}
                     </span>
                   </Link>
+                ) : (
+                  <div /> // Placeholder to keep grid alignment
                 )}
 
-                {nextPost && (
+                {nextPost ? (
                   <Link
                     to={`/blog/${nextPost.slug}`}
-                    className="card-brutal card-brutal-hover p-6 flex flex-col gap-2 group text-right"
+                    className="card-brutal card-brutal-hover p-5 flex flex-col gap-2 group text-right"
                     aria-label={`Next post: ${nextPost.title}`}
                   >
                     <span className="flex items-center gap-1 text-xs font-bold text-primary/60 justify-end">
                       Next Post
                       <ChevronRight className="w-4 h-4" aria-hidden="true" />
                     </span>
-                    <span className="font-display text-lg text-primary line-clamp-2">
+                    <span className="font-display text-base text-primary line-clamp-2 leading-tight">
                       {nextPost.title}
                     </span>
                   </Link>
+                ) : (
+                  <div />
                 )}
               </nav>
             </div>
 
-            {/* Sidebar — sticky TOC (hidden below lg) */}
-            <aside className="hidden lg:block">
-              {toc.length > 0 && (
-                <div className="sticky top-24">
-                  <span className="section-label block mb-4">Table of Contents</span>
-                  <nav aria-label="Table of contents">
-                    <ul className="flex flex-col">
-                      {toc.map((item) => (
-                        <li key={item.id}>
-                          <a
-                            href={`#${item.id}`}
-                            className={`text-sm text-primary/60 hover:text-primary cursor-pointer py-1 block transition-colors ${
-                              item.level === 3 ? 'pl-4' : ''
-                            }`}
-                          >
-                            {item.text}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </div>
-              )}
+            {/* ── Sidebar: sticky TOC (hidden below lg) ── */}
+            <aside className="hidden lg:block" aria-label="Table of contents">
+              <div className="sticky top-28">
+                {toc.length > 0 && (
+                  <div className="card-brutal p-5 rounded-2xl">
+                    {/* TOC Header */}
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b-2 border-primary/10">
+                      <List className="w-4 h-4 text-primary" aria-hidden="true" />
+                      <span className="font-display text-sm uppercase tracking-wide text-primary">
+                        On this page
+                      </span>
+                    </div>
+
+                    <nav aria-label="Article sections">
+                      <ul className="flex flex-col gap-0.5">
+                        {toc.map((item) => (
+                          <li key={item.id}>
+                            <a
+                              href={`#${item.id}`}
+                              className={`
+                                block text-sm py-1.5 px-2 rounded-lg transition-all duration-150 border-l-2
+                                ${item.level === 3 ? 'pl-5' : 'pl-2'}
+                                ${
+                                  activeId === item.id
+                                    ? 'text-primary font-semibold bg-gold/20 border-l-primary'
+                                    : 'text-primary/50 hover:text-primary hover:bg-primary/5 border-l-transparent'
+                                }
+                              `}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }}
+                            >
+                              {item.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
+                  </div>
+                )}
+              </div>
             </aside>
+
           </div>
         </section>
       </Container>

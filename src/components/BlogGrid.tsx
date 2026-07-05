@@ -11,7 +11,7 @@ interface BlogGridProps {
 
 export default function BlogGrid({ posts, title, showSectionHeader = false }: BlogGridProps) {
   return (
-    <section className="container-custom py-12" aria-label={title || 'Blog posts'}>
+    <div aria-label={title || 'Blog posts'}>
       {showSectionHeader && (
         <div className="mb-8 flex flex-col gap-2">
           <span className="section-label">The Blog</span>
@@ -32,16 +32,18 @@ export default function BlogGrid({ posts, title, showSectionHeader = false }: Bl
           {posts.map((post, index) => (
             <motion.div
               key={post.id}
+              className="h-full"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: index * 0.1, ease: 'easeOut' }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
             >
               <BlogCard post={post} />
             </motion.div>
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 }
+

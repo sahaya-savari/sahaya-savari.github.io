@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Github, Globe, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Github, Globe, Instagram, Facebook, Youtube, Mail, ArrowRight } from 'lucide-react';
 
 const quickLinks = [
   { label: 'Home', path: '/' },
   { label: 'Blog', path: '/blog' },
+  { label: 'Categories', path: '/categories' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
-  { label: 'Categories', path: '/categories' },
 ];
 
 const exploreLinks = [
@@ -25,16 +25,32 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-primary text-white border-t-4 border-primary" aria-label="Site footer">
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Column 1: Brand + Social */}
+        {/* Main footer grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-10 lg:gap-12">
+
+          {/* Column 1: Brand */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-3xl text-white tracking-tight uppercase">
-              Sahaya Savari
-            </h3>
-            <p className="font-body text-sm text-white/60 mt-2">Read. Post. Repeat.</p>
-            <div className="flex gap-3 mt-4">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-3 group w-fit"
+              aria-label="Sahaya Savari – home"
+            >
+              <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center flex-shrink-0">
+                <span className="text-primary font-display text-xl leading-none">S</span>
+              </div>
+              <h2 className="font-display text-2xl text-white tracking-tight group-hover:text-gold transition-colors">
+                Sahaya Savari
+              </h2>
+            </Link>
+
+            <p className="font-body text-sm text-white/60 leading-relaxed max-w-xs">
+              A technical notebook on Python, Databases, Git, and Machine Learning. Built for developers, learners, and curious minds.
+            </p>
+
+            {/* Social icons */}
+            <div className="flex gap-3 mt-2">
               {socialLinks.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
@@ -42,22 +58,24 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center text-white transition-all duration-200 hover:bg-gold hover:text-primary hover:border-gold"
+                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 transition-all duration-200 hover:bg-gold hover:text-primary hover:border-gold hover:-translate-y-0.5"
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4" aria-hidden="true" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Column 2: Quick Links */}
-          <nav className="flex flex-col gap-3" aria-label="Quick links">
-            <h4 className="font-display text-lg text-gold">Quick Links</h4>
+          <nav className="flex flex-col gap-1" aria-label="Quick navigation links">
+            <h3 className="font-display text-base text-gold mb-3 uppercase tracking-wide">
+              Quick Links
+            </h3>
             {quickLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className="font-body text-sm text-white/70 hover:text-white transition-colors duration-200"
+                className="font-body text-sm text-white/60 hover:text-white py-1 transition-colors duration-150 hover:translate-x-0.5 inline-block"
               >
                 {link.label}
               </Link>
@@ -65,13 +83,15 @@ export default function Footer() {
           </nav>
 
           {/* Column 3: Explore */}
-          <nav className="flex flex-col gap-3" aria-label="Explore links">
-            <h4 className="font-display text-lg text-gold">Explore</h4>
+          <nav className="flex flex-col gap-1" aria-label="Explore links">
+            <h3 className="font-display text-base text-gold mb-3 uppercase tracking-wide">
+              Explore
+            </h3>
             {exploreLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className="font-body text-sm text-white/70 hover:text-white transition-colors duration-200"
+                className="font-body text-sm text-white/60 hover:text-white py-1 transition-colors duration-150 hover:translate-x-0.5 inline-block"
               >
                 {link.label}
               </Link>
@@ -79,31 +99,44 @@ export default function Footer() {
           </nav>
 
           {/* Column 4: Get in Touch */}
-          <div className="flex flex-col gap-3">
-            <h4 className="font-display text-lg text-gold">Get in Touch</h4>
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display text-base text-gold uppercase tracking-wide">
+              Get in Touch
+            </h3>
+
             <a
               href="mailto:contact@sahayasavari.me"
-              className="font-body text-sm text-white/70 hover:text-white transition-colors duration-200"
+              className="flex items-center gap-2 font-body text-sm text-white/70 hover:text-white transition-colors group w-fit"
             >
+              <Mail className="w-4 h-4 flex-shrink-0 group-hover:text-gold transition-colors" aria-hidden="true" />
               contact@sahayasavari.me
             </a>
-            <p className="font-body text-sm text-white/70">
-              AI & Data Analytics Student
+
+            <p className="font-body text-sm text-white/50">
+              AI &amp; Data Analytics Student
             </p>
-            <p className="font-body text-sm text-white/70">
-              Aspiring AI Engineer
-            </p>
+
+            {/* Newsletter CTA */}
+            <Link
+              to="/newsletter"
+              className="inline-flex items-center gap-2 mt-2 text-sm font-semibold text-gold hover:text-white transition-colors group"
+            >
+              Subscribe to Newsletter
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+            </Link>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/20 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="font-body text-xs text-white/50">
-            © 2026 Sahaya Savari. All rights reserved.
-          </p>
-          <p className="font-body text-xs text-white/50">
-            Built with ♥ for developers & learners
-          </p>
+        {/* Divider */}
+        <div className="border-t border-white/10 mt-12 pt-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="font-body text-xs text-white/40">
+              © 2026 Sahaya Savari. All rights reserved.
+            </p>
+            <p className="font-body text-xs text-white/40">
+              Built with ♥ for developers &amp; learners
+            </p>
+          </div>
         </div>
       </div>
     </footer>

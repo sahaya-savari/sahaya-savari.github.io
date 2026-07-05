@@ -192,7 +192,7 @@ export const blogPosts: BlogPost[] = Object.entries(mdxModules)
       slug: slug,
       title: fm.title,
       excerpt: fm.excerpt,
-      content: rawModules[path] || '', // raw Markdown string for backward compatibility
+      content: rawModules[path + '?raw'] || '', // raw Markdown string for backward compatibility
       category: fm.category,
       author: fm.author,
       authorAvatar: fm.authorAvatar,

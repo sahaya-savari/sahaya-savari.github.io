@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import type { BlogPost } from '../types';
 import { formatDateShort } from '../utils/helpers';
 
 export default function BlogCard({ post }: { post: BlogPost }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <motion.div
       whileHover={{ y: -4 }}
@@ -13,29 +16,37 @@ export default function BlogCard({ post }: { post: BlogPost }) {
     >
       <Link
         to={`/blog/${post.slug}`}
-        className="card-brutal card-brutal-hover block h-full overflow-hidden group"
+        className="card-brutal card-brutal-hover flex flex-col h-full overflow-hidden group"
         aria-label={`Read ${post.title}`}
       >
         {/* Image */}
-        <div className="relative overflow-hidden">
-          <img
-            src={post.image}
-            alt={post.title}
-            loading="lazy"
-            className="w-full h-52 object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-105"
-          />
+        <div className="relative overflow-hidden flex-shrink-0">
+          {imgError ? (
+            /* Fallback placeholder */
+            <div className="w-full h-52 bg-cream flex items-center justify-center rounded-t-3xl border-b-ref border-border-muted">
+              <BookOpen className="w-12 h-12 text-primary/30" aria-hidden="true" />
+            </div>
+          ) : (
+            <img
+              src={post.image}
+              alt={post.title}
+              loading="lazy"
+              onError={() => setImgError(true)}
+              className="w-full h-52 object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-105"
+            />
+          )}
           {/* Category badge */}
-          <span className="absolute top-4 left-4 badge-brutal bg-gold border-ref border-primary rounded-badge px-3 py-1 text-xs font-bold uppercase">
+          <span className="absolute top-4 left-4 badge-brutal">
             {post.category}
           </span>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
-          <h3 className="font-display text-xl text-primary line-clamp-2 mt-3 leading-tight">
+        {/* Content — flex-grow ensures all cards stretch to same height */}
+        <div className="p-6 flex flex-col flex-grow">
+          <h3 className="font-display text-xl text-primary line-clamp-2 leading-tight">
             {post.title}
           </h3>
-          <p className="text-sm text-primary/60 line-clamp-3 mt-2">
+          <p className="text-sm text-primary/60 line-clamp-3 mt-2 flex-grow">
             {post.excerpt}
           </p>
 
@@ -45,13 +56,13 @@ export default function BlogCard({ post }: { post: BlogPost }) {
               src={post.authorAvatar}
               alt={post.author}
               loading="lazy"
-              className="w-8 h-8 rounded-full border-ref border-primary/20 object-cover"
+              className="w-7 h-7 rounded-full border-ref border-primary/20 object-cover flex-shrink-0"
             />
-            <span className="font-medium">{post.author}</span>
+            <span className="font-medium truncate">{post.author}</span>
             <span aria-hidden="true">•</span>
-            <span>{formatDateShort(post.date)}</span>
+            <span className="whitespace-nowrap">{formatDateShort(post.date)}</span>
             <span aria-hidden="true">•</span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 whitespace-nowrap">
               <Clock className="w-3 h-3" aria-hidden="true" />
               {post.readingTime} min
             </span>
@@ -67,3 +78,4 @@ export default function BlogCard({ post }: { post: BlogPost }) {
     </motion.div>
   );
 }
+

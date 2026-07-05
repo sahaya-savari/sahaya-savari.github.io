@@ -85,7 +85,7 @@ export default function Categories() {
                     />
 
                     {/* Icon */}
-                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-yellow/30 border-2 border-primary">
+                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gold/30 border-2 border-primary">
                       <Icon className="w-7 h-7 text-primary" aria-hidden="true" />
                     </div>
 

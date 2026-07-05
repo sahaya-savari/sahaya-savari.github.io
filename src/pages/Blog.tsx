@@ -1,28 +1,52 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock } from 'lucide-react';
 import Container from '../components/Container';
 import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import BlogGrid from '../components/BlogGrid';
+import BlogCard from '../components/BlogCard';
 import Pagination from '../components/Pagination';
 import { blogPosts, categories } from '../lib/data';
-import { formatDateShort, paginate, getTotalPages } from '../utils/helpers';
+import { paginate, getTotalPages } from '../utils/helpers';
 
 const POSTS_PER_PAGE = 9;
 
 export default function Blog() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryParam = searchParams.get('category');
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // Derive selected category from URL param directly
+  const selectedCategory = useMemo(() => {
+    if (!categoryParam) return 'All';
+    const match = categories.find((c) => c.slug.toLowerCase() === categoryParam.toLowerCase());
+    return match ? match.name : 'All';
+  }, [categoryParam]);
 
   // Reset to page 1 when search or category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, selectedCategory]);
 
-  // Featured posts
+  const handleSelectCategory = (category: string) => {
+    if (category === 'All') {
+      setSearchParams({});
+    } else {
+      const match = categories.find(
+        (c) =>
+          c.slug.toLowerCase() === category.toLowerCase() ||
+          c.name.toLowerCase() === category.toLowerCase()
+      );
+      if (match) {
+        setSearchParams({ category: match.slug });
+      }
+    }
+  };
+
+  // Featured posts (up to 2)
   const featuredPosts = useMemo(() => blogPosts.filter((p) => p.featured).slice(0, 2), []);
 
   // Filter logic: case-insensitive search on title + excerpt, category filter
@@ -53,7 +77,7 @@ export default function Blog() {
   return (
     <div className="bg-background">
       {/* ── Hero Header ── */}
-      <header className="py-16 md:py-24 bg-background">
+      <header className="py-12 md:py-16 bg-background">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,10 +86,10 @@ export default function Blog() {
             className="flex flex-col items-center text-center"
           >
             <span className="section-label">From the Travelog</span>
-            <h1 className="font-display text-5xl md:text-7xl text-primary mt-2">
+            <h1 className="font-display text-5xl md:text-7xl text-primary mt-3">
               Blog
             </h1>
-            <p className="text-center text-primary/60 mt-4 max-w-2xl">
+            <p className="text-center text-primary/60 mt-3 max-w-xl font-body text-body-lg">
               Dive into our latest literary expeditions and discoveries
             </p>
           </motion.div>
@@ -74,59 +98,19 @@ export default function Blog() {
 
       {/* ── Featured Posts ── */}
       {featuredPosts.length > 0 && (
-        <section className="py-12 bg-background" aria-label="Featured posts">
+        <section className="pb-10 bg-background" aria-label="Featured posts">
           <Container>
             <span className="section-label">Featured Posts</span>
-            <div className="grid md:grid-cols-2 gap-8 mt-8">
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
               {featuredPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
+                  className="h-full"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link
-                    to={`/blog/${post.slug}`}
-                    className="card-brutal card-brutal-hover overflow-hidden group block"
-                    aria-label={`Read ${post.title}`}
-                  >
-                    {/* Image */}
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        loading="lazy"
-                        className="h-64 w-full object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <span className="absolute top-4 left-4 badge-brutal">
-                        {post.category}
-                      </span>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="font-display text-2xl text-primary leading-tight">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm text-primary/60 line-clamp-2 mt-2">
-                        {post.excerpt}
-                      </p>
-                      <div className="flex items-center gap-3 mt-4 text-xs text-primary/50">
-                        <span className="font-medium text-primary/80">{post.author}</span>
-                        <span aria-hidden="true">&bull;</span>
-                        <span>{formatDateShort(post.date)}</span>
-                        <span aria-hidden="true">&bull;</span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" aria-hidden="true" />
-                          {post.readingTime} min
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-semibold text-primary mt-4 group-hover:gap-2 transition-all">
-                        Read More
-                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                      </div>
-                    </div>
-                  </Link>
+                  <BlogCard post={post} />
                 </motion.div>
               ))}
             </div>
@@ -135,10 +119,10 @@ export default function Blog() {
       )}
 
       {/* ── Search + Filter + Grid ── */}
-      <section className="py-12 bg-cream" aria-label="All blog posts">
+      <section className="py-10 bg-cream" aria-label="All blog posts">
         <Container>
           {/* Search */}
-          <div className="mb-8">
+          <div className="mb-6">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
@@ -151,21 +135,21 @@ export default function Blog() {
             <CategoryFilter
               categories={categoryNames}
               selectedCategory={selectedCategory}
-              onSelect={setSelectedCategory}
+              onSelect={handleSelectCategory}
             />
           </div>
 
           {/* Grid + Pagination */}
           {filteredPosts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
-              <div className="w-20 h-20 rounded-full bg-white border-2 border-primary flex items-center justify-center mb-6 shadow-brutal-sm">
+              <div className="w-20 h-20 rounded-full bg-white border-2 border-primary flex items-center justify-center mb-6 shadow-brutal">
                 <span className="font-display text-3xl text-primary">!</span>
               </div>
               <h3 className="font-display text-2xl text-primary mb-2">
                 No posts found
               </h3>
-              <p className="text-sm text-primary/60 max-w-sm">
-                No posts found. Try a different search or category.
+              <p className="text-sm text-primary/60 max-w-sm font-body">
+                No posts matched your search. Try a different query or category.
               </p>
             </div>
           ) : (

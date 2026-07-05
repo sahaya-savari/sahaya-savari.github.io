@@ -117,7 +117,7 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
               placeholder="Your name"
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? 'comment-name-error' : undefined}
-              className="input-brutal"
+              className="input-ref"
             />
             {errors.name && (
               <p id="comment-name-error" className="text-xs text-red-600 mt-1" role="alert">
@@ -137,7 +137,7 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
               placeholder="you@example.com"
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'comment-email-error' : undefined}
-              className="input-brutal"
+              className="input-ref"
             />
             {errors.email && (
               <p id="comment-email-error" className="text-xs text-red-600 mt-1" role="alert">
@@ -158,7 +158,7 @@ export default function CommentSection({ postId: _postId }: CommentSectionProps)
             rows={4}
             aria-invalid={!!errors.content}
             aria-describedby={errors.content ? 'comment-content-error' : undefined}
-            className="input-brutal resize-y"
+            className="input-ref resize-y"
           />
           {errors.content && (
             <p id="comment-content-error" className="text-xs text-red-600 mt-1" role="alert">

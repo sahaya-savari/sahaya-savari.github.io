@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Github, Globe, Linkedin, ArrowRight } from 'lucide-react';
 import Container from '../components/Container';
