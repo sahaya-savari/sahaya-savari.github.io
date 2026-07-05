@@ -107,6 +107,7 @@ The application is deployed using **GitHub Pages** via a custom GitHub Actions w
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sahaya-savari/sahaya-savari.github.io&type=Date)](https://star-history.com/#sahaya-savari/sahaya-savari.github.io&Date)
 
+---
 ## 📄 License
 
 © 2026 Sahaya Savari F. All rights reserved.
