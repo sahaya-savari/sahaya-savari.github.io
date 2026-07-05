@@ -200,11 +200,11 @@
 
   /* Code block pre wrapper */
   .prose-custom pre {
-    @apply rounded-xl overflow-x-auto my-8 border-ref border-primary shadow-brutal;
+    @apply rounded-xl overflow-x-auto my-8 border border-primary/20;
     /* Prism theme handles background/text; we handle layout */
-    padding: 1.5rem;
+    padding: 1.25rem;
     font-size: 0.875rem;
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   /* Code inside pre — let Prism theme take full control */

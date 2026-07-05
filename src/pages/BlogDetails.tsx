@@ -12,6 +12,8 @@ import {
   Linkedin,
   BookOpen,
   List,
+  Copy,
+  Check,
 } from 'lucide-react';
 import Container from '../components/Container';
 import BlogCard from '../components/BlogCard';
@@ -26,6 +28,67 @@ interface TocItem {
   text: string;
   level: number;
 }
+
+const CustomPre = (props: React.HTMLAttributes<HTMLPreElement>) => {
+  const preRef = useRef<HTMLPreElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (!preRef.current) return;
+    const code = preRef.current?.querySelector("code")?.textContent ?? "";
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(code);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = code;
+        textArea.style.position = "absolute";
+        textArea.style.left = "-999999px";
+        document.body.prepend(textArea);
+        textArea.select();
+        try {
+          document.execCommand("copy");
+        } catch (error) {
+          console.error(error);
+        } finally {
+          textArea.remove();
+        }
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy code: ", err);
+    }
+  };
+
+  return (
+    <div className="relative my-8">
+      <button
+        onClick={handleCopy}
+        className="absolute top-3 right-3 p-1.5 md:p-2 bg-primary/5 hover:bg-primary/10 text-primary rounded-md flex items-center justify-center gap-1.5 text-xs font-semibold backdrop-blur-sm transition-all z-10 border border-primary/10"
+        aria-label="Copy code"
+      >
+        {copied ? (
+          <>
+            <Check className="w-4 h-4 text-green-600" />
+            <span className="hidden sm:inline">Copied</span>
+          </>
+        ) : (
+          <>
+            <Copy className="w-4 h-4" />
+            <span className="hidden sm:inline">Copy</span>
+          </>
+        )}
+      </button>
+      <pre
+        ref={preRef}
+        className="rounded-xl overflow-x-auto border border-primary/20 !my-0"
+        style={{ padding: '1.25rem', paddingTop: '3rem', fontSize: '0.875rem', lineHeight: 1.6 }}
+        {...props}
+      />
+    </div>
+  );
+};
 
 /* ── MDX Component Map ───────────────────────────────────────────────── */
 /* These override MDX-rendered elements with our design tokens.          */
@@ -75,13 +138,7 @@ const mdxComponents = {
   ),
 
   // Code blocks — pre wraps code; let Prism theme control colors
-  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      className="rounded-xl overflow-x-auto my-8 border-ref border-primary shadow-brutal"
-      style={{ padding: '1.5rem', fontSize: '0.875rem', lineHeight: 1.7 }}
-      {...props}
-    />
-  ),
+  pre: CustomPre,
   // Inline code vs code inside pre
   code: (props: React.HTMLAttributes<HTMLElement> & { className?: string }) => {
     const isBlock = props.className?.includes('language-');
