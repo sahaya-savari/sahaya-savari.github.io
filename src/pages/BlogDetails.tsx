@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, type ReactNode } from 'react';
+import { useState, useMemo, useEffect, Suspense, type ReactNode } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -16,7 +16,8 @@ import Container from '../components/Container';
 import BlogCard from '../components/BlogCard';
 import CommentSection from '../components/CommentSection';
 import Newsletter from '../components/Newsletter';
-import { blogPosts } from '../lib/data';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { blogPosts, postComponents } from '../lib/data';
 import { formatDate } from '../utils/helpers';
 
 /* ── Markdown-to-JSX Renderer ─────────────────────────────────────────── */
@@ -42,6 +43,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
 
   const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/;
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
+  const codeRegex = /`([^`]+)`/;
   const boldRegex = /\*\*([^*]+)\*\*/;
   const italicRegex = /\*([^*]+)\*/;
 
@@ -49,6 +51,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
     const candidates: { regex: RegExp; type: string }[] = [
       { regex: imageRegex, type: 'image' },
       { regex: linkRegex, type: 'link' },
+      { regex: codeRegex, type: 'code' },
       { regex: boldRegex, type: 'bold' },
       { regex: italicRegex, type: 'italic' },
     ];
@@ -104,6 +107,15 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
         >
           {earliestMatch[1]}
         </a>
+      );
+    } else if (earliestType === 'code') {
+      nodes.push(
+        <code
+          key={key}
+          className="bg-primary text-cream px-1.5 py-0.5 rounded font-mono text-xs border border-primary/20"
+        >
+          {earliestMatch[1]}
+        </code>
       );
     } else if (earliestType === 'bold') {
       nodes.push(
@@ -280,6 +292,46 @@ function renderMarkdown(content: string): { jsx: ReactNode[]; toc: TocItem[] } {
   return { jsx, toc };
 }
 
+const mdxComponents = {
+  h2: (props: any) => <h2 className="font-display text-2xl md:text-3xl text-primary mt-10 mb-4 scroll-mt-24" {...props} />,
+  h3: (props: any) => <h3 className="font-display text-xl md:text-2xl text-primary mt-8 mb-3 scroll-mt-24" {...props} />,
+  p: (props: any) => <p className="text-primary/80 leading-relaxed my-4" {...props} />,
+  blockquote: (props: any) => (
+    <blockquote className="border-l-4 border-primary bg-yellow/20 pl-6 pr-4 py-4 my-6 rounded-r-xl">
+      <p className="font-serif text-lg italic text-primary/90">{props.children}</p>
+    </blockquote>
+  ),
+  ul: (props: any) => <ul className="list-none space-y-2 my-6" {...props} />,
+  li: (props: any) => (
+    <li className="flex items-start gap-3 text-primary/80">
+      <span className="mt-2 w-2 h-2 rounded-full bg-primary flex-shrink-0" aria-hidden="true" />
+      <span>{props.children}</span>
+    </li>
+  ),
+  pre: (props: any) => (
+    <pre className="bg-primary text-cream rounded-xl p-4 overflow-x-auto my-6 font-mono text-sm border-ref border-primary" {...props} />
+  ),
+  code: (props: any) => (
+    <code className="bg-primary text-cream px-1.5 py-0.5 rounded font-mono text-xs border border-primary/20" {...props} />
+  ),
+  a: (props: any) => (
+    <a className="text-primary font-bold underline decoration-2 underline-offset-2 hover:text-primary/70" target="_blank" rel="noopener noreferrer" {...props} />
+  ),
+  img: (props: any) => (
+    <img className="rounded-xl border-ref border-primary my-4 w-full h-auto object-cover" loading="lazy" {...props} />
+  ),
+  table: (props: any) => (
+    <div className="overflow-x-auto my-6 border-2 border-primary rounded-xl shadow-brutal-sm bg-cream">
+      <table className="w-full text-left border-collapse" {...props} />
+    </div>
+  ),
+  thead: (props: any) => <thead className="bg-primary text-cream border-b-2 border-primary" {...props} />,
+  tbody: (props: any) => <tbody className="divide-y divide-primary/20" {...props} />,
+  tr: (props: any) => <tr className="hover:bg-primary/5" {...props} />,
+  th: (props: any) => <th className="px-4 py-3 font-display font-semibold" {...props} />,
+  td: (props: any) => <td className="px-4 py-3 text-primary/85" {...props} />,
+};
+
 /* ── Page Component ───────────────────────────────────────────────────── */
 
 export default function BlogDetails() {
@@ -292,6 +344,12 @@ export default function BlogDetails() {
     const { jsx, toc: tocItems } = renderMarkdown(post.content);
     return { renderedContent: jsx, toc: tocItems };
   }, [post]);
+
+  const PostContent = useMemo(() => {
+    if (!post) return null;
+    return postComponents[post.slug] || null;
+  }, [post]);
+
 
   // Scroll to top on slug change
   useEffect(() => {
@@ -455,7 +513,13 @@ export default function BlogDetails() {
 
               {/* Article Content */}
               <div className="prose-custom mt-10">
-                {renderedContent}
+                {PostContent ? (
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <PostContent components={mdxComponents} />
+                  </Suspense>
+                ) : (
+                  renderedContent
+                )}
               </div>
 
               {/* Tags */}
