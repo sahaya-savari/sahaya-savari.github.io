@@ -4,7 +4,7 @@ interface MarqueeProps {
 
 export default function Marquee({ items = ['Read. Post. Repeat.'] }: MarqueeProps) {
   // Repeated items to ensure smooth infinite loop
-  const repeated = Array(12).fill(items[0]);
+  const repeated = Array(12).fill(items).flat();
 
   return (
     <div
