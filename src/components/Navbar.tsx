@@ -32,7 +32,7 @@ export default function Navbar() {
     }`;
 
   return (
-    <header className="absolute left-0 w-full z-50 flex justify-center px-3 sm:px-4 md:px-page-x pt-[max(1rem,env(safe-area-inset-top))] md:pt-navbar-top">
+    <header className="w-full z-50 flex justify-center px-3 sm:px-4 md:px-page-x pt-[max(1rem,env(safe-area-inset-top))] md:pt-navbar-top pb-4 md:pb-6">
       {/* Navbar Container Pill */}
       <div 
         className="w-full max-w-navbar bg-white border-ref border-border-muted rounded-navbar flex items-center justify-between px-2 py-1.5 transition-all duration-300 min-w-0"

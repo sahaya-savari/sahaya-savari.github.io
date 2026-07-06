@@ -19,8 +19,8 @@ export default function Home() {
     <>
       {/* ===== Hero Section ===== */}
         <section
-          className="relative bg-background flex items-center overflow-hidden select-none w-full pt-28 md:pt-20 lg:pt-[67.46px]"
-          style={{ minHeight: 'clamp(500px, 100vh, 840.3px)' }}
+          className="relative bg-background flex items-center overflow-hidden select-none w-full"
+          style={{ minHeight: 'clamp(500px, calc(100vh - 115px), 840.3px)' }}
           aria-label="Hero"
         >
         {/* SVG Book Illustrations */}

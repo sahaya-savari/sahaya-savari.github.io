@@ -77,7 +77,7 @@ export default function Blog() {
   return (
     <div className="bg-background overflow-x-hidden">
       {/* ── Hero Header ── */}
-      <header className="pt-28 pb-10 sm:pt-32 md:pt-36 md:pb-16 bg-background">
+      <header className="pt-8 pb-10 sm:pt-10 md:pt-12 md:pb-16 bg-background">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
