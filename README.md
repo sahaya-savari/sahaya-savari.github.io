@@ -103,11 +103,16 @@ The application is deployed using **GitHub Pages** via a custom GitHub Actions w
 *Note: Ensure the repository settings have Pages configured to build and deploy from **GitHub Actions**.*
 
 ---
-<!--
+
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=sahaya-savari/sahaya-savari.github.io&type=Date)](https://star-history.com/#sahaya-savari/sahaya-savari.github.io&Date)
--->
+<a href="https://www.star-history.com/?repos=sahaya-savari%2Fsahaya-savari.github.io&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&theme=dark&legend=top-left&sealed_token=c9Db_NK5OWGKWdblSy97N0FEopocgbRybjGsauNyQE_m7OuA5fvhV0IEbYpCY9sZndt93BKd8dNIHiG9ye0I2ipiQCZ6BPO9jRrz-3MY_rTTl4jaj_AqzaqWM-0PrHjSgiELtARG5xBy9-K_tvcbFuC3fw-T4zPnBHMseG1zvUCvfGPbjrcV0vnWQh9Z" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&legend=top-left&sealed_token=c9Db_NK5OWGKWdblSy97N0FEopocgbRybjGsauNyQE_m7OuA5fvhV0IEbYpCY9sZndt93BKd8dNIHiG9ye0I2ipiQCZ6BPO9jRrz-3MY_rTTl4jaj_AqzaqWM-0PrHjSgiELtARG5xBy9-K_tvcbFuC3fw-T4zPnBHMseG1zvUCvfGPbjrcV0vnWQh9Z" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&legend=top-left&sealed_token=c9Db_NK5OWGKWdblSy97N0FEopocgbRybjGsauNyQE_m7OuA5fvhV0IEbYpCY9sZndt93BKd8dNIHiG9ye0I2ipiQCZ6BPO9jRrz-3MY_rTTl4jaj_AqzaqWM-0PrHjSgiELtARG5xBy9-K_tvcbFuC3fw-T4zPnBHMseG1zvUCvfGPbjrcV0vnWQh9Z" />
+ </picture>
+</a>
 
 ---
 
