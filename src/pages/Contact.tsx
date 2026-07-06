@@ -17,7 +17,7 @@ export default function Contact() {
       {/* ===== Hero ===== */}
       <section
         className="bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full border-b-ref border-primary"
-        style={{ minHeight: 'clamp(300px, 40vh, 360px)', paddingTop: 'clamp(130px, 15vw, 160px)', paddingBottom: 'clamp(30px, 5vw, 60px)' }}
+        style={{ minHeight: 'clamp(300px, 40vh, 360px)', paddingTop: 'clamp(90px, 12vw, 120px)', paddingBottom: 'clamp(30px, 5vw, 60px)' }}
         aria-labelledby="contact-hero-heading"
       >
         <Container className="flex flex-col items-center gap-6">

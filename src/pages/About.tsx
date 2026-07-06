@@ -97,7 +97,7 @@ export default function About() {
       {/* ===== Hero Banner ===== */}
       <section
         className="relative bg-background flex flex-col items-center justify-center text-center overflow-hidden w-full"
-        style={{ minHeight: 'clamp(350px, 50vh, 480px)', paddingTop: 'clamp(130px, 15vw, 160px)', paddingBottom: 'clamp(40px, 6vw, 80px)' }}
+        style={{ minHeight: 'clamp(350px, 50vh, 480px)', paddingTop: 'clamp(90px, 12vw, 120px)', paddingBottom: 'clamp(40px, 6vw, 80px)' }}
         aria-label="About hero"
       >
         <Container className="relative z-10 flex flex-col items-center gap-6">
