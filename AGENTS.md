@@ -60,6 +60,7 @@ This document serves as the project's permanent operating guidelines and constit
   - **Shadow System:** High-impact solid offsets (`8px 8px 0px 0px #652929`).
 - **Animations:** Subtle, responsive micro-animations using `framer-motion`. Complex visual effects are handled via WebGL shaders (e.g., `Galaxy.jsx`, `TargetCursor.jsx`) which require `// @ts-ignore` flags to satisfy strict TypeScript environments without breaking the Vite bundler.
 - **Responsive Behavior:** Strict custom responsive breakpoints for desktop, laptop, tablet, and mobile layouts. Check margins and grid columns on resized screens to avoid layout overflow.
+- **Layout & Positioning:** Core layout structures (like Navbars and Headers) must participate in the normal document flow (e.g., static, relative, or sticky) rather than relying on `absolute` positioning. This reserves their height globally and prevents z-index overlaps, eliminating the need for brittle, page-specific `padding-top` hacks.
 
 ---
 
