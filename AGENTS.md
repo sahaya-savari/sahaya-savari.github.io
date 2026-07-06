@@ -6,10 +6,10 @@ This document serves as the project's permanent operating guidelines and constit
 
 ## 1. Project Overview
 
-- **Project Name:** Sahaya Savari Blog
-- **Purpose:** A high-fidelity, high-performance personal learning blog and portfolio sharing practical guides on Python, Databases, Git, and Web Development.
-- **Tech Stack:** React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Lucide React, React Router Dom v6.
-- **Deployment Platform:** GitHub Pages (custom domain: `blog.sahayasavari.me`).
+- **Project Name:** Sahaya Savari Portfolio
+- **Purpose:** A world-class AI Engineer portfolio and personal website featuring project case studies, an interactive AI assistant, and an ATS-friendly recruiter mode.
+- **Tech Stack:** React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Lucide React, React Router Dom.
+- **Deployment Platform:** GitHub Pages (custom domain: `sahayasavari.me`).
 - **Repository Purpose:** Serve static built assets of the React application via automated workflows.
 
 ---
@@ -17,22 +17,22 @@ This document serves as the project's permanent operating guidelines and constit
 ## 2. Project Architecture
 
 ### Folder Structure
-- `public/` - Static assets copied directly to the build output. Contains [CNAME](file:///D:/GITHUB/blog/public/CNAME), [robots.txt](file:///D:/GITHUB/blog/public/robots.txt), [sitemap.xml](file:///D:/GITHUB/blog/public/sitemap.xml), and [404.html](file:///D:/GITHUB/blog/public/404.html).
+- `public/` - Static assets copied directly to the build output. Contains `robots.txt`, `sitemap.xml`, and `404.html` (for SPA routing).
 - `src/` - Application source directory.
-  - `components/` - Reusable layout, navigation, and UI components.
+  - `components/` - Reusable UI components and raw WebGL shaders (e.g., `Galaxy`, `TargetCursor`).
+  - `layouts/` - Contains `RootLayout.tsx` which wraps all application routes and provides global state/FABs.
+  - `pages/` - Page view entry points (e.g., `HomePage.tsx`, `ProjectDetails.tsx`, `RecruiterMode.tsx`, `AskSahayaAI.tsx`).
+  - `data/` - Client-side static data models (e.g., `caseStudies.ts`).
   - `hooks/` - Custom React hooks.
-  - `lib/` - Client-side data storage and configuration (e.g., [data.ts](file:///D:/GITHUB/blog/src/lib/data.ts)).
-  - `pages/` - Page view entry points (lazy-loaded).
   - `styles/` - Global stylesheets and Tailwind layers.
   - `types/` - TypeScript typings and interfaces.
-  - `utils/` - Global helper functions and formatters.
+- `docs/` - Career strategy, architectural planning, and GitHub profile templates.
 - `.github/workflows/` - CI/CD deployment configurations.
 
 ### Architecture Specifications
-- **Routing:** Configured with `react-router-dom` using `BrowserRouter` inside `main.tsx`. Routes are defined in `App.tsx` and dynamically loaded using `React.lazy` and `Suspense` for code-splitting.
-- **State Management:** Fully decentralized using local React state (`useState`, `useReducer`), hooks, and memoization (`useMemo`, `useCallback`). No heavy state libraries (Redux, Zustand) are used.
-- **Data Sources:** Raw blog posts and tags are maintained statically inside `src/lib/data.ts` to support rapid, client-side rendering with no external database requirements.
-- **Blog System:** Powered by clean client-side search indexing (title/excerpt), category filters, and custom client-side pagination. Headings inside posts are automatically slugified to build dynamic Tables of Contents (TOC).
+- **Routing:** Configured with `react-router-dom`. `App.tsx` handles route definitions using `<Outlet />` patterns. All major views are dynamically loaded using `React.lazy` and `Suspense` for code-splitting.
+- **State Management:** Fully decentralized using local React state and `useOutletContext` for passing context between layouts and nested pages. No heavy state libraries are used.
+- **Data Sources:** Content (projects, skills, case studies) is maintained statically inside `src/data/` to support instant client-side rendering.
 
 ---
 
@@ -58,26 +58,25 @@ This document serves as the project's permanent operating guidelines and constit
   - **Colors:** Primary dark red (`#652929`), background teal/cyan (`#C1E5E7`), cards cream (`#FCF9E0`), active accents gold (`#DCD27D`).
   - **Border Radius:** Precise brutalist pill shapes (`rounded-navbar` at `48px`, `rounded-badge` at `24px`).
   - **Shadow System:** High-impact solid offsets (`8px 8px 0px 0px #652929`).
-- **Animations:** Subtle, responsive micro-animations using `framer-motion` (e.g., springs, smooth transitions, page transition suspension, and marquee loops). Opacity scales should have clean exit steps.
+- **Animations:** Subtle, responsive micro-animations using `framer-motion`. Complex visual effects are handled via WebGL shaders (e.g., `Galaxy.jsx`, `TargetCursor.jsx`) which require `// @ts-ignore` flags to satisfy strict TypeScript environments without breaking the Vite bundler.
 - **Responsive Behavior:** Strict custom responsive breakpoints for desktop, laptop, tablet, and mobile layouts. Check margins and grid columns on resized screens to avoid layout overflow.
 
 ---
 
 ## 5. SEO Standards
 
-- **Metadata Preservation:** Never modify or drop existing header metadata tags. Every page must contain custom title tags, meta descriptions, canonical URLs, and appropriate robot indexing instructions.
-- **Static SEO Assets:** Keep `robots.txt` and `sitemap.xml` intact at the root. Update them when new paths are added.
-- **Social Tags:** Include complete Open Graph (`og:`) and Twitter Card specifications on all page templates.
-- **Structured Data:** Use JSON-LD scripts at the root template level to declare structured data (such as articles and authors) for crawlers.
+- **Metadata Preservation:** Never modify or drop existing header metadata tags. 
+- **Dynamic SEO:** Every page must utilize the `SEOHead.tsx` component (powered by `react-helmet-async`) to dynamically inject custom `<title>`, OpenGraph meta tags, and description fields.
+- **Structured Data:** Use `SEOHead.tsx` to inject dynamic structured JSON-LD schemas (e.g., `Person` on HomePage, `SoftwareSourceCode` on Case Studies) for rich search results.
+- **Static SEO Assets:** Keep `robots.txt` and `sitemap.xml` intact at the root directory. Update the static `sitemap.xml` when new dedicated routes are added.
 
 ---
 
-## 6. Blog Rules
+## 6. Portfolio Integration Rules
 
-- **Unique Slugs:** Every post in `src/lib/data.ts` must have a URL-safe, lowercase, unique slug.
-- **Structure:** Content should support Markdown blocks. Headings inside the post must have a hierarchical structure starting with `##` (H2).
-- **Metadata:** Every blog post must include: `id`, `slug`, `title`, `excerpt`, `content`, `category`, `author`, `authorAvatar`, `date`, `readingTime`, `image`, `featured` (boolean), and `tags` (string array).
-- **Search & Filters:** The filtering system must query case-insensitively across both the title and post excerpt.
+- **Project Case Studies:** Every project referenced must have a corresponding entry in `src/data/caseStudies.ts` with a URL-safe, lowercase, unique slug to populate dynamic `ProjectDetails` pages.
+- **Dedicated Blog Links:** The portfolio does NOT host blog modals. Any blog entry point (buttons, links, command palette) must navigate strictly to the external dedicated blog domain: `https://blog.sahayasavari.me`.
+- **Specialized Routes:** Maintain dedicated views for specific use cases (e.g., ATS-friendly `/recruiter`, conversational `/ai`) to enhance UX for varying audiences.
 
 ---
 
@@ -351,11 +350,45 @@ Do not declare success until:
 
 Use this checklist to validate your output before completing the task:
 
-- [ ] Project builds with zero errors: `tsc -b && vite build`
+- [ ] Project builds with zero errors: `npx tsc --noEmit && vite build`
 - [ ] Local preview succeeds: `npm run preview`
 - [ ] Browser console has zero exceptions or MIME-type blocks.
-- [ ] Direct URLs (such as `/blog`) load correctly via the 404 redirector.
+- [ ] Direct URLs (such as `/projects/:id`) load correctly via the 404 redirector.
 - [ ] Deployment workflow file is checked in: `.github/workflows/deploy.yml`
-- [ ] Redirect resources are checked in: `public/404.html` and script in `index.html`
-- [ ] CNAME points to custom domain: `blog.sahayasavari.me`
+- [ ] Redirect resources are checked in: `public/404.html`
+- [ ] Custom domain settings remain functional.
 - [ ] SEO compliance is intact: `robots.txt` and `sitemap.xml` are accessible at the root.
+
+---
+
+## 28. Production Baseline (Do Not Regress)
+
+The portfolio has completed its major architectural roadmap and is considered production-ready.
+
+Future AI agents MUST treat the current implementation as the baseline.
+
+Do NOT:
+- Redesign existing UI without explicit instruction.
+- Reintroduce removed architectures (e.g., BlogModal).
+- Replace stable implementations simply for stylistic reasons.
+- Introduce unnecessary dependencies.
+- Rewrite large portions of working code.
+
+Prefer extending existing architecture over replacing it.
+
+Every change should:
+- Preserve existing UX.
+- Maintain backward compatibility where practical.
+- Improve maintainability.
+- Improve accessibility.
+- Improve performance.
+- Improve recruiter experience.
+
+Before completing any task:
+1. Run `npm run build`.
+2. Fix all build errors.
+3. Run `npm run preview`.
+4. Verify affected functionality.
+5. Check browser console for errors.
+6. Commit only after successful verification.
+7. Push and deploy only when explicitly requested.
