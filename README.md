@@ -106,11 +106,12 @@ The application is deployed using **GitHub Pages** via a custom GitHub Actions w
 
 ## ⭐ Star History
 
-<a href="https://www.star-history.com/?repos=sahaya-savari%2Fsahaya-savari.github.io&type=date&legend=top-left">
+
+<a href="https://www.star-history.com/?repos=sahaya-savari%2Fsahaya-savari.github.io.git&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&theme=dark&legend=top-left&sealed_token=c9Db_NK5OWGKWdblSy97N0FEopocgbRybjGsauNyQE_m7OuA5fvhV0IEbYpCY9sZndt93BKd8dNIHiG9ye0I2ipiQCZ6BPO9jRrz-3MY_rTTl4jaj_AqzaqWM-0PrHjSgiELtARG5xBy9-K_tvcbFuC3fw-T4zPnBHMseG1zvUCvfGPbjrcV0vnWQh9Z" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&legend=top-left&sealed_token=c9Db_NK5OWGKWdblSy97N0FEopocgbRybjGsauNyQE_m7OuA5fvhV0IEbYpCY9sZndt93BKd8dNIHiG9ye0I2ipiQCZ6BPO9jRrz-3MY_rTTl4jaj_AqzaqWM-0PrHjSgiELtARG5xBy9-K_tvcbFuC3fw-T4zPnBHMseG1zvUCvfGPbjrcV0vnWQh9Z" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io&type=date&legend=top-left&sealed_token=c9Db_NK5OWGKWdblSy97N0FEopocgbRybjGsauNyQE_m7OuA5fvhV0IEbYpCY9sZndt93BKd8dNIHiG9ye0I2ipiQCZ6BPO9jRrz-3MY_rTTl4jaj_AqzaqWM-0PrHjSgiELtARG5xBy9-K_tvcbFuC3fw-T4zPnBHMseG1zvUCvfGPbjrcV0vnWQh9Z" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io.git&type=date&theme=dark&legend=top-left&sealed_token=6yjWwbhFWiJFejAzy2UMMxI-WvmAHnQfgBEBqxRYSnOaOU_ml1b4MNp4h3kbdJzuI0qdcQlfbKj4ncWcZx4FxbUTVnzrtcUVMQes7IDjUvWVDUUxOtGl2yny8dPcmOmPuv_Xn5wsNUcsyClMzw9SjUq99sMLAOx8JLjYYV6HPpwyT3u9f6JACHkHfTQ0" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io.git&type=date&legend=top-left&sealed_token=6yjWwbhFWiJFejAzy2UMMxI-WvmAHnQfgBEBqxRYSnOaOU_ml1b4MNp4h3kbdJzuI0qdcQlfbKj4ncWcZx4FxbUTVnzrtcUVMQes7IDjUvWVDUUxOtGl2yny8dPcmOmPuv_Xn5wsNUcsyClMzw9SjUq99sMLAOx8JLjYYV6HPpwyT3u9f6JACHkHfTQ0" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=sahaya-savari/sahaya-savari.github.io.git&type=date&legend=top-left&sealed_token=6yjWwbhFWiJFejAzy2UMMxI-WvmAHnQfgBEBqxRYSnOaOU_ml1b4MNp4h3kbdJzuI0qdcQlfbKj4ncWcZx4FxbUTVnzrtcUVMQes7IDjUvWVDUUxOtGl2yny8dPcmOmPuv_Xn5wsNUcsyClMzw9SjUq99sMLAOx8JLjYYV6HPpwyT3u9f6JACHkHfTQ0" />
  </picture>
 </a>
 
