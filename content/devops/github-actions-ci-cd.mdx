@@ -1,0 +1,100 @@
+---
+id: "github-actions-ci-cd"
+title: "GitHub Actions CI/CD Pipelines: Automated Testing, Linting & Container Deployment"
+excerpt: "Learn how to build GitHub Actions CI/CD workflows. Automate pytest, ESLint, Docker builds, vulnerability scanning with Trivy, and automated releases."
+category: "DevOps & Cloud"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 18
+image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=1200&h=675&fit=crop"
+featured: false
+tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Docker"]
+---
+
+# GitHub Actions CI/CD Pipelines: Automated Testing, Linting & Container Deployment
+
+Automated **Continuous Integration and Continuous Deployment (CI/CD)** pipelines prevent broken code, security vulnerabilities, and unformatted commits from reaching production. **GitHub Actions** provides workflow automation integrated directly into GitHub repositories.
+
+This guide constructs an enterprise pipeline for automated Python/React testing, linting, Docker image building, and container registry publishing.
+
+---
+
+## 🚀 Enterprise CI/CD Pipeline Workflow
+
+```mermaid
+flowchart LR
+    Push[Git Push / PR to Main] --> LintStep[Job 1: Lint & Type Check]
+    Push --> TestStep[Job 2: PyTest & Vitest Suites]
+    LintStep --> BuildStep[Job 3: Docker Build & Security Scan]
+    TestStep --> BuildStep
+    BuildStep --> PushGHCR[Job 4: Push to GHCR / Deploy]
+```
+
+---
+
+## 💻 Workflow Example (`.github/workflows/deploy.yml`)
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff pytest pydantic
+
+      - name: Run Ruff Linter & Syntax Checker
+        run: ruff check .
+
+      - name: Execute Pytest Suite
+        run: pytest
+
+  build-and-push:
+    needs: test-and-lint
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Firebase Web Hosting & Cloud Functions Deployment](/blog/firebase-web-hosting)
+- 🔗 [Docker for Developers: Containerization Best Practices](/blog/docker-for-developers)
+- 🔗 [Kubernetes Fundamentals: Pods, Services & Deployments](/blog/kubernetes-basics)

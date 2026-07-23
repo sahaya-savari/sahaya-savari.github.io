@@ -1,0 +1,57 @@
+---
+id: "vercel-deployment"
+title: "Vercel Serverless Architecture, Edge Middleware & CI/CD Deployment"
+excerpt: "A guide to Vercel deployment architecture. Learn Edge Functions, Vercel KV/Postgres, preview deployments, headers, and performance optimization."
+category: "DevOps & Cloud"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 16
+image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Vercel", "Serverless", "Edge", "Next.js", "DevOps"]
+---
+
+# Vercel Serverless Architecture, Edge Middleware & CI/CD Deployment
+
+**Vercel** provides an optimized global serverless deployment platform built specifically for modern frontend frameworks and Next.js App Router applications.
+
+This guide details configuring `vercel.json`, writing custom Edge Middleware for geo-routing and authentication, and managing environment security.
+
+---
+
+## 💻 Configuration Example (`vercel.json`)
+
+```json
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Cloudflare Workers & Pages: Edge Computing Architecture](/blog/cloudflare-workers-pages)
+- 🔗 [Firebase Web Hosting & Cloud Functions Deployment](/blog/firebase-web-hosting)
+- 🔗 [GitHub Actions CI/CD Pipelines](/blog/github-actions-ci-cd)

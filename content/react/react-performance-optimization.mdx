@@ -1,0 +1,82 @@
+---
+id: "react-performance-optimization"
+title: "Advanced React Performance: Profiling, Memoization & Core Web Vitals Optimization"
+excerpt: "A comprehensive guide to optimizing React applications for high performance. Learn DevTools Profiler, INP reduction, LCP poster preloading, and CLS elimination."
+category: "React"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 22
+image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=675&fit=crop"
+featured: false
+tags: ["React", "Performance", "Web Vitals", "LCP", "INP", "CLS"]
+---
+
+# Advanced React Performance: Profiling, Memoization & Core Web Vitals Optimization
+
+A fast React application is not created by accident—it is the result of continuous performance budgeting, component profiling, hardware-accelerated animations, and aggressive Core Web Vitals optimization (**LCP < 2.5s**, **INP < 200ms**, **CLS < 0.1**).
+
+This guide details identifying re-render bottlenecks, eliminating non-composited layout shifts, and optimizing initial render passes.
+
+---
+
+## ⚡ Core Web Vitals Optimization Matrix
+
+| Metric | Target Score | Primary Causes in React | Fix Strategy |
+| :--- | :--- | :--- | :--- |
+| **LCP** (Largest Contentful Paint) | `< 2.5s` | `opacity: 0` text animations, slow web fonts, lazy images | Immediate visible initial render, font `fetchpriority="high"`, preloaded poster |
+| **INP** (Interaction to Next Paint) | `< 200ms` | Long synchronous JS loops on main thread | Splitting tasks with `startTransition` or web workers |
+| **CLS** (Cumulative Layout Shift) | `< 0.1` | Unsized images, dynamic banner injections | Set explicit `width`/`height` and `aspect-ratio` containers |
+
+---
+
+## 💻 Code Example: Debounced Search Input with `useTransition`
+
+```tsx
+import { useState, useTransition, ChangeEvent } from 'react';
+
+export default function SearchFilterList({ items }: { items: string[] }) {
+  const [query, setQuery] = useState('');
+  const [filteredItems, setFilteredItems] = useState(items);
+  const [isPending, startTransition] = useTransition();
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const nextQuery = e.target.value;
+    setQuery(nextQuery); // High priority update (input field response)
+
+    startTransition(() => {
+      // Low priority transition update (heavy filtering loop)
+      const results = items.filter(item => 
+        item.toLowerCase().includes(nextQuery.toLowerCase())
+      );
+      setFilteredItems(results);
+    });
+  };
+
+  return (
+    <div className="p-4 max-w-md mx-auto">
+      <input
+        type="text"
+        value={query}
+        onChange={handleSearchChange}
+        placeholder="Search items..."
+        className="w-full px-4 py-2 border rounded-lg"
+      />
+      {isPending && <p className="text-xs text-gray-500 mt-1">Filtering results...</p>}
+      <ul className="mt-4 space-y-1">
+        {filteredItems.slice(0, 10).map((item, idx) => (
+          <li key={idx} className="p-2 bg-gray-50 rounded border text-sm">{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Docker for Developers: Containerization Best Practices](/blog/docker-for-developers)
+- 🔗 [React 19 Deep Dive: Compiler, Actions & Hooks](/blog/react-19-guide)
+- 🔗 [Vite 6 Build Optimization & Code Splitting](/blog/vite-build-performance)

@@ -4,39 +4,57 @@ import { resolveBlogCoverImage } from '../utils/blogImages';
 export const categories: Category[] = [
   {
     "id": "1",
+    "name": "AI & Machine Learning",
+    "slug": "ai-ml",
+    "description": "In-depth guides on LLM architectures, RAG systems, MCP protocol, AI agents, fine-tuning, and LangGraph.",
+    "color": "#8B5CF6",
+    "icon": "Cpu",
+    "postCount": 7
+  },
+  {
+    "id": "2",
     "name": "Python",
     "slug": "python",
-    "description": "Master Python from scratch to data analytics and AI.",
+    "description": "Master Python from AsyncIO and FastAPI to Pydantic v2, SQLAlchemy v2, and backend interview questions.",
     "color": "#3776AB",
     "icon": "Code",
     "postCount": 5
   },
   {
-    "id": "2",
+    "id": "3",
+    "name": "React & Web",
+    "slug": "react",
+    "description": "Modern web development tutorials covering React 19, Next.js App Router, Tailwind CSS v4, Vite, and performance.",
+    "color": "#61DAFB",
+    "icon": "Layers",
+    "postCount": 5
+  },
+  {
+    "id": "4",
+    "name": "DevOps & Cloud",
+    "slug": "devops",
+    "description": "Containerization with Docker, Kubernetes, GitHub Actions CI/CD, Firebase, Vercel, and Cloudflare Workers.",
+    "color": "#0096D6",
+    "icon": "Cloud",
+    "postCount": 6
+  },
+  {
+    "id": "5",
+    "name": "Career & Growth",
+    "slug": "career",
+    "description": "Engineering roadmaps, ATS tech resumes, developer portfolios, GitHub profiles, and internship guides.",
+    "color": "#10B981",
+    "icon": "TrendingUp",
+    "postCount": 5
+  },
+  {
+    "id": "6",
     "name": "Git & GitHub",
     "slug": "github",
     "description": "Version control tutorials, workflow guides, and open source collaboration.",
     "color": "#181717",
     "icon": "GitBranch",
     "postCount": 1
-  },
-  {
-    "id": "3",
-    "name": "Programming",
-    "slug": "programming",
-    "description": "Core programming concepts, logic building, and learning strategies.",
-    "color": "#E9DA79",
-    "icon": "BookOpen",
-    "postCount": 1
-  },
-  {
-    "id": "4",
-    "name": "React",
-    "slug": "react",
-    "description": "Modern web development tutorials using React and Vite.",
-    "color": "#61DAFB",
-    "icon": "Layers",
-    "postCount": 2
   }
 ];
 
@@ -137,7 +155,7 @@ export const skills: Skill[] = [
 export const achievements: Achievement[] = [
   {
     "title": "Tutorials Written",
-    "value": "9+",
+    "value": "25+",
     "description": "In-depth long-form guides"
   },
   {

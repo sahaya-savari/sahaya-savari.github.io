@@ -1,0 +1,61 @@
+---
+id: "firebase-web-hosting"
+title: "Firebase Web Hosting, Security Rules & Cloud Functions Deployment"
+excerpt: "A complete deployment guide for Firebase. Learn Firebase Hosting, Firestore security rules, Cloud Functions, and continuous deployment workflows."
+category: "DevOps & Cloud"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 16
+image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Firebase", "Hosting", "Cloud Functions", "DevOps", "React"]
+---
+
+# Firebase Web Hosting, Security Rules & Cloud Functions Deployment
+
+**Google Firebase** offers a production-grade infrastructure platform for web applications, combining global CDN hosting, real-time Firestore database synchronization, and serverless Node.js / Python Cloud Functions.
+
+This guide details configuring `firebase.json`, setting up granular Firestore security rules, and deploying automated GitHub Actions previews.
+
+---
+
+## 💻 Configuration Manifest Example (`firebase.json`)
+
+```json
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000, immutable"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Vercel Serverless Architecture, Edge Middleware & CI/CD](/blog/vercel-deployment)
+- 🔗 [Cloudflare Workers & Pages: Edge Computing Architecture](/blog/cloudflare-workers-pages)
+- 🔗 [GitHub Actions CI/CD Pipelines](/blog/github-actions-ci-cd)

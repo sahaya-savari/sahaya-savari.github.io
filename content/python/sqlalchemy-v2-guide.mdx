@@ -1,0 +1,90 @@
+---
+id: "sqlalchemy-v2-guide"
+title: "SQLAlchemy 2.0 Async ORM & Migration Strategies: Mapped, mapped_column & AsyncSession"
+excerpt: "Master SQLAlchemy 2.0 Async ORM. Learn type-annotated Mapped & mapped_column modeling, AsyncSession, eager loading, and Alembic database migrations."
+category: "Python"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 20
+image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1200&h=675&fit=crop"
+featured: false
+tags: ["SQLAlchemy", "Python", "Database", "AsyncIO", "PostgreSQL", "ORM"]
+---
+
+# SQLAlchemy 2.0 Async ORM & Migration Strategies: Mapped, mapped_column & AsyncSession
+
+SQLAlchemy 2.0 standardizes modern Python ORM modeling using standard type annotations (`Mapped[T]`, `mapped_column()`), fully unifying Core SQL statements with ORM models while integrating first-class **AsyncIO** support via `create_async_engine` and `AsyncSession`.
+
+This guide details building async database models, executing type-safe `select()` statements, managing transactions, and handling N+1 eager loading.
+
+---
+
+## 💻 SQLAlchemy 2.0 Async Implementation Code
+
+```python
+import asyncio
+from typing import List, Optional
+from datetime import datetime
+from sqlalchemy import String, DateTime, ForeignKey, select
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+
+# 1. Base Declarative Class
+class Base(DeclarativeBase):
+    pass
+
+# 2. Async ORM Models
+class User(Base):
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    username: Mapped[str] = mapped_column(String(50), unique=True, index=True)
+    email: Mapped[str] = mapped_column(String(120), unique=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+    articles: Mapped[List["Article"]] = relationship(back_populates="author", cascade="all, delete-orphan")
+
+class Article(Base):
+    __tablename__ = "articles"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(String(200))
+    author_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
+
+    author: Mapped["User"] = relationship(back_populates="articles")
+
+# 3. Async Engine & Session Setup
+async_engine = create_async_engine("sqlite+aiosqlite:///:memory:", echo=False)
+AsyncSessionLocal = async_sessionmaker(async_engine, expire_on_commit=False, class_=AsyncSession)
+
+async def init_and_test_db():
+    async with async_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    async with AsyncSessionLocal() as session:
+        async with session.begin():
+            new_user = User(username="sahaya_savari", email="contact@sahayasavari.me")
+            session.add(new_user)
+            await session.flush()
+
+            new_article = Article(title="SQLAlchemy 2.0 Async Guide", author_id=new_user.id)
+            session.add(new_article)
+
+        # Query back using 2.0 select syntax
+        stmt = select(User).where(User.username == "sahaya_savari")
+        res = await session.execute(stmt)
+        user = res.scalar_one()
+        print(f"Retrieved User: {user.username} (Email: {user.email})")
+
+if __name__ == "__main__":
+    asyncio.run(init_and_test_db())
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [React 19 Guide: Compiler, Actions, Server Components & Hooks](/blog/react-19-guide)
+- 🔗 [FastAPI Tutorial: Building Production Async APIs](/blog/fastapi-tutorial)
+- 🔗 [Pydantic V2 Deep Dive: Validation, Models & Performance](/blog/pydantic-v2-guide)

@@ -20,6 +20,8 @@ import BlogCard from '../components/BlogCard';
 import CommentSection from '../components/CommentSection';
 import Newsletter from '../components/Newsletter';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ReadingProgress from '../components/ReadingProgress';
+import GeoSchema from '../components/GeoSchema';
 import { blogPosts, postComponents } from '../lib/data';
 import { formatDate } from '../utils/helpers';
 import { resolveBlogFallbackCover, resolveChapterEmoji } from '../utils/blogImages';
@@ -577,6 +579,9 @@ export default function BlogDetails() {
 
   return (
     <article className="bg-background overflow-x-hidden">
+      <ReadingProgress />
+      <GeoSchema post={post} url={shareUrl || `https://blog.sahayasavari.me/blog/${slug}`} />
+
       {/* ── Hero Image ── */}
       <div
         className="relative w-full overflow-hidden bg-cover bg-center"
@@ -611,10 +616,19 @@ export default function BlogDetails() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
+                {/* Breadcrumbs Navigation */}
+                <nav aria-label="Breadcrumb" className="mb-4 text-xs font-body text-primary/60 flex items-center gap-1.5 flex-wrap">
+                  <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+                  <span>/</span>
+                  <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
+                  <span>/</span>
+                  <span className="text-primary font-medium">{post.category}</span>
+                </nav>
+
                 {/* Back link */}
                 <Link
                   to="/blog"
-                className="inline-flex items-center gap-2 text-sm font-bold text-primary/70 hover:text-primary transition-colors mb-6 min-h-[44px]"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-primary/70 hover:text-primary transition-colors mb-6 min-h-[44px]"
                 >
                   <ArrowLeft className="w-4 h-4" aria-hidden="true" />
                   Back to Blog

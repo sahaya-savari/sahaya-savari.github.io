@@ -1,0 +1,62 @@
+---
+id: "vite-build-performance"
+title: "Vite 6 Build Optimization & Code Splitting: Manual Chunks, Rolldown & Cache Hygiene"
+excerpt: "Optimize Vite 6 build performance. Learn manual chunk splitting, Rolldown bundler integration, asset inline thresholds, dynamic import boundaries, and cache headers."
+category: "React"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 18
+image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Vite", "Web Performance", "React", "Bundling", "JavaScript"]
+---
+
+# Vite 6 Build Optimization & Code Splitting: Manual Chunks, Rolldown & Cache Hygiene
+
+**Vite 6** has established itself as the premier build engine for modern frontend development. Utilizing native ES modules during development and leveraging high-performance Rust-based bundlers for production, Vite eliminates slow cold-starts and optimizes bundle splitting.
+
+This guide details configuring production `vite.config.ts` for minimal vendor chunk size, lazy loading heavy libraries, and eliminating Total Blocking Time (TBT).
+
+---
+
+## 💻 Production `vite.config.ts` Configuration
+
+```typescript
+import { defineConfig } from 'vite';
+import react from '@vitejs.plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    target: 'esnext',
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096, // Inline assets < 4KB as base64
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+              return 'react-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'framer-motion';
+            }
+            if (id.includes('lucide-react')) {
+              return 'lucide';
+            }
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Advanced React Performance: Profiling, Memoization & Web Vitals](/blog/react-performance-optimization)
+- 🔗 [React 19 Deep Dive: Compiler, Actions & Hooks](/blog/react-19-guide)
+- 🔗 [Tailwind CSS v4 Engine & Utility Architecture](/blog/tailwind-css-v4-guide)

@@ -1,0 +1,65 @@
+---
+id: "tailwind-css-v4-guide"
+title: "Tailwind CSS v4 Guide: Oxide Engine, @theme Directive & Dynamic Utilities"
+excerpt: "Explore Tailwind CSS v4. Learn the Rust-powered Oxide engine, zero-config setup, CSS-first @theme directive, container queries, and performance gains."
+category: "React"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 16
+image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Tailwind CSS", "CSS", "Frontend", "Vite", "React"]
+---
+
+# Tailwind CSS v4 Guide: Oxide Engine, @theme Directive & Dynamic Utilities
+
+**Tailwind CSS v4** is a complete ground-up rewrite of the utility-first CSS framework. Powered by the Rust-based **Oxide engine**, v4 compiles CSS **up to 10x faster** than v3 while replacing legacy JavaScript config files (`tailwind.config.js`) with a native, CSS-first `@theme` architecture.
+
+This guide details configuring Tailwind v4 in Vite and React applications, defining custom design tokens, and leveraging native container queries.
+
+---
+
+## ⚡ Key Upgrades in Tailwind v4
+
+| Feature | Tailwind CSS v3 | Tailwind CSS v4 (2026) |
+| :--- | :--- | :--- |
+| **Engine** | JavaScript / PostCSS | Rust-powered Oxide Engine |
+| **Configuration** | `tailwind.config.js` | Direct CSS `@theme` directives |
+| **Import Directive** | `@tailwind base; @tailwind components;` | Single `@import "tailwindcss";` |
+| **Color Space** | RGB / HSL default | OKLCH high-gamut default |
+| **Container Queries** | Require `@tailwindcss/container-queries` plugin | Native `@min-*` & `@max-*` container utilities |
+
+---
+
+## 💻 Code Example: CSS-First Theme Configuration in `index.css`
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Instrument Serif', serif;
+  --font-body: 'Barlow', sans-serif;
+
+  --color-brand-primary: oklch(0.65 0.24 260);
+  --color-brand-accent: oklch(0.78 0.18 140);
+  --color-dark-bg: oklch(0.14 0.02 260);
+
+  --radius-badge: 9999px;
+  --radius-card: 1.5rem;
+}
+
+@utility liquid-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Vite 6 Build Optimization & Code Splitting](/blog/vite-build-performance)
+- 🔗 [React 19 Deep Dive: Compiler, Actions & Hooks](/blog/react-19-guide)
+- 🔗 [Advanced React Performance: Profiling, Memoization & Web Vitals](/blog/react-performance-optimization)

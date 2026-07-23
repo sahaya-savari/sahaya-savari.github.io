@@ -1,0 +1,63 @@
+---
+id: "nextjs-app-router-guide"
+title: "Next.js App Router Architecture: Caching, Streaming, Server Actions & Metadata"
+excerpt: "A technical guide to Next.js App Router. Learn Server vs Client Components, dynamic route segments, ISR revalidation, Streaming with Suspense, and SEO metadata."
+category: "React"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 20
+image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Next.js", "React", "Server Components", "Full Stack", "Web Development"]
+---
+
+# Next.js App Router Architecture: Caching, Streaming, Server Actions & Metadata
+
+The Next.js **App Router** (`app/` directory) represents a complete architectural paradigm shift built on React Server Components (RSC). By shifting component execution to the server by default, Next.js reduces client-side JavaScript bundle sizes while enabling server-side data fetching and streaming responses.
+
+This guide details RSC vs Client Component boundaries, data caching strategies, dynamic route handlers, and SEO Metadata configuration.
+
+---
+
+## 🏗️ Server vs. Client Component Boundaries
+
+```mermaid
+flowchart TD
+    Layout[app/layout.tsx - Server Component] --> Page[app/page.tsx - Server Component]
+    Page --> DBFetch[Direct Database / API Query - Server Side]
+    Page --> InteractiveWidget[src/components/Counter.tsx - 'use client']
+    InteractiveWidget --> LocalState[React useState / onClick Handlers]
+```
+
+---
+
+## 💻 Code Example: Dynamic Route Handler with Server Actions
+
+```tsx
+// app/api/projects/[id]/route.ts
+import { NextResponse } from 'next/server';
+
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const projectId = params.id;
+  
+  // Return JSON payload directly from server
+  return NextResponse.json({
+    project_id: projectId,
+    title: `AI Agent Framework ${projectId}`,
+    status: "ACTIVE",
+    timestamp: new Date().toISOString()
+  });
+}
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Tailwind CSS v4 Engine & Utility Architecture](/blog/tailwind-css-v4-guide)
+- 🔗 [React 19 Deep Dive: Compiler, Actions & Hooks](/blog/react-19-guide)
+- 🔗 [Advanced React Performance: Profiling, Memoization & Web Vitals](/blog/react-performance-optimization)

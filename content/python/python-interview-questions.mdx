@@ -1,0 +1,93 @@
+---
+id: "python-interview-questions"
+title: "Python Interview Questions (2026): 50+ Senior Coding Challenges & Core Concepts"
+excerpt: "A comprehensive, battle-tested preparation guide for Python developer and AI engineer interviews. Covering memory management, decorators, generators, AsyncIO, and GIL."
+category: "Python"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 25
+image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Python", "Interview Questions", "AsyncIO", "OOP", "Data Structures", "Backend"]
+---
+
+# Python Interview Questions (2026): 50+ Senior Coding Challenges & Core Concepts
+
+Whether interviewing for a Senior Backend Engineer, Data Engineer, or AI Engineer role in 2026, candidates are expected to demonstrate deep mastery of Python's internals: memory management, reference counting, the Global Interpreter Lock (GIL), custom iterators, asynchronous concurrency, and clean object-oriented architecture.
+
+This guide details the core technical concepts and code challenges requested in senior Python technical interviews.
+
+---
+
+## 🧠 Core Language Concepts & Coding Challenges
+
+### Question 1: How does Python manage memory, reference counting, and garbage collection?
+Python uses **Reference Counting** as its primary memory management strategy alongside a **Generational Garbage Collector** to detect cyclic references.
+
+- Every Python object has a `ob_refcnt` metadata field. When an object is referenced, `ob_refcnt` increases; when references are deleted or go out of scope, it decreases. When `ob_refcnt == 0`, memory is immediately freed.
+- Cyclic references (e.g. Object A referencing Object B, and Object B referencing Object A) are handled by the `gc` module, which groups objects into Generations 0, 1, and 2 based on survival history.
+
+```python
+import sys
+import gc
+
+a = []
+b = [a]
+a.append(b)
+
+print(f"Reference count of 'a': {sys.getrefcount(a) - 1}")
+del a
+del b
+# Trigger manual cyclic garbage collection
+unreachable = gc.collect()
+print(f"Unreachable objects collected: {unreachable}")
+```
+
+---
+
+### Question 2: Write a robust, parametric decorator that logs execution time and retries on failure.
+
+```python
+import functools
+import time
+from typing import Callable, Any
+
+def retry_and_time(max_retries: int = 3, delay_seconds: float = 0.2):
+    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+        @functools.wraps(func)
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
+            start_time = time.perf_counter()
+            retries = 0
+            while retries < max_retries:
+                try:
+                    result = func(*args, **kwargs)
+                    elapsed = (time.perf_counter() - start_time) * 1000
+                    print(f"[{func.__name__}] Succeeded in {elapsed:.2f}ms")
+                    return result
+                except Exception as err:
+                    retries += 1
+                    print(f"[{func.__name__}] Attempt {retries} failed: {err}")
+                    if retries >= max_retries:
+                        raise err
+                    time.sleep(delay_seconds)
+        return wrapper
+    return decorator
+
+@retry_and_time(max_retries=2, delay_seconds=0.1)
+def unreliable_network_fetch(endpoint: str):
+    print(f"Fetching from {endpoint}...")
+    return "200 OK Response Data"
+
+if __name__ == "__main__":
+    data = unreliable_network_fetch("https://api.sahayasavari.me/data")
+    print(data)
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Asynchronous Python Guide: AsyncIO, Event Loops & Concurrency](/blog/async-python-guide)
+- 🔗 [FastAPI Tutorial: Building Production Async APIs](/blog/fastapi-tutorial)
+- 🔗 [Pydantic V2 Deep Dive: Validation, Models & Performance](/blog/pydantic-v2-guide)

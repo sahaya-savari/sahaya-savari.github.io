@@ -1,0 +1,82 @@
+---
+id: "pydantic-v2-guide"
+title: "Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture"
+excerpt: "A technical guide to Pydantic V2. Explore the Rust-backed pydantic-core engine, field validators, model validators, Computed Fields, and custom serializers."
+category: "Python"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 18
+image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Pydantic", "Python", "Type Validation", "FastAPI", "Data Modeling"]
+---
+
+# Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture
+
+**Pydantic V2** represents a total rewrite of Python's most popular data validation library. By shifting the core validation logic into Rust (`pydantic-core`), Pydantic V2 achieves performance improvements up to **5x to 20x faster** than V1 while refining validation semantics and dynamic serialization.
+
+This guide details field validation, model-level root validators, `@computed_field`, and JSON schema customization.
+
+---
+
+## ⚡ Key Migration Differences (V1 vs. V2)
+
+| Feature | Pydantic V1 | Pydantic V2 (2026) |
+| :--- | :--- | :--- |
+| **Validation Core** | Pure Python loops | Rust-powered `pydantic-core` |
+| **Field Validators** | `@validator` | `@field_validator(mode='before'/'after')` |
+| **Root Validators** | `@root_validator` | `@model_validator(mode='after')` |
+| **Computed Fields** | `@property` (untyped in schema) | `@computed_field` (included in schema & dump) |
+| **Dump Method** | `.dict()`, `.json()` | `.model_dump()`, `.model_dump_json()` |
+
+---
+
+## 💻 Code Example: Production Pydantic V2 Model
+
+```python
+from pydantic import BaseModel, Field, field_validator, model_validator, computed_field
+from typing import List
+from datetime import datetime
+
+class ProjectConfig(BaseModel):
+    project_name: str = Field(min_length=2)
+    tags: List[str] = Field(default_factory=list)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    budget_limit_usd: float = Field(gt=0)
+
+    @field_validator("tags")
+    @classmethod
+    def normalize_tags(cls, values: List[str]) -> List[str]:
+        """Convert all tags to lowercase and strip whitespace."""
+        return [tag.strip().lower() for tag in values if tag.strip()]
+
+    @model_validator(mode="after")
+    def validate_project_rules(self) -> "ProjectConfig":
+        if "enterprise" in self.tags and self.budget_limit_usd < 1000:
+            raise ValueError("Enterprise projects require budget limit of at least $1000.")
+        return self
+
+    @computed_field
+    @property
+    def is_high_value(self) -> bool:
+        return self.budget_limit_usd >= 5000.0
+
+# Instantiation Test
+if __name__ == "__main__":
+    cfg = ProjectConfig(
+        project_name="AI Agent Fleet",
+        tags=["  AI ", "Enterprise ", "Python"],
+        budget_limit_usd=7500.0
+    )
+    print("Serialized JSON Output:")
+    print(cfg.model_dump_json(indent=2))
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [SQLAlchemy 2.0 Async ORM & Migration Strategies](/blog/sqlalchemy-v2-guide)
+- 🔗 [FastAPI Tutorial: Building Production Async APIs](/blog/fastapi-tutorial)
+- 🔗 [Python Interview Questions (2026): Senior Coding Challenges](/blog/python-interview-questions)

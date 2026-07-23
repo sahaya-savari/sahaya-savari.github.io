@@ -1,0 +1,63 @@
+---
+id: "fine-tuning-llms"
+title: "Fine-Tuning LLMs in 2026: QLoRA, PEFT, Unsloth & Production Serving"
+excerpt: "A practical technical guide to fine-tuning open models (Llama 3, Qwen 2.5, DeepSeek) using QLoRA 4-bit quantization, HuggingFace PEFT, and serving via vLLM."
+category: "AI & Machine Learning"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 20
+image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&h=675&fit=crop"
+featured: false
+tags: ["Fine-Tuning", "QLoRA", "PyTorch", "LLM", "vLLM", "HuggingFace"]
+---
+
+# Fine-Tuning LLMs in 2026: QLoRA, PEFT, Unsloth & Production Serving
+
+While RAG injects external context at inference time, **Fine-Tuning** adapts a foundation model's tone, dialect, reasoning style, and specific output format. In 2026, Parameter-Efficient Fine-Tuning (PEFT) techniques—specifically **QLoRA (Quantized Low-Rank Adaptation)**—allow developers to fine-tune 8B-70B parameter open weights on consumer GPU hardware.
+
+This guide provides a step-by-step workflow for dataset formatting, QLoRA adapter training, model merging, and serving via vLLM.
+
+---
+
+## 💡 Fine-Tuning vs. RAG Matrix
+
+| Feature | Fine-Tuning (PEFT/QLoRA) | RAG (Hybrid Search) |
+| :--- | :--- | :--- |
+| **Primary Goal** | Change style, tone, format & domain adaptation | Inject dynamic real-time data & private documents |
+| **Knowledge Retrieval** | Static snapshot from training data | Dynamic live retrieval from vector DB |
+| **Latency Impact** | Zero added retrieval overhead | +100-300ms vector search latency |
+| **Hardware Required** | GPU VRAM during training | Standard CPU/GPU inference server |
+
+---
+
+## 💻 Python Example: QLoRA Fine-Tuning Configuration with PEFT
+
+```python
+import torch
+from peft import LoraConfig, get_peft_model, TaskType
+
+# QLoRA Adapter Configuration for Llama/Qwen Architecture
+lora_config = LoraConfig(
+    r=16,                         # Rank dimension
+    lora_alpha=32,                # Scaling factor
+    target_modules=[
+        "q_proj", "k_proj",       # Query and Key Attention projections
+        "v_proj", "o_proj",       # Value and Output Attention projections
+        "gate_proj", "up_proj"    # MLP Feed-Forward Layer projections
+    ],
+    lora_dropout=0.05,
+    bias="none",
+    task_type=TaskType.CAUSAL_LM
+)
+
+print(f"Configured LoRA Rank (r={lora_config.r}) with Target Modules: {lora_config.target_modules}")
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Building Multi-Agent Workflows with LangGraph](/blog/langgraph-tutorial)
+- 🔗 [The Ultimate AI Engineering Roadmap (2026 Edition)](/blog/ai-engineering-roadmap-2026)
+- 🔗 [Prompt Engineering Guide (2026): Advanced Enterprise Patterns](/blog/prompt-engineering-guide)

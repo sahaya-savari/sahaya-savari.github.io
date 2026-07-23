@@ -73,16 +73,18 @@ function loadPosts() {
       const slug = path.basename(filePath, '.mdx');
       const fileContent = fs.readFileSync(filePath, 'utf8');
       const fm = parseFrontmatter(fileContent);
+      const contentWithoutFm = fileContent.replace(/^---\r?\n[\s\S]*?\r?\n---/, '').trim();
       return {
         slug,
         title: fm.title || slug,
         excerpt: fm.excerpt || '',
         category: fm.category || 'General',
-        author: fm.author || 'Sahaya Savari',
+        author: fm.author || 'Sahaya Savari F',
         date: fm.date || '',
         image: fm.image || `${baseUrl}/og-image.png`,
         draft: fm.draft ?? false,
         tags: Array.isArray(fm.tags) ? fm.tags : [],
+        rawBody: contentWithoutFm,
       };
     })
     .filter((post) => !post.draft);
@@ -143,7 +145,7 @@ function injectRootContent(html, contentHtml) {
 
 // Main postbuild process
 function postbuild() {
-  console.log('🚀 Running SEO post-build route generator...');
+  console.log('🚀 Running SEO post-build route & feed generator...');
 
   const indexPath = path.join(distDir, 'index.html');
   if (!fs.existsSync(indexPath)) {
@@ -152,11 +154,9 @@ function postbuild() {
   }
 
   const rawDistHtml = fs.readFileSync(indexPath, 'utf8');
-  // Normalize base template so <div id="root"> is clean
   const baseHtmlTemplate = rawDistHtml.replace(/<div id="root">[\s\S]*?<\/div>/i, '<div id="root"></div>');
 
   const posts = loadPosts();
-
   console.log(`📦 Found ${posts.length} published blog posts from MDX.`);
 
   // 1. Generate Homepage dist/index.html
@@ -173,7 +173,7 @@ function postbuild() {
 
   const homeCrawlableHtml = `
     <header>
-      <h1>Sahaya Savari — Python, Git & AI Blog</h1>
+      <h1>Sahaya Savari Developer Blog — AI &amp; Software Engineering Knowledge Hub</h1>
       <nav>
         <a href="${baseUrl}/">Home</a> |
         <a href="${baseUrl}/blog">Blog</a> |
@@ -187,14 +187,11 @@ function postbuild() {
       <section>
         <h2>Welcome to Sahaya Savari's Technical Learning Notebook</h2>
         <p>
-          Sahaya Savari is a dedicated technical learning blog focused on empowering students, self-taught developers, and aspiring AI engineers. Our guides break down complex computer science concepts into clear, visual, and actionable tutorials. Whether you are getting started with Python programming, mastering database design with SQL, understanding Git and GitHub workflows, or exploring machine learning and artificial intelligence, this platform offers structured reading paths and practical code examples.
-        </p>
-        <p>
-          Key core topics covered across our articles include core Python foundations, data visualization, web performance optimization with React and Vite, neural network mechanics, and software engineering best practices. Dive into our latest long-form tutorials to elevate your programming skill set.
+          Sahaya Savari Developer Blog is an enterprise-grade AI and Software Engineering knowledge hub. Our guides cover Artificial Intelligence, Machine Learning, Python, FastAPI, React 19, DevOps, and Tech Career Growth.
         </p>
       </section>
       <section>
-        <h2>Featured Articles & Programming Tutorials</h2>
+        <h2>Featured Articles &amp; Technical Guides</h2>
         ${homePostsHtml}
       </section>
     </main>
@@ -204,8 +201,8 @@ function postbuild() {
   `;
 
   let updatedHomeHtml = updateHeadMeta(baseHtmlTemplate, {
-    title: 'Sahaya Savari — Python, Git & AI Blog',
-    description: 'Technical learning blog by Sahaya Savari F, sharing practical guides on Python, Databases, Git, and Web Development.',
+    title: 'Sahaya Savari Developer Blog — AI & Software Engineering Knowledge Hub',
+    description: 'World-class technical articles on Artificial Intelligence, Python, React, DevOps, and Software Engineering Career Growth by Sahaya Savari F.',
     canonicalUrl: `${baseUrl}/`,
     imageUrl: `${baseUrl}/og-image.png`,
   });
@@ -213,80 +210,49 @@ function postbuild() {
   fs.writeFileSync(indexPath, updatedHomeHtml, 'utf8');
   console.log('✅ Generated root / (dist/index.html)');
 
-  // Define static routes
+  // Static routes
   const staticRoutes = [
     {
       path: 'blog',
-      title: 'Blog Articles & Tutorials — Sahaya Savari',
-      description: 'Explore all technical articles and tutorials on Python, React, AI, Machine Learning, and Git version control by Sahaya Savari.',
-      contentHtml: `
-        <header>
-          <h1>Blog Articles &amp; Technical Guides</h1>
-        </header>
-        <main>
-          <p>Browse our complete travelog of programming tutorials, data science explorations, and web development guides.</p>
-          <section>
-            ${homePostsHtml}
-          </section>
-        </main>`,
+      title: 'Blog Articles & Technical Guides — Sahaya Savari',
+      description: 'Explore all technical articles and deep dives on AI & ML, Python, React 19, DevOps, and Software Engineering by Sahaya Savari F.',
+      contentHtml: `<header><h1>Blog Articles &amp; Technical Guides</h1></header><main><section>${homePostsHtml}</section></main>`,
     },
     {
       path: 'about',
-      title: 'About — Sahaya Savari',
-      description: 'Learn about Sahaya Savari, AI & Data Analytics student, developer, and author of technical tutorials on Python, databases, and software engineering.',
-      contentHtml: `
-        <main>
-          <h1>About Sahaya Savari</h1>
-          <p>I am an AI &amp; Data Analytics student and aspiring AI engineer writing in-depth guides on Python programming, database modeling, software engineering workflows, and machine learning fundamentals.</p>
-          <p>This blog serves as a public repository where technical concepts are broken down into intuitive mental models and step-by-step guides.</p>
-        </main>`,
+      title: 'About — Sahaya Savari F',
+      description: 'Learn about Sahaya Savari F, AI Engineer & M.Sc. AI student authoring long-form technical guides on AI, Python, React, and DevOps.',
+      contentHtml: `<main><h1>About Sahaya Savari F</h1><p>AI Engineer and M.Sc. Artificial Intelligence student building machine learning systems and full-stack software.</p></main>`,
     },
     {
       path: 'contact',
-      title: 'Contact — Sahaya Savari',
-      description: 'Get in touch with Sahaya Savari for technical collaborations, questions on tutorials, or software engineering inquiries.',
-      contentHtml: `
-        <main>
-          <h1>Contact Sahaya Savari</h1>
-          <p>Have questions about a tutorial or interested in collaboration? Reach out through our official channels or connect via GitHub.</p>
-        </main>`,
+      title: 'Contact — Sahaya Savari F',
+      description: 'Get in touch with Sahaya Savari F for technical collaborations or inquiries.',
+      contentHtml: `<main><h1>Contact Sahaya Savari F</h1><p>Email: contact@sahayasavari.me</p></main>`,
     },
     {
       path: 'categories',
-      title: 'Categories & Topics — Sahaya Savari',
-      description: 'Browse programming guides by topic: Python, Git & GitHub, React Web Development, and General Programming.',
-      contentHtml: `
-        <main>
-          <h1>Categories &amp; Learning Tracks</h1>
-          <ul>
-            <li><strong>Python:</strong> Master Python from scratch to data analytics and AI.</li>
-            <li><strong>Git &amp; GitHub:</strong> Version control tutorials, workflow guides, and open source collaboration.</li>
-            <li><strong>Programming:</strong> Core programming concepts, logic building, and learning strategies.</li>
-            <li><strong>React:</strong> Modern web development tutorials using React and Vite.</li>
-          </ul>
-        </main>`,
+      title: 'Categories & Topic Clusters — Sahaya Savari',
+      description: 'Browse programming guides by category: AI & Machine Learning, Python, React & Web, DevOps & Cloud, and Career Growth.',
+      contentHtml: `<main><h1>Categories &amp; Topic Clusters</h1></main>`,
     },
     {
       path: 'newsletter',
       title: 'Newsletter — Sahaya Savari',
-      description: 'Subscribe to the Sahaya Savari technical newsletter for weekly insights on Python, AI, React, and software engineering.',
-      contentHtml: `
-        <main>
-          <h1>Subscribe to Technical Insights</h1>
-          <p>Get notified whenever new Python, Git, or AI tutorials are published.</p>
-        </main>`,
+      description: 'Subscribe to weekly technical guides on AI Engineering, Python, and Full Stack Web Architecture.',
+      contentHtml: `<main><h1>Subscribe to Technical Insights</h1></main>`,
     },
     {
       path: 'privacy-policy',
       title: 'Privacy Policy — Sahaya Savari',
-      description: 'Privacy Policy for the Sahaya Savari technical learning blog.',
-      contentHtml: `<main><h1>Privacy Policy</h1><p>We respect your privacy. No personal data is tracked or sold.</p></main>`,
+      description: 'Privacy Policy for Sahaya Savari Developer Blog.',
+      contentHtml: `<main><h1>Privacy Policy</h1></main>`,
     },
     {
       path: 'accessibility',
       title: 'Accessibility Statement — Sahaya Savari',
-      description: 'Accessibility Statement for the Sahaya Savari technical learning blog.',
-      contentHtml: `<main><h1>Accessibility Statement</h1><p>We strive to make all content accessible to everyone.</p></main>`,
+      description: 'Accessibility Statement for Sahaya Savari Developer Blog.',
+      contentHtml: `<main><h1>Accessibility Statement</h1></main>`,
     },
   ];
 
@@ -327,7 +293,7 @@ function postbuild() {
       </article>`;
 
     let postHtml = updateHeadMeta(baseHtmlTemplate, {
-      title: `${post.title} — Sahaya Savari`,
+      title: `${post.title} — Sahaya Savari Developer Blog`,
       description: post.excerpt,
       canonicalUrl: `${baseUrl}/${postRoutePath}`,
       imageUrl: post.image,
@@ -337,7 +303,91 @@ function postbuild() {
     console.log(`✅ Generated /${postRoutePath} (dist/${postRoutePath}/index.html)`);
   });
 
-  console.log('🎉 Post-build SEO route generation completed successfully!');
+  // Generate dist/sitemap.xml
+  const sitemapUrls = [
+    `${baseUrl}/`,
+    `${baseUrl}/blog`,
+    `${baseUrl}/categories`,
+    `${baseUrl}/about`,
+    `${baseUrl}/contact`,
+    `${baseUrl}/newsletter`,
+    ...posts.map((p) => `${baseUrl}/blog/${p.slug}`),
+  ];
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.map((url) => `  <url>\n    <loc>${url}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n  </url>`).join('\n')}
+</urlset>`;
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf8');
+  console.log('✅ Generated dist/sitemap.xml');
+
+  // Generate dist/feed.xml (RSS 2.0)
+  const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sahaya Savari Developer Blog</title>
+    <link>${baseUrl}</link>
+    <description>AI Engineering, Python, React, DevOps &amp; Career Guides by Sahaya Savari F</description>
+    <language>en-us</language>
+    ${posts
+      .map(
+        (p) => `
+    <item>
+      <title>${escapeHtml(p.title)}</title>
+      <link>${baseUrl}/blog/${p.slug}</link>
+      <guid>${baseUrl}/blog/${p.slug}</guid>
+      <pubDate>${new Date(p.date || Date.now()).toUTCString()}</pubDate>
+      <description>${escapeHtml(p.excerpt)}</description>
+    </item>`
+      )
+      .join('\n')}
+  </channel>
+</rss>`;
+  fs.writeFileSync(path.join(distDir, 'feed.xml'), rssXml, 'utf8');
+  console.log('✅ Generated dist/feed.xml');
+
+  // Generate dist/llms.txt
+  const llmsTxt = `# Sahaya Savari Developer Blog
+
+> World-Class AI & Software Engineering Knowledge Hub by Sahaya Savari F.
+> Site URL: ${baseUrl}
+
+## Knowledge Hub Topics & Cluster Guides
+
+${posts.map((p) => `- [${p.title}](${baseUrl}/blog/${p.slug}): ${p.excerpt}`).join('\n')}
+
+## Core Categories
+- AI & Machine Learning (${baseUrl}/blog?category=ai-ml)
+- Python & Backend (${baseUrl}/blog?category=python)
+- React & Web Performance (${baseUrl}/blog?category=react)
+- DevOps & Cloud Infrastructure (${baseUrl}/blog?category=devops)
+- Career & Engineering Growth (${baseUrl}/blog?category=career)
+`;
+  fs.writeFileSync(path.join(distDir, 'llms.txt'), llmsTxt, 'utf8');
+  console.log('✅ Generated dist/llms.txt');
+
+  // Generate dist/llms-full.txt
+  const llmsFullTxt = `# Sahaya Savari Developer Blog — Complete Content Repository
+
+${posts
+  .map(
+    (p) => `
+================================================================================
+# ${p.title}
+URL: ${baseUrl}/blog/${p.slug}
+Category: ${p.category}
+Date: ${p.date}
+Author: ${p.author}
+Summary: ${p.excerpt}
+
+${p.rawBody}
+`
+  )
+  .join('\n\n')}`;
+  fs.writeFileSync(path.join(distDir, 'llms-full.txt'), llmsFullTxt, 'utf8');
+  console.log('✅ Generated dist/llms-full.txt');
+
+  console.log('🎉 Post-build SEO, Sitemap, RSS & AI Search (LLMs) generation completed successfully!');
 }
 
 postbuild();

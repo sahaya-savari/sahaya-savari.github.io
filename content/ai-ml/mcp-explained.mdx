@@ -1,0 +1,81 @@
+---
+id: "mcp-explained"
+title: "Model Context Protocol (MCP) Explained: Architecture, Tools & Python Implementation"
+excerpt: "Understand Anthropic's Model Context Protocol (MCP). Learn how client-server architecture standardizes local files, database connections, and API tool integrations for AI models."
+category: "AI & Machine Learning"
+author: "Sahaya Savari F"
+authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+date: "2026-07-23"
+readingTime: 16
+image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&h=675&fit=crop"
+featured: false
+tags: ["MCP", "Model Context Protocol", "AI Tools", "Python", "Claude", "AI Architecture"]
+---
+
+# Model Context Protocol (MCP) Explained: Architecture, Tools & Python Implementation
+
+As Large Language Models become integral to software development, connecting models to enterprise databases, local codebases, design files, and third-party APIs has historically required custom integration logic for every application.
+
+The **Model Context Protocol (MCP)**, open-sourced by Anthropic, establishes an open, standard client-server protocol enabling LLMs to seamlessly interact with external data sources and tools without rewriting custom middleware wrappers.
+
+---
+
+## 🔌 Architecture Overview
+
+MCP follows a clear Client-Server model over standard I/O (stdio) or Server-Sent Events (SSE HTTP):
+
+```
++------------------+         MCP JSON-RPC Protocol       +--------------------+
+|   MCP Client     | <=================================> |   MCP Server       |
+| (Claude Desktop/ |   - Prompts / List Tools            | (Database Explorer |
+| IDE Extensions)  |   - Call Tool (SQL / File Search)   |  File Manager Server)|
++------------------+                                     +--------------------+
+```
+
+### Core Primitives in MCP:
+1. **Resources**: URI-addressable data content (e.g. `file:///logs/app.log` or `postgres://table/users`) exposed for model context.
+2. **Tools**: Functions callable by the LLM with typed input arguments validated by JSON Schemas.
+3. **Prompts**: Reusable pre-configured template workflows exposed by the server.
+
+---
+
+## 💻 Python Example: Building a FastMCP Server
+
+```python
+from pydantic import BaseModel, Field
+from mcp.server.fastmcp import FastMCP
+
+# Initialize FastMCP Server
+server = FastMCP("System Health MCP Server")
+
+class SystemMetrics(BaseModel):
+    cpu_percent: float
+    memory_available_gb: float
+    status: str
+
+@server.tool()
+async def check_system_health() -> str:
+    """Returns the current server health and hardware resource utilization."""
+    metrics = SystemMetrics(
+        cpu_percent=14.2,
+        memory_available_gb=12.4,
+        status="HEALTHY"
+    )
+    return metrics.model_dump_json()
+
+@server.tool()
+async def query_application_logs(severity: str = Field(description="ERROR, WARN, or INFO")) -> str:
+    """Searches local logs filtered by severity level."""
+    return f"Found 3 log entries matching severity '{severity.upper()}': All background jobs executed cleanly."
+
+if __name__ == "__main__":
+    server.run()
+```
+
+---
+
+## 🔄 Related Cluster Articles & Next Reading
+
+- ➡️ **Next Reading**: [Building Autonomous AI Agents from Scratch in Async Python](/blog/ai-agents-from-scratch)
+- 🔗 [The Ultimate AI Engineering Roadmap (2026 Edition)](/blog/ai-engineering-roadmap-2026)
+- 🔗 [RAG Explained: From Naive Vector Search to Enterprise Hybrid Systems](/blog/rag-explained)
